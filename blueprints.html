@@ -98,6 +98,9 @@
     position: relative;
     padding: 0.05in;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .schematic-label {
     position: absolute;
@@ -177,110 +180,730 @@
 </style>
 </head>
 <body>
-
-  <!-- CARD 1: MEDICAL RECIPE -->
-  <div class="card">
+  
+    <div class="card">
     <div class="card-inner">
       <div class="header">
         <span>SYS. SURVIVAL PROTOCOL</span>
-        <span>RECIPE // MED-01</span>
+        <span>RECIPE // FOD-03</span>
       </div>
       
       <div class="title-area">
-        <h2>Field Med-Patch</h2>
-        <div class="subtitle">Rapid Coagulation & Healing Poultice</div>
+        <h2>Preserved Meat Jerky</h2>
+        <div class="subtitle">Salt-Cured Protein</div>
       </div>
 
       <div class="content">
         <div class="schematic-box">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
-        <defs>
-          <!-- Glowing Toxic Gel Gradient -->
-          <radialGradient id="gelGlow" cx="40%" cy="40%" r="60%">
-            <stop offset="0%" stop-color="#86efac" stop-opacity="0.9"/>
-            <stop offset="60%" stop-color="#22c55e" stop-opacity="0.8"/>
-            <stop offset="100%" stop-color="#14532d" stop-opacity="0.95"/>
-          </radialGradient>
+            <defs>
+              <linearGradient id="meatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7f1d1d"/>
+                <stop offset="50%" stop-color="#450a0a"/>
+                <stop offset="100%" stop-color="#2e1005"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(128, 128) rotate(-15) translate(-128, -128)">
+              <path d="M 60 50 C 128 70 196 50 196 50" fill="none" stroke="#a8a29e" stroke-width="2"/>
+              <path d="M 100 65 C 90 100 110 150 95 190 C 110 195 125 185 120 150 C 115 110 125 80 120 62 Z" fill="url(#meatGrad)" stroke="#1c1917" stroke-width="2"/>
+              <path d="M 105 80 C 100 100 110 120 105 140" fill="none" stroke="#1c1917" stroke-width="1" opacity="0.6"/>
+              <path d="M 112 90 C 110 130 118 160 110 180" fill="none" stroke="#1c1917" stroke-width="1" opacity="0.6"/>
+              <path d="M 110 55 C 110 45 105 45 105 55" fill="none" stroke="#d6d3d1" stroke-width="2"/>
+              
+              <g transform="translate(40, -10) scale(0.9)">
+                <path d="M 100 65 C 90 100 110 150 95 190 C 110 195 125 185 120 150 C 115 110 125 80 120 62 Z" fill="url(#meatGrad)" stroke="#1c1917" stroke-width="2"/>
+                <path d="M 105 80 C 100 100 110 120 105 140" fill="none" stroke="#1c1917" stroke-width="1" opacity="0.6"/>
+                <path d="M 112 90 C 110 130 118 160 110 180" fill="none" stroke="#1c1917" stroke-width="1" opacity="0.6"/>
+                <path d="M 110 55 C 110 45 105 45 105 55" fill="none" stroke="#d6d3d1" stroke-width="2"/>
+              </g>
+              
+              <circle cx="108" cy="110" r="1.5" fill="#f3f4f6"/>
+              <circle cx="115" cy="130" r="1.5" fill="#f3f4f6"/>
+              <circle cx="102" cy="160" r="1.5" fill="#f3f4f6"/>
+              <circle cx="152" cy="100" r="1.5" fill="#f3f4f6"/>
+              <circle cx="145" cy="140" r="1.5" fill="#f3f4f6"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 17. PRESERVED RATION</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[BIOMAT]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[CHEMICAL]</span><span class="stat-val">x1</span></div>
           
-          <!-- Gritty Outer Bandage Gradient -->
-          <linearGradient id="plasticEdge" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#a8a29e"/>
-            <stop offset="40%" stop-color="#78716c"/>
-            <stop offset="100%" stop-color="#44403c"/>
-          </linearGradient>
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 2 Hours (Passive)<br><br>
+            <strong>RESULT:</strong> Creates 2 Jerky strips. Never spoils in inventory. Eating one restores 1 HP and staves off hunger for 24 hours.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // FOD-04</span>
+      </div>
       
-          <!-- Slime Highlight Gradient -->
-          <linearGradient id="slimeHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#bef264"/>
-            <stop offset="100%" stop-color="#65a30d"/>
-          </linearGradient>
-      
-          <!-- Drop Shadow for Sprite Depth -->
-          <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="4" dy="6" stdDeviation="3" flood-opacity="0.6" flood-color="#1c1917" />
-          </filter>
-      
-          <!-- Inner Shadow to make the Gel look recessed/squishy -->
-          <filter id="innerShadow">
-            <feOffset dx="0" dy="4"/>
-            <feGaussianBlur stdDeviation="3" result="offset-blur"/>
-            <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"/>
-            <feFlood flood-color="black" flood-opacity="0.7" result="color"/>
-            <feComposite operator="in" in="color" in2="inverse" result="shadow"/>
-            <feComposite operator="over" in="shadow" in2="SourceGraphic"/>
-          </filter>
-        </defs>
-      
-        <!-- Rotate the entire sprite to give it a dynamic item-drop angle -->
-        <g transform="translate(128, 128) rotate(-35) translate(-128, -128)" filter="url(#dropShadow)">
-          
-          <!-- Outer Plastic/Fabric Bandage Base -->
-          <rect x="28" y="88" width="200" height="80" rx="40" ry="40" fill="url(#plasticEdge)" stroke="#292524" stroke-width="4"/>
-      
-          <!-- Left Ventilation Dimples -->
-          <g fill="#292524" opacity="0.7">
-            <circle cx="56" cy="112" r="4" />
-            <circle cx="56" cy="128" r="4" />
-            <circle cx="56" cy="144" r="4" />
-            <circle cx="72" cy="120" r="4" />
-            <circle cx="72" cy="136" r="4" />
-          </g>
-      
-          <!-- Right Ventilation Dimples -->
-          <g fill="#292524" opacity="0.7">
-            <circle cx="200" cy="112" r="4" />
-            <circle cx="200" cy="128" r="4" />
-            <circle cx="200" cy="144" r="4" />
-            <circle cx="184" cy="120" r="4" />
-            <circle cx="184" cy="136" r="4" />
-          </g>
-      
-          <!-- Scratches / Distressing on the left side -->
-          <path d="M 40 100 L 52 108 M 42 106 L 58 116 M 46 94 L 56 100" stroke="#292524" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
-      
-          <!-- Center Gel Pad -->
-          <rect x="92" y="80" width="72" height="96" rx="16" ry="16" fill="url(#gelGlow)" stroke="#064e3b" stroke-width="4" filter="url(#innerShadow)"/>
-      
-          <!-- Inner Gel Highlight to emphasize gelatinous texture -->
-          <rect x="98" y="86" width="60" height="20" rx="8" ry="8" fill="#ffffff" opacity="0.2"/>
-      
-          <!-- Corrupted Medical Cross -->
-          <path d="M 118 108 h 20 v 10 h 10 v 20 h -10 v 10 h -20 v -10 h -10 v -20 h 10 z" fill="#1e1b4b" stroke="#1c1917" stroke-width="2" opacity="0.85"/>
-          <!-- Cross Inner Stitching/Veins -->
-          <path d="M 118 108 h 20 v 10 h 10 v 20 h -10 v 10 h -20 v -10 h -10 v -20 h 10 z" fill="none" stroke="#bef264" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.7"/>
-        </g>
-      </svg>
+      <div class="title-area">
+        <h2>Stim-Gum</h2>
+        <div class="subtitle">Caffeinated Chewable</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
+            <defs>
+              <linearGradient id="foilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#e5e7eb"/>
+                <stop offset="50%" stop-color="#9ca3af"/>
+                <stop offset="100%" stop-color="#4b5563"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(128, 128) rotate(15) translate(-128, -128)">
+              <rect x="70" y="70" width="116" height="116" rx="8" fill="url(#foilGrad)" stroke="#374151" stroke-width="2"/>
+              <circle cx="100" cy="100" r="16" fill="#d1d5db" stroke="#6b7280" stroke-width="2"/>
+              <circle cx="156" cy="100" r="16" fill="#d1d5db" stroke="#6b7280" stroke-width="2"/>
+              <circle cx="100" cy="156" r="16" fill="#d1d5db" stroke="#6b7280" stroke-width="2"/>
+              <path d="M 140 156 C 140 140 172 140 172 156 C 172 172 140 172 140 156 Z" fill="#1f2937" stroke="#4b5563" stroke-width="2"/>
+              <rect x="156" y="160" width="24" height="24" rx="4" fill="#a3e635" stroke="#4d7c0f" stroke-width="2" transform="rotate(-20 168 172)"/>
+              <path d="M 185 155 L 195 145 M 190 175 L 205 180 M 150 190 L 145 205" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round"/>
+              <polygon points="175,190 180,185 185,192 180,195" fill="#facc15"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 18. STIMULANT</div>
         </div>
 
         <div class="stats-box">
           <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
           <div class="stat-row"><span class="tag-name">[CHEMICAL]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[BIOMAT]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 1 Minute<br><br>
+            <strong>RESULT:</strong> Creates 1 Pack of Gum. Chewing it ignores 1 level of <em>Exhaustion</em> and grants +2m movement speed for 1 hour.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // FOD-05</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Foraged Brew</h2>
+        <div class="subtitle">Questionable Herbal Tea</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
+            <defs>
+              <linearGradient id="cupGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#52525b"/>
+                <stop offset="50%" stop-color="#a1a1aa"/>
+                <stop offset="100%" stop-color="#3f3f46"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(0, 15)">
+              <path d="M 110 80 C 100 60 130 50 115 30" fill="none" stroke="#a3e635" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+              <path d="M 140 85 C 130 65 160 55 145 35" fill="none" stroke="#a3e635" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+              
+              <path d="M 165 110 C 195 110 195 150 160 160" fill="none" stroke="#52525b" stroke-width="10"/>
+              <path d="M 165 110 C 195 110 195 150 160 160" fill="none" stroke="#a1a1aa" stroke-width="6"/>
+              
+              <path d="M 80 90 L 170 90 L 160 180 L 90 180 Z" fill="url(#cupGrad)" stroke="#18181b" stroke-width="3"/>
+              
+              <ellipse cx="125" cy="90" rx="45" ry="12" fill="#71717a" stroke="#18181b" stroke-width="3"/>
+              <ellipse cx="125" cy="92" rx="38" ry="8" fill="#4d7c0f" opacity="0.9"/>
+              
+              <path d="M 110 95 L 90 60 L 95 65 Z" fill="#65a30d" stroke="#3f6212" stroke-width="1"/>
+              <path d="M 100 95 L 105 70 L 110 75 Z" fill="#65a30d" stroke="#3f6212" stroke-width="1"/>
+              <line x1="135" y1="95" x2="150" y2="70" stroke="#451a03" stroke-width="2"/>
+              
+              <path d="M 95 130 C 100 135 110 125 115 130" fill="none" stroke="#3f3f46" stroke-width="2"/>
+              <path d="M 130 160 C 135 155 145 165 150 160" fill="none" stroke="#3f3f46" stroke-width="2"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 19. FORAGED LIQUID</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
           <div class="stat-row"><span class="tag-name">[BIOMAT]</span><span class="stat-val">x2</span></div>
+          <div class="stat-row"><span class="tag-name">[WATER]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 15 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 1 Brew. Restores 1d6 HP. User must pass a Constitution save or suffer the <em>Poisoned</em> condition for 10 minutes due to toxic runoff.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+    <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // FOD-03</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Preserved Meat Jerky</h2>
+        <div class="subtitle">Salt-Cured Protein</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
+            <defs>
+              <linearGradient id="meatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7f1d1d"/>
+                <stop offset="50%" stop-color="#450a0a"/>
+                <stop offset="100%" stop-color="#2e1005"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(128, 128) rotate(-15) translate(-128, -128)">
+              <path d="M 60 50 C 128 70 196 50 196 50" fill="none" stroke="#a8a29e" stroke-width="2"/>
+              <path d="M 100 65 C 90 100 110 150 95 190 C 110 195 125 185 120 150 C 115 110 125 80 120 62 Z" fill="url(#meatGrad)" stroke="#1c1917" stroke-width="2"/>
+              <path d="M 105 80 C 100 100 110 120 105 140" fill="none" stroke="#1c1917" stroke-width="1" opacity="0.6"/>
+              <path d="M 112 90 C 110 130 118 160 110 180" fill="none" stroke="#1c1917" stroke-width="1" opacity="0.6"/>
+              <path d="M 110 55 C 110 45 105 45 105 55" fill="none" stroke="#d6d3d1" stroke-width="2"/>
+              
+              <g transform="translate(40, -10) scale(0.9)">
+                <path d="M 100 65 C 90 100 110 150 95 190 C 110 195 125 185 120 150 C 115 110 125 80 120 62 Z" fill="url(#meatGrad)" stroke="#1c1917" stroke-width="2"/>
+                <path d="M 105 80 C 100 100 110 120 105 140" fill="none" stroke="#1c1917" stroke-width="1" opacity="0.6"/>
+                <path d="M 112 90 C 110 130 118 160 110 180" fill="none" stroke="#1c1917" stroke-width="1" opacity="0.6"/>
+                <path d="M 110 55 C 110 45 105 45 105 55" fill="none" stroke="#d6d3d1" stroke-width="2"/>
+              </g>
+              
+              <circle cx="108" cy="110" r="1.5" fill="#f3f4f6"/>
+              <circle cx="115" cy="130" r="1.5" fill="#f3f4f6"/>
+              <circle cx="102" cy="160" r="1.5" fill="#f3f4f6"/>
+              <circle cx="152" cy="100" r="1.5" fill="#f3f4f6"/>
+              <circle cx="145" cy="140" r="1.5" fill="#f3f4f6"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 17. PRESERVED RATION</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[BIOMAT]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[CHEMICAL]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 2 Hours (Passive)<br><br>
+            <strong>RESULT:</strong> Creates 2 Jerky strips. Never spoils in inventory. Eating one restores 1 HP and staves off hunger for 24 hours.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // FOD-04</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Stim-Gum</h2>
+        <div class="subtitle">Caffeinated Chewable</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
+            <defs>
+              <linearGradient id="foilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#e5e7eb"/>
+                <stop offset="50%" stop-color="#9ca3af"/>
+                <stop offset="100%" stop-color="#4b5563"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(128, 128) rotate(15) translate(-128, -128)">
+              <rect x="70" y="70" width="116" height="116" rx="8" fill="url(#foilGrad)" stroke="#374151" stroke-width="2"/>
+              <circle cx="100" cy="100" r="16" fill="#d1d5db" stroke="#6b7280" stroke-width="2"/>
+              <circle cx="156" cy="100" r="16" fill="#d1d5db" stroke="#6b7280" stroke-width="2"/>
+              <circle cx="100" cy="156" r="16" fill="#d1d5db" stroke="#6b7280" stroke-width="2"/>
+              <path d="M 140 156 C 140 140 172 140 172 156 C 172 172 140 172 140 156 Z" fill="#1f2937" stroke="#4b5563" stroke-width="2"/>
+              <rect x="156" y="160" width="24" height="24" rx="4" fill="#a3e635" stroke="#4d7c0f" stroke-width="2" transform="rotate(-20 168 172)"/>
+              <path d="M 185 155 L 195 145 M 190 175 L 205 180 M 150 190 L 145 205" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round"/>
+              <polygon points="175,190 180,185 185,192 180,195" fill="#facc15"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 18. STIMULANT</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[CHEMICAL]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[BIOMAT]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 1 Minute<br><br>
+            <strong>RESULT:</strong> Creates 1 Pack of Gum. Chewing it ignores 1 level of <em>Exhaustion</em> and grants +2m movement speed for 1 hour.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // FOD-05</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Foraged Brew</h2>
+        <div class="subtitle">Questionable Herbal Tea</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
+            <defs>
+              <linearGradient id="cupGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#52525b"/>
+                <stop offset="50%" stop-color="#a1a1aa"/>
+                <stop offset="100%" stop-color="#3f3f46"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(0, 15)">
+              <path d="M 110 80 C 100 60 130 50 115 30" fill="none" stroke="#a3e635" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+              <path d="M 140 85 C 130 65 160 55 145 35" fill="none" stroke="#a3e635" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+              
+              <path d="M 165 110 C 195 110 195 150 160 160" fill="none" stroke="#52525b" stroke-width="10"/>
+              <path d="M 165 110 C 195 110 195 150 160 160" fill="none" stroke="#a1a1aa" stroke-width="6"/>
+              
+              <path d="M 80 90 L 170 90 L 160 180 L 90 180 Z" fill="url(#cupGrad)" stroke="#18181b" stroke-width="3"/>
+              
+              <ellipse cx="125" cy="90" rx="45" ry="12" fill="#71717a" stroke="#18181b" stroke-width="3"/>
+              <ellipse cx="125" cy="92" rx="38" ry="8" fill="#4d7c0f" opacity="0.9"/>
+              
+              <path d="M 110 95 L 90 60 L 95 65 Z" fill="#65a30d" stroke="#3f6212" stroke-width="1"/>
+              <path d="M 100 95 L 105 70 L 110 75 Z" fill="#65a30d" stroke="#3f6212" stroke-width="1"/>
+              <line x1="135" y1="95" x2="150" y2="70" stroke="#451a03" stroke-width="2"/>
+              
+              <path d="M 95 130 C 100 135 110 125 115 130" fill="none" stroke="#3f3f46" stroke-width="2"/>
+              <path d="M 130 160 C 135 155 145 165 150 160" fill="none" stroke="#3f3f46" stroke-width="2"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 19. FORAGED LIQUID</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[BIOMAT]</span><span class="stat-val">x2</span></div>
+          <div class="stat-row"><span class="tag-name">[WATER]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 15 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 1 Brew. Restores 1d6 HP. User must pass a Constitution save or suffer the <em>Poisoned</em> condition for 10 minutes due to toxic runoff.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+    <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // WPN-11</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Incendiary Bolts</h2>
+        <div class="subtitle">Igniting Projectiles</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="90%" height="90%">
+            <defs>
+              <linearGradient id="fireGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#fef08a"/>
+                <stop offset="50%" stop-color="#f97316"/>
+                <stop offset="100%" stop-color="#ef4444"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(128, 128) rotate(45) translate(-128, -128)">
+              <rect x="124" y="80" width="8" height="100" fill="#78350f" stroke="#451a03" stroke-width="1"/>
+              <polygon points="120,80 136,80 128,60" fill="#52525b" stroke="#18181b" stroke-width="1"/>
+              <path d="M 124 180 L 118 190 L 128 185 L 138 190 L 132 180 Z" fill="#44403c"/>
+              <ellipse cx="128" cy="75" rx="8" ry="12" fill="#d6d3d1" opacity="0.8" stroke="#78716c" stroke-width="1"/> <path d="M 128 65 C 115 50 140 40 128 20 C 110 45 145 55 128 65 Z" fill="url(#fireGrad)" opacity="0.9"/>
+              
+              <g transform="translate(-30, 20)">
+                <rect x="124" y="80" width="8" height="100" fill="#78350f" stroke="#451a03" stroke-width="1"/>
+                <polygon points="120,80 136,80 128,60" fill="#52525b" stroke="#18181b" stroke-width="1"/>
+                <path d="M 124 180 L 118 190 L 128 185 L 138 190 L 132 180 Z" fill="#44403c"/>
+                <ellipse cx="128" cy="75" rx="8" ry="12" fill="#d6d3d1" opacity="0.8" stroke="#78716c" stroke-width="1"/>
+                <path d="M 128 65 C 115 50 140 40 128 20 C 110 45 145 55 128 65 Z" fill="url(#fireGrad)" opacity="0.9"/>
+              </g>
+
+              <g transform="translate(30, 20)">
+                <rect x="124" y="80" width="8" height="100" fill="#78350f" stroke="#451a03" stroke-width="1"/>
+                <polygon points="120,80 136,80 128,60" fill="#52525b" stroke="#18181b" stroke-width="1"/>
+                <path d="M 124 180 L 118 190 L 128 185 L 138 190 L 132 180 Z" fill="#44403c"/>
+                <ellipse cx="128" cy="75" rx="8" ry="12" fill="#d6d3d1" opacity="0.8" stroke="#78716c" stroke-width="1"/>
+                <path d="M 128 65 C 115 50 140 40 128 20 C 110 45 145 55 128 65 Z" fill="url(#fireGrad)" opacity="0.9"/>
+              </g>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 14. AMMUNITION</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[WOOD]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[CHEMICAL]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[TEXTILE]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 5 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 3 Incendiary Bolts. Adds +1 Fire damage to any crossbow or bow attack. Can ignite flammable environmental hazards.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // WPN-12</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Car-Door Shield</h2>
+        <div class="subtitle">Heavy Improvised Cover</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="70%" height="70%">
+            <defs>
+              <linearGradient id="rustPaint" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#b91c1c"/>
+                <stop offset="40%" stop-color="#7f1d1d"/>
+                <stop offset="80%" stop-color="#9a3412"/>
+                <stop offset="100%" stop-color="#431407"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(0, 5)">
+              <path d="M 60 50 L 160 50 L 200 100 L 200 200 L 60 200 Z" fill="url(#rustPaint)" stroke="#1c1917" stroke-width="4"/>
+              <path d="M 70 60 L 150 60 L 180 100 L 70 100 Z" fill="#1e293b" stroke="#000" stroke-width="2"/>
+              <path d="M 70 100 L 90 90 L 110 95 L 130 85 L 150 95 L 180 100" fill="none" stroke="#e0f2fe" stroke-width="2" opacity="0.6"/>
+              <rect x="160" y="120" width="25" height="8" rx="2" fill="#52525b" stroke="#000" stroke-width="2"/>
+              <circle cx="90" cy="130" r="4" fill="#1c1917"/>
+              <circle cx="110" cy="160" r="5" fill="#1c1917"/>
+              <circle cx="140" cy="180" r="3" fill="#1c1917"/>
+              <path d="M 100 130 C 95 125 85 135 90 140" fill="none" stroke="#d6d3d1" stroke-width="1"/>
+              <path d="M 100 50 C 100 30 130 30 130 50" fill="none" stroke="#451a03" stroke-width="5"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 15. HEAVY DEFENSE</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[SCRAP METAL]</span><span class="stat-val">x4</span></div>
+          <div class="stat-row"><span class="tag-name">[TEXTILE]</span><span class="stat-val">x2</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 20 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 1 Heavy Shield. Grants +2 Armor Class. Reduces movement speed by 2m.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // FOD-01</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Nutrient Paste</h2>
+        <div class="subtitle">Flavorless Caloric Intake</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
+            <defs>
+              <linearGradient id="tubeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#9ca3af"/>
+                <stop offset="50%" stop-color="#f3f4f6"/>
+                <stop offset="100%" stop-color="#6b7280"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(128, 128) rotate(-30) translate(-128, -128)">
+              <rect x="70" y="110" width="10" height="40" fill="#4b5563" stroke="#1f2937" stroke-width="2"/>
+              <line x1="75" y1="110" x2="75" y2="150" stroke="#1f2937" stroke-width="1"/>
+              <path d="M 80 110 L 170 100 L 170 160 L 80 150 Z" fill="url(#tubeGrad)" stroke="#1f2937" stroke-width="2"/>
+              <polygon points="100,115 150,110 150,150 100,145" fill="#3b82f6" opacity="0.8"/>
+              <rect x="110" y="125" width="30" height="10" fill="#ffffff"/>
+              <rect x="170" y="120" width="10" height="20" fill="#d1d5db" stroke="#1f2937" stroke-width="2"/>
+              <rect x="180" y="115" width="15" height="30" rx="2" fill="#ef4444" stroke="#7f1d1d" stroke-width="2"/>
+              <path d="M 195 130 C 210 130 215 150 230 145 C 240 140 235 120 250 125" fill="none" stroke="#84cc16" stroke-width="8" stroke-linecap="round"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 16. CONSUMABLE RATION</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[BIOMAT]</span><span class="stat-val">x2</span></div>
+          <div class="stat-row"><span class="tag-name">[CHEMICAL]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 10 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 1 Ration. Restores 1d6 HP and completely removes the <em>Starving</em> condition.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  
+    <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // WPN-08</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Buzz-Axe</h2>
+        <div class="subtitle">Motorized Slashing Tool</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
+            <defs>
+              <linearGradient id="bladeGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#94a3b8"/>
+                <stop offset="50%" stop-color="#475569"/>
+                <stop offset="100%" stop-color="#1e293b"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(128, 128) rotate(-25) translate(-128, -128)">
+              <rect x="110" y="140" width="20" height="80" rx="3" fill="#451a03" stroke="#292524" stroke-width="2"/>
+              <rect x="100" y="100" width="40" height="50" rx="5" fill="#f59e0b" stroke="#b45309" stroke-width="3"/>
+              <rect x="105" y="110" width="30" height="10" fill="#334155" stroke="#0f172a" stroke-width="1"/>
+              <rect x="105" y="125" width="30" height="10" fill="#334155" stroke="#0f172a" stroke-width="1"/>
+              <circle cx="145" cy="115" r="5" fill="#1c1917"/>
+              <path d="M 140 115 L 145 115" stroke="#1c1917" stroke-width="2"/>
+              <circle cx="120" cy="70" r="35" fill="url(#bladeGrad2)" stroke="#0f172a" stroke-width="2"/>
+              <circle cx="120" cy="70" r="5" fill="#1c1917"/>
+              <path d="M 120 35 L 125 25 L 130 35 Z" fill="#475569" stroke="#0f172a" stroke-width="1"/>
+              <path d="M 155 70 L 165 75 L 155 80 Z" fill="#475569" stroke="#0f172a" stroke-width="1"/>
+              <path d="M 120 105 L 115 115 L 110 105 Z" fill="#475569" stroke="#0f172a" stroke-width="1"/>
+              <path d="M 85 70 L 75 65 L 85 60 Z" fill="#475569" stroke="#0f172a" stroke-width="1"/>
+              <path d="M 145 45 L 155 40 L 150 50 Z" fill="#475569" stroke="#0f172a" stroke-width="1"/>
+              <path d="M 95 95 L 85 100 L 90 90 Z" fill="#475569" stroke="#0f172a" stroke-width="1"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 11. HEAVY MELEE</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[MECHANICAL]</span><span class="stat-val">x2</span></div>
+          <div class="stat-row"><span class="tag-name">[BATTERY]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[SCRAP METAL]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 1 Hour<br><br>
+            <strong>RESULT:</strong> Creates 1 Buzz-Axe. Deals 1d10 Slashing damage. Highly audible; attracts enemies within 30m when revved.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // WPN-09</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>EMP Charge</h2>
+        <div class="subtitle">Electromagnetic Disruptor</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
+            <defs>
+              <linearGradient id="empCasing" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#1e293b"/>
+                <stop offset="50%" stop-color="#334155"/>
+                <stop offset="100%" stop-color="#0f172a"/>
+              </linearGradient>
+              <radialGradient id="empGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <g transform="translate(0, 10)">
+              <circle cx="128" cy="128" r="60" fill="url(#empGlow)"/>
+              <rect x="98" y="78" width="60" height="100" rx="10" fill="url(#empCasing)" stroke="#020617" stroke-width="3"/>
+              <line x1="108" y1="88" x2="148" y2="88" stroke="#38bdf8" stroke-width="2"/>
+              <line x1="108" y1="168" x2="148" y2="168" stroke="#38bdf8" stroke-width="2"/>
+              <path d="M 128 98 L 128 158" stroke="#fcd34d" stroke-width="3" stroke-dasharray="4 4"/>
+              <rect x="118" y="118" width="20" height="20" rx="2" fill="#020617" stroke="#38bdf8" stroke-width="1"/>
+              <rect x="85" y="98" width="13" height="40" rx="3" fill="#ef4444" stroke="#7f1d1d" stroke-width="2"/>
+              <rect x="158" y="98" width="13" height="40" rx="3" fill="#ef4444" stroke="#7f1d1d" stroke-width="2"/>
+              <rect x="118" y="60" width="20" height="18" rx="2" fill="#475569" stroke="#020617" stroke-width="2"/>
+              <circle cx="128" cy="55" r="6" fill="#ef4444"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 12. TACTICAL EXPLOSIVE</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[ELECTRONIC]</span><span class="stat-val">x2</span></div>
+          <div class="stat-row"><span class="tag-name">[BATTERY]</span><span class="stat-val">x2</span></div>
+          <div class="stat-row"><span class="tag-name">[SCRAP METAL]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 30 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 1 Charge. Thrown 10m. Instantly disables all electronic devices, cameras, and robotic entities within a 10m radius for 1 minute.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // WPN-10</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Kinetic Knuckles</h2>
+        <div class="subtitle">Weighted Unarmed Enhancers</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="90%" height="90%">
+            <defs>
+              <linearGradient id="metalKnuckle" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#a1a1aa"/>
+                <stop offset="50%" stop-color="#52525b"/>
+                <stop offset="100%" stop-color="#27272a"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(0, 20)">
+              <path d="M 60 120 C 60 90 196 90 196 120 C 196 150 160 170 128 170 C 96 170 60 150 60 120 Z" fill="url(#metalKnuckle)" stroke="#18181b" stroke-width="4"/>
+              <circle cx="85" cy="115" r="12" fill="#0b3d91" stroke="#18181b" stroke-width="3"/>
+              <circle cx="115" cy="110" r="12" fill="#0b3d91" stroke="#18181b" stroke-width="3"/>
+              <circle cx="145" cy="110" r="12" fill="#0b3d91" stroke="#18181b" stroke-width="3"/>
+              <circle cx="175" cy="115" r="12" fill="#0b3d91" stroke="#18181b" stroke-width="3"/>
+              <circle cx="85" cy="85" r="5" fill="#e4e4e7" stroke="#000" stroke-width="1"/>
+              <circle cx="115" cy="80" r="5" fill="#e4e4e7" stroke="#000" stroke-width="1"/>
+              <circle cx="145" cy="80" r="5" fill="#e4e4e7" stroke="#000" stroke-width="1"/>
+              <circle cx="175" cy="85" r="5" fill="#e4e4e7" stroke="#000" stroke-width="1"/>
+              <rect x="100" y="145" width="56" height="25" rx="5" fill="#d6d3d1" stroke="#a8a29e" stroke-width="2"/>
+              <line x1="110" y1="145" x2="115" y2="170" stroke="#a8a29e" stroke-width="2"/>
+              <line x1="125" y1="145" x2="130" y2="170" stroke="#a8a29e" stroke-width="2"/>
+              <line x1="140" y1="145" x2="145" y2="170" stroke="#a8a29e" stroke-width="2"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 13. BRAWLER SCHEMATIC</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[SCRAP METAL]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[TEXTILE]</span><span class="stat-val">x1</span></div>
           <div class="stat-row"><span class="tag-name">[ADHESIVE]</span><span class="stat-val">x1</span></div>
           
           <div class="description">
-            <strong>CRAFTING TIME:</strong> 1 Action<br>
-            <strong>RESULT:</strong> Creates 1 Field Med-Patch. When applied, target instantly recovers 1d8 HP and stops the <em>Bleeding</em> condition.
+            <strong>CRAFTING TIME:</strong> 10 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 1 Pair of Knuckles. Unarmed strikes deal 1d6 Bludgeoning damage. On a hit, you may push the target 1m back.
           </div>
         </div>
       </div>
@@ -292,145 +915,63 @@
     </div>
   </div>
 
-  <!-- CARD 2: EXPLOSIVE RECIPE -->
+  
+    <!-- WEAPON RECIPE: WPN-05 -->
   <div class="card">
     <div class="card-inner">
       <div class="header">
         <span>SYS. SURVIVAL PROTOCOL</span>
-        <span>RECIPE // EXP-04</span>
+        <span>RECIPE // WPN-05</span>
       </div>
       
       <div class="title-area">
-        <h2>Shrapnel Mine</h2>
-        <div class="subtitle">Proximity-Triggered Scrap Explosive</div>
+        <h2>Shrapnel Grenade</h2>
+        <div class="subtitle">Thrown Scrap Explosive</div>
       </div>
 
       <div class="content">
         <div class="schematic-box">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="75%" height="75%">
-  <defs>
-    <filter id="shadowBlur" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6"/>
-    </filter>
-    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="2"/>
-    </filter>
-
-    <linearGradient id="oliveBase" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#2a301d"/>
-      <stop offset="50%" stop-color="#4b5335"/>
-      <stop offset="100%" stop-color="#1f2415"/>
-    </linearGradient>
-
-    <linearGradient id="cylinderLight" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#000" stop-opacity="0.85"/>
-      <stop offset="15%" stop-color="#fff" stop-opacity="0.15"/>
-      <stop offset="40%" stop-color="#fff" stop-opacity="0.4"/>
-      <stop offset="75%" stop-color="#000" stop-opacity="0.5"/>
-      <stop offset="100%" stop-color="#000" stop-opacity="0.95"/>
-    </linearGradient>
-
-    <radialGradient id="topCapLight" cx="40%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#6b754b"/>
-      <stop offset="50%" stop-color="#4b5335"/>
-      <stop offset="100%" stop-color="#202415"/>
-    </radialGradient>
-
-    <linearGradient id="brassMetal" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#5a4622"/>
-      <stop offset="25%" stop-color="#a68a42"/>
-      <stop offset="50%" stop-color="#e3ce88"/>
-      <stop offset="80%" stop-color="#7a6332"/>
-      <stop offset="100%" stop-color="#3b2d12"/>
-    </linearGradient>
-
-    <linearGradient id="darkMetal" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#111"/>
-      <stop offset="50%" stop-color="#444"/>
-      <stop offset="100%" stop-color="#0a0a0a"/>
-    </linearGradient>
-
-    <pattern id="fragGrid" width="16" height="16" patternUnits="userSpaceOnUse">
-      <rect width="16" height="16" fill="none" stroke="#111" stroke-width="2"/>
-      <rect width="16" height="16" fill="none" stroke="#000" stroke-width="4" opacity="0.4"/>
-      <line x1="0" y1="16" x2="16" y2="0" stroke="#757d54" stroke-width="1.5" opacity="0.6"/>
-    </pattern>
-
-    <clipPath id="bodyClip">
-      <path d="M 68 90 v 80 a 60 24 0 0 0 120 0 v -80 z"/>
-    </clipPath>
-  </defs>
-
-  <ellipse cx="128" cy="180" rx="75" ry="28" fill="#0c0a09" filter="url(#shadowBlur)" opacity="0.8"/>
-
-  <g id="mineBody">
-    <path d="M 68 90 v 80 a 60 24 0 0 0 120 0 v -80 z" fill="url(#oliveBase)"/>
-    
-    <rect x="60" y="80" width="140" height="120" fill="url(#fragGrid)" clip-path="url(#bodyClip)"/>
-
-    <path d="M 68 115 a 60 24 0 0 0 120 0 v 6 a 60 24 0 0 1 -120 0 z" fill="#eab308" opacity="0.9"/>
-    <path d="M 68 126 a 60 24 0 0 0 120 0 v 3 a 60 24 0 0 1 -120 0 z" fill="#dc2626" opacity="0.85"/>
-
-    <path d="M 68 90 v 80 a 60 24 0 0 0 120 0 v -80 z" fill="url(#cylinderLight)"/>
-  </g>
-
-  <g id="topCap">
-    <ellipse cx="128" cy="90" rx="60" ry="24" fill="url(#topCapLight)" stroke="#1a1c12" stroke-width="2"/>
-    
-    <ellipse cx="134" cy="95" rx="30" ry="12" fill="#000" opacity="0.45" filter="url(#softShadow)"/>
-
-    <ellipse cx="128" cy="90" rx="52" ry="20" fill="none" stroke="#222" stroke-width="2" opacity="0.6"/>
-    <ellipse cx="128" cy="90" rx="42" ry="16" fill="none" stroke="#333" stroke-width="1.5" opacity="0.4"/>
-  </g>
-
-  <g id="detonator">
-    <ellipse cx="128" cy="90" rx="22" ry="9" fill="#111"/>
-    <ellipse cx="128" cy="88" rx="22" ry="9" fill="url(#darkMetal)" stroke="#333" stroke-width="1"/>
-    
-    <path d="M 112 85 l 8 -4 h 16 l 8 4 l -8 4 h -16 z" fill="url(#brassMetal)" stroke="#222" stroke-width="1"/>
-
-    <path d="M 116 55 v 30 a 12 5 0 0 0 24 0 v -30 z" fill="url(#brassMetal)"/>
-    
-    <path d="M 116 55 v 30 a 12 5 0 0 0 24 0 v -30 z" fill="url(#cylinderLight)" opacity="0.75"/>
-    
-    <ellipse cx="128" cy="55" rx="12" ry="5" fill="#a68a42" stroke="#4a3a18" stroke-width="1"/>
-    
-    <ellipse cx="128" cy="55" rx="6" ry="2.5" fill="#111"/>
-  </g>
-
-  <g id="safetyPin">
-    <line x1="104" y1="72" x2="140" y2="72" stroke="#9ca3af" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="104" y1="71" x2="140" y2="71" stroke="#f3f4f6" stroke-width="1" stroke-linecap="round"/>
-    
-    <circle cx="98" cy="74" r="7" fill="none" stroke="#9ca3af" stroke-width="2.5"/>
-    <circle cx="98" cy="74" r="7" fill="none" stroke="#4b5563" stroke-width="1" stroke-dasharray="2 4"/>
-  </g>
-
-  <g id="prongs">
-    <line x1="128" y1="55" x2="128" y2="20" stroke="#78716c" stroke-width="3" stroke-linecap="round"/>
-    <line x1="127" y1="55" x2="127" y2="21" stroke="#e7e5e4" stroke-width="1" stroke-linecap="round"/>
-    
-    <line x1="124" y1="56" x2="108" y2="28" stroke="#78716c" stroke-width="3" stroke-linecap="round"/>
-    <line x1="123" y1="56" x2="107" y2="29" stroke="#e7e5e4" stroke-width="1" stroke-linecap="round"/>
-    
-    <line x1="132" y1="56" x2="148" y2="28" stroke="#78716c" stroke-width="3" stroke-linecap="round"/>
-    <line x1="131" y1="56" x2="147" y2="29" stroke="#e7e5e4" stroke-width="1" stroke-linecap="round"/>
-  </g>
-
-  <path d="M 68 90 v 80 a 60 24 0 0 0 120 0 v -80 z" fill="#292524" opacity="0.15" clip-path="url(#bodyClip)"/>
-  <ellipse cx="128" cy="90" rx="60" ry="24" fill="#292524" opacity="0.1"/>
-</svg>
-
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
+            <defs>
+              <linearGradient id="canGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#52525b"/>
+                <stop offset="50%" stop-color="#a1a1aa"/>
+                <stop offset="100%" stop-color="#3f3f46"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(128, 128) rotate(15) translate(-128, -128)">
+              <!-- Main Can Body -->
+              <rect x="90" y="90" width="76" height="100" rx="8" fill="url(#canGrad)" stroke="#18181b" stroke-width="3"/>
+              <!-- Tape Wrap -->
+              <rect x="88" y="120" width="80" height="20" fill="#d6d3d1" stroke="#a8a29e" stroke-width="2"/>
+              <rect x="88" y="150" width="80" height="15" fill="#d6d3d1" stroke="#a8a29e" stroke-width="2"/>
+              <!-- Nails / Shrapnel sticking out -->
+              <line x1="85" y1="100" x2="95" y2="105" stroke="#1c1917" stroke-width="3"/>
+              <line x1="170" y1="110" x2="160" y2="115" stroke="#1c1917" stroke-width="3"/>
+              <line x1="175" y1="170" x2="165" y2="165" stroke="#1c1917" stroke-width="3"/>
+              <line x1="80" y1="160" x2="95" y2="155" stroke="#1c1917" stroke-width="3"/>
+              <!-- Top Cap -->
+              <ellipse cx="128" cy="90" rx="38" ry="10" fill="#3f3f46" stroke="#18181b" stroke-width="3"/>
+              <!-- Fuse Mechanism -->
+              <rect x="120" y="70" width="16" height="20" fill="#27272a" stroke="#000" stroke-width="2"/>
+              <path d="M 136 75 C 160 70 170 50 165 30" fill="none" stroke="#b45309" stroke-width="4" stroke-dasharray="4 2"/>
+              <!-- Spark -->
+              <circle cx="165" cy="30" r="5" fill="#ef4444"/>
+              <polygon points="165,15 175,25 185,20 175,35 185,45 165,35 150,45 155,30 145,20 160,25" fill="#facc15"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 8. EXPLOSIVE SCHEMATIC</div>
         </div>
+
         <div class="stats-box">
           <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
           <div class="stat-row"><span class="tag-name">[EXPLOSIVE]</span><span class="stat-val">x1</span></div>
-          <div class="stat-row"><span class="tag-name">[SCRAP METAL]</span><span class="stat-val">x3</span></div>
-          <div class="stat-row"><span class="tag-name">[ELECTRONIC]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[SCRAP METAL]</span><span class="stat-val">x2</span></div>
+          <div class="stat-row"><span class="tag-name">[CHEMICAL]</span><span class="stat-val">x1</span></div>
           
           <div class="description">
-            <strong>CRAFTING TIME:</strong> 10 Minutes<br>
-            <strong>RESULT:</strong> Creates 1 Mine. Triggers on a 2m proximity. Deals 3d6 Pierce damage in a 5m radius (Agility save halves).
+            <strong>CRAFTING TIME:</strong> 10 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 1 Grenade. Thrown up to 15m. Deals 3d6 Pierce damage in a 5m radius (Agility save halves).
           </div>
         </div>
       </div>
@@ -442,35 +983,550 @@
     </div>
   </div>
 
-  <!-- CARD 3: BLANK RECIPE TEMPLATE -->
+  <!-- WEAPON RECIPE: WPN-06 -->
   <div class="card">
     <div class="card-inner">
       <div class="header">
         <span>SYS. SURVIVAL PROTOCOL</span>
-        <span>RECIPE // ________</span>
+        <span>RECIPE // WPN-06</span>
       </div>
       
       <div class="title-area">
-        <h2>____________________</h2>
-        <div class="subtitle">_________________________________________</div>
+        <h2>Toxic Sprayer</h2>
+        <div class="subtitle">Pressurized Bio-Hazard</div>
       </div>
 
       <div class="content">
         <div class="schematic-box">
-          <div class="schematic-label">FIG 3. SKETCH AREA</div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="90%" height="90%">
+            <defs>
+              <linearGradient id="toxicSlime" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#bef264"/>
+                <stop offset="100%" stop-color="#4d7c0f"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(128, 128) rotate(-10) translate(-128, -128)">
+              <!-- Toxic Tank -->
+              <rect x="50" y="100" width="50" height="70" rx="10" fill="#fbbf24" stroke="#b45309" stroke-width="3"/>
+              <!-- Biohazard Symbol roughly sketched -->
+              <circle cx="75" cy="135" r="12" fill="none" stroke="#78350f" stroke-width="2"/>
+              <circle cx="75" cy="135" r="4" fill="#78350f"/>
+              <path d="M 75 120 L 70 110 L 80 110 Z" fill="#78350f"/>
+              <!-- Hose -->
+              <path d="M 100 150 C 130 160 120 100 150 110" fill="none" stroke="#1c1917" stroke-width="6"/>
+              <!-- Sprayer Nozzle -->
+              <rect x="150" y="100" width="60" height="20" rx="4" fill="#737373" stroke="#27272a" stroke-width="3"/>
+              <rect x="160" y="120" width="10" height="30" rx="2" fill="#44403c" stroke="#1c1917" stroke-width="2"/>
+              <rect x="155" y="120" width="5" height="15" fill="#ef4444"/>
+              <!-- Toxic Spray -->
+              <path d="M 215 105 L 240 90 C 250 110 250 120 240 140 L 215 115 Z" fill="url(#toxicSlime)" opacity="0.8"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 9. CHEMICAL WEAPON</div>
         </div>
+
         <div class="stats-box">
           <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
-          <div class="stat-row"><span class="tag-name">[___________]</span><span class="stat-val">___</span></div>
-          <div class="stat-row"><span class="tag-name">[___________]</span><span class="stat-val">___</span></div>
-          <div class="stat-row"><span class="tag-name">[___________]</span><span class="stat-val">___</span></div>
-          <div class="stat-row"><span class="tag-name">[___________]</span><span class="stat-val">___</span></div>
-          <div class="description" style="border-top: 1px dashed rgba(255,255,255,0.3); padding-top: 0.05in; height: 100%;">
-            <strong>CRAFTING TIME:</strong> ___________<br>
-            <strong>RESULT:</strong> 
+          <div class="stat-row"><span class="tag-name">[CHEMICAL]</span><span class="stat-val">x2</span></div>
+          <div class="stat-row"><span class="tag-name">[PLASTIC]</span><span class="stat-val">x2</span></div>
+          <div class="stat-row"><span class="tag-name">[MECHANICAL]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 45 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 1 Sprayer. Shoots a 5m cone. Deals 2d6 Acid damage (Agility save halves) and applies the <em>Poisoned</em> condition.
           </div>
         </div>
       </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEAPON RECIPE: WPN-07 -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // WPN-07</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Rebar Spear</h2>
+        <div class="subtitle">Heavy Piercing Polearm</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="90%" height="90%">
+            <defs>
+              <linearGradient id="rebarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#78350f"/>
+                <stop offset="50%" stop-color="#451a03"/>
+                <stop offset="100%" stop-color="#292524"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(128, 128) rotate(-45) translate(-128, -128)">
+              <!-- Main Rebar Shaft -->
+              <rect x="40" y="120" width="180" height="12" fill="url(#rebarGrad)" stroke="#1c1917" stroke-width="2"/>
+              <!-- Rebar Ridges -->
+              <line x1="50" y1="120" x2="45" y2="132" stroke="#1c1917" stroke-width="2"/>
+              <line x1="70" y1="120" x2="65" y2="132" stroke="#1c1917" stroke-width="2"/>
+              <line x1="90" y1="120" x2="85" y2="132" stroke="#1c1917" stroke-width="2"/>
+              <line x1="110" y1="120" x2="105" y2="132" stroke="#1c1917" stroke-width="2"/>
+              <line x1="180" y1="120" x2="175" y2="132" stroke="#1c1917" stroke-width="2"/>
+              <!-- Cloth Wrap Handle -->
+              <rect x="130" y="118" width="40" height="16" fill="#d6d3d1" stroke="#78716c" stroke-width="2"/>
+              <line x1="135" y1="118" x2="140" y2="134" stroke="#78716c" stroke-width="1"/>
+              <line x1="145" y1="118" x2="150" y2="134" stroke="#78716c" stroke-width="1"/>
+              <line x1="155" y1="118" x2="160" y2="134" stroke="#78716c" stroke-width="1"/>
+              <line x1="165" y1="118" x2="170" y2="134" stroke="#78716c" stroke-width="1"/>
+              <!-- Spear Point (Jagged/Broken) -->
+              <polygon points="220,120 250,126 220,132" fill="#52525b" stroke="#18181b" stroke-width="2"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 10. MELEE SCHEMATIC</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[SCRAP METAL]</span><span class="stat-val">x2</span></div>
+          <div class="stat-row"><span class="tag-name">[TEXTILE]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 5 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 1 Spear. Deals 1d6 Pierce damage. Grants <em>Reach</em> (attack from 2m away).
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  
+    <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // WPN-02</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Pneumatic Spike Gun</h2>
+        <div class="subtitle">High-Pressure Projectile Launcher</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
+            <defs>
+              <linearGradient id="tankGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ef4444"/>
+                <stop offset="50%" stop-color="#991b1b"/>
+                <stop offset="100%" stop-color="#450a0a"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(128, 128) rotate(-15) translate(-128, -128)">
+              <rect x="70" y="130" width="60" height="30" rx="15" fill="url(#tankGrad)" stroke="#1c1917" stroke-width="3"/>
+              <path d="M 130 145 C 160 145 150 110 140 100" fill="none" stroke="#292524" stroke-width="4"/>
+              <rect x="60" y="90" width="120" height="20" rx="2" fill="#52525b" stroke="#1c1917" stroke-width="3"/>
+              <path d="M 80 110 L 95 110 L 90 140 L 75 140 Z" fill="#44403c" stroke="#1c1917" stroke-width="2"/>
+              <rect x="75" y="115" width="5" height="15" rx="1" fill="#1c1917"/>
+              <polygon points="180,95 210,100 180,105" fill="#a8a29e" stroke="#000" stroke-width="1"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 5. BALLISTICS SCHEMATIC</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[SCRAP METAL]</span><span class="stat-val">x2</span></div>
+          <div class="stat-row"><span class="tag-name">[MECHANICAL]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[PLASTIC]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 30 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 1 Spike Gun. Deals 1d6 Pierce damage (Range 15m/30m). Requires reclaimed railroad spikes for ammo.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // WPN-03</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Shock Baton</h2>
+        <div class="subtitle">Jury-Rigged Pacifier</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
+            <defs>
+              <linearGradient id="batonGrip" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#1c1917"/>
+                <stop offset="50%" stop-color="#44403c"/>
+                <stop offset="100%" stop-color="#1c1917"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(128, 128) rotate(-45) translate(-128, -128)">
+              <rect x="115" y="40" width="16" height="120" rx="3" fill="#a1a1aa" stroke="#27272a" stroke-width="2"/>
+              <rect x="110" y="160" width="26" height="60" rx="4" fill="url(#batonGrip)" stroke="#000" stroke-width="2"/>
+              <line x1="110" y1="175" x2="136" y2="175" stroke="#000" stroke-width="2"/>
+              <line x1="110" y1="190" x2="136" y2="190" stroke="#000" stroke-width="2"/>
+              <line x1="110" y1="205" x2="136" y2="205" stroke="#000" stroke-width="2"/>
+              <rect x="110" y="50" width="26" height="10" fill="#b45309" stroke="#78350f" stroke-width="1"/>
+              <rect x="110" y="70" width="26" height="10" fill="#b45309" stroke="#78350f" stroke-width="1"/>
+              <path d="M 100 40 L 110 50 L 95 65 L 115 75" fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M 145 45 L 135 60 L 150 70 L 135 85" fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 6. MELEE SCHEMATIC</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[ELECTRONIC]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[BATTERY]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[SCRAP METAL]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 20 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 1 Shock Baton. Deals +1 Bludgeoning/+1 Lightning damage. Target must pass a Constitution save or be <em>Stunned</em> for 1 round.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // WPN-04</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Rust-Pipe Rifle</h2>
+        <div class="subtitle">Unreliable Long-Range Ballistics</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="90%" height="90%">
+            <defs>
+              <linearGradient id="woodStock" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#78350f"/>
+                <stop offset="100%" stop-color="#451a03"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(128, 128) rotate(-10) translate(-128, -128)">
+              <path d="M 40 120 L 90 120 L 100 135 L 70 145 L 40 145 Z" fill="url(#woodStock)" stroke="#292524" stroke-width="2"/>
+              <rect x="90" y="115" width="120" height="10" fill="#737373" stroke="#27272a" stroke-width="2"/>
+              <rect x="120" y="100" width="40" height="10" rx="2" fill="#52525b" stroke="#1c1917" stroke-width="2"/>
+              <rect x="130" y="110" width="5" height="5" fill="#1c1917"/>
+              <rect x="145" y="110" width="5" height="5" fill="#1c1917"/>
+              <path d="M 95 125 C 105 140 110 125 110 125" fill="none" stroke="#27272a" stroke-width="2"/>
+              <line x1="102" y1="125" x2="105" y2="132" stroke="#000" stroke-width="2"/>
+              <rect x="160" y="114" width="10" height="12" fill="#d6d3d1" stroke="#a8a29e" stroke-width="1"/>
+              <rect x="180" y="114" width="15" height="12" fill="#d6d3d1" stroke="#a8a29e" stroke-width="1"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 7. RANGED SCHEMATIC</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[SCRAP METAL]</span><span class="stat-val">x3</span></div>
+          <div class="stat-row"><span class="tag-name">[MECHANICAL]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[WOOD]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 1 Hour<br><br>
+            <strong>RESULT:</strong> Creates 1 Pipe Rifle. Deals  Pierce damage (Range 30m/60m). Misfires and jams on a natural attack roll of 1.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- WEAPON RECIPE -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // WPN-01</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Scrap Machete</h2>
+        <div class="subtitle">Jagged Slashing Implement</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
+            <defs>
+              <linearGradient id="bladeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#94a3b8"/>
+                <stop offset="50%" stop-color="#475569"/>
+                <stop offset="100%" stop-color="#1e293b"/>
+              </linearGradient>
+              <filter id="shadow">
+                <feDropShadow dx="3" dy="4" stdDeviation="2" flood-color="#000" flood-opacity="0.6"/>
+              </filter>
+            </defs>
+            <g transform="translate(128, 128) rotate(-45) translate(-128, -128)" filter="url(#shadow)">
+              <!-- Handle Wrap -->
+              <rect x="100" y="160" width="30" height="70" rx="5" fill="#78350f" stroke="#451a03" stroke-width="2"/>
+              <line x1="100" y1="170" x2="130" y2="180" stroke="#451a03" stroke-width="2"/>
+              <line x1="100" y1="190" x2="130" y2="200" stroke="#451a03" stroke-width="2"/>
+              <line x1="100" y1="210" x2="130" y2="220" stroke="#451a03" stroke-width="2"/>
+              <!-- Crossguard -->
+              <rect x="85" y="150" width="60" height="10" rx="2" fill="#334155" stroke="#0f172a" stroke-width="2"/>
+              <!-- Jagged Blade -->
+              <path d="M 105 150 L 105 40 L 125 20 L 125 70 L 115 80 L 125 90 L 125 120 L 115 130 L 125 150 Z" fill="url(#bladeGrad)" stroke="#0f172a" stroke-width="2"/>
+              <!-- Blood/Rust Splatter -->
+              <circle cx="115" cy="50" r="3" fill="#7f1d1d" opacity="0.8"/>
+              <circle cx="120" cy="65" r="2" fill="#7f1d1d" opacity="0.8"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 1. WEAPON SCHEMATIC</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[SCRAP METAL]</span><span class="stat-val">x2</span></div>
+          <div class="stat-row"><span class="tag-name">[ADHESIVE]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 10 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 1 Scrap Machete. Deals 1d6 Slashing damage. On a critical hit, the target suffers the <em>Bleeding</em> condition. (-1 Health per round if untreated)
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOD RECIPE -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // FOD-02</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Purified Canteen</h2>
+        <div class="subtitle">Filtered Hydration</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
+            <defs>
+              <linearGradient id="canteenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#14532d"/>
+                <stop offset="50%" stop-color="#22c55e"/>
+                <stop offset="100%" stop-color="#064e3b"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(0, 10)">
+              <!-- Canteen Body -->
+              <ellipse cx="128" cy="140" rx="60" ry="70" fill="url(#canteenGrad)" stroke="#022c22" stroke-width="4"/>
+              <!-- Neck and Cap -->
+              <rect x="113" y="50" width="30" height="20" fill="#a8a29e" stroke="#292524" stroke-width="3"/>
+              <rect x="108" y="40" width="40" height="10" rx="3" fill="#1c1917" stroke="#000" stroke-width="2"/>
+              <!-- Water Drop Icon -->
+              <path d="M 128 100 C 128 100 110 120 110 135 C 110 145 118 153 128 153 C 138 153 146 145 146 135 C 146 120 128 100 128 100 Z" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+              <!-- Strap -->
+              <path d="M 68 140 C 40 80 100 40 108 45" fill="none" stroke="#78350f" stroke-width="4" stroke-dasharray="6 4"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 2. CONSUMABLE</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[PLASTIC]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[BIOMAT]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 5 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 1 Clean Water. Contains 3 swigs. Each swig removes 1 level of the <em>Dehydrated</em> condition with zero infection risk.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GEAR RECIPE -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // GER-02</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Solar Flashlight</h2>
+        <div class="subtitle">Renewable Illumination</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="80%" height="80%">
+            <defs>
+              <linearGradient id="metalCasing" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#d6d3d1"/>
+                <stop offset="50%" stop-color="#78716c"/>
+                <stop offset="100%" stop-color="#292524"/>
+              </linearGradient>
+              <radialGradient id="lightBeam" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#fef08a" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#fef08a" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <g transform="translate(128, 128) rotate(-20) translate(-128, -128)">
+              <!-- Light Beam -->
+              <polygon points="190,128 250,80 250,176" fill="url(#lightBeam)"/>
+              <!-- Body -->
+              <rect x="60" y="110" width="100" height="36" rx="8" fill="url(#metalCasing)" stroke="#1c1917" stroke-width="3"/>
+              <!-- Solar Panel Grid -->
+              <rect x="70" y="110" width="60" height="10" fill="#0ea5e9" stroke="#0369a1" stroke-width="1"/>
+              <line x1="85" y1="110" x2="85" y2="120" stroke="#0369a1" stroke-width="1"/>
+              <line x1="100" y1="110" x2="100" y2="120" stroke="#0369a1" stroke-width="1"/>
+              <line x1="115" y1="110" x2="115" y2="120" stroke="#0369a1" stroke-width="1"/>
+              <!-- Head -->
+              <path d="M 160 100 L 190 90 L 190 166 L 160 156 Z" fill="#44403c" stroke="#1c1917" stroke-width="3"/>
+              <!-- Glass Lens -->
+              <ellipse cx="190" cy="128" rx="8" ry="38" fill="#e0f2fe" opacity="0.6" stroke="#0284c7" stroke-width="1"/>
+              <!-- Button -->
+              <rect x="130" y="105" width="12" height="5" rx="2" fill="#ef4444" stroke="#7f1d1d" stroke-width="1"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 3. UTILITY SCHEMATIC</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[ELECTRONIC]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[GLASS]</span><span class="stat-val">x1</span></div>
+          <div class="stat-row"><span class="tag-name">[PLASTIC]</span><span class="stat-val">x1</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 20 Minutes<br><br>
+            <strong>RESULT:</strong> Creates 1 Flashlight. Illuminates a 10m cone. Recharges fully after 1 hour of exposure to daylight.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>&copy; Two Part Trading - Personal Use Only</span>
+        <span>CRAFT. REV 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMS RECIPE -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="header">
+        <span>SYS. SURVIVAL PROTOCOL</span>
+        <span>RECIPE // COM-02</span>
+      </div>
+      
+      <div class="title-area">
+        <h2>Walkie-Talkie Set</h2>
+        <div class="subtitle">Paired Handheld Transceivers</div>
+      </div>
+
+      <div class="content">
+        <div class="schematic-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="70%" height="70%">
+            <defs>
+              <linearGradient id="radioBody" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#3f3f46"/>
+                <stop offset="100%" stop-color="#18181b"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(0, 10)">
+              <!-- Antenna -->
+              <rect x="90" y="20" width="8" height="70" rx="4" fill="#1c1917" stroke="#000" stroke-width="2"/>
+              <circle cx="94" cy="20" r="6" fill="#ef4444"/>
+              <!-- Volume Knob -->
+              <rect x="140" y="70" width="16" height="10" rx="2" fill="#52525b" stroke="#27272a" stroke-width="2"/>
+              <!-- Main Body -->
+              <rect x="80" y="80" width="80" height="130" rx="10" fill="url(#radioBody)" stroke="#000" stroke-width="3"/>
+              <!-- Screen -->
+              <rect x="95" y="95" width="50" height="25" rx="2" fill="#84cc16" stroke="#3f6212" stroke-width="2"/>
+              <text x="100" y="112" font-family="monospace" font-size="12" fill="#1a2e05">CH-04</text>
+              <!-- Speaker Grill -->
+              <g fill="#000" opacity="0.6">
+                <circle cx="105" cy="140" r="3"/> <circle cx="120" cy="140" r="3"/> <circle cx="135" cy="140" r="3"/>
+                <circle cx="105" cy="155" r="3"/> <circle cx="120" cy="155" r="3"/> <circle cx="135" cy="155" r="3"/>
+                <circle cx="105" cy="170" r="3"/> <circle cx="120" cy="170" r="3"/> <circle cx="135" cy="170" r="3"/>
+              </g>
+              <!-- PTT Button -->
+              <rect x="75" y="110" width="5" height="30" rx="2" fill="#dc2626" stroke="#7f1d1d" stroke-width="1"/>
+            </g>
+          </svg>
+          <div class="schematic-label">FIG 4. COMMS RELAY</div>
+        </div>
+
+        <div class="stats-box">
+          <div class="ingredient-header"><span>ITEM TAG</span><span>QTY</span></div>
+          <div class="stat-row"><span class="tag-name">[ELECTRONIC]</span><span class="stat-val">x2</span></div>
+          <div class="stat-row"><span class="tag-name">[BATTERY]</span><span class="stat-val">x2</span></div>
+          <div class="stat-row"><span class="tag-name">[PLASTIC]</span><span class="stat-val">x2</span></div>
+          
+          <div class="description">
+            <strong>CRAFTING TIME:</strong> 1 Hour<br><br>
+            <strong>RESULT:</strong> Creates 2 Walkies. Allows two split party members to coordinate actions and share line-of-sight information up to 1km apart.
+          </div>
+        </div>
+      </div>
+      
+      
+      
 
       <div class="footer">
         <span>&copy; Two Part Trading - Personal Use Only</span>
@@ -481,3 +1537,4 @@
 
 </body>
 </html>
+ 
