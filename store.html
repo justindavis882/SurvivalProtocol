@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Store - Two Part Trading</title>
+<style>
+  body {
+    background-color: #404040;
+    background-image: linear-gradient(45deg, #333 25%, transparent 25%, transparent 75%, #333 75%, #333), 
+                      linear-gradient(45deg, #333 25%, transparent 25%, transparent 75%, #333 75%, #333);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    font-family: "Lucida Console", Monaco, monospace;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .chassis {
+    background-color: #8c8c8c;
+    border-top: 4px solid #dfdfdf;
+    border-left: 4px solid #dfdfdf;
+    border-bottom: 4px solid #2b2b2b;
+    border-right: 4px solid #2b2b2b;
+    width: 100%;
+    max-width: 1000px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.6);
+  }
+
+  .hazard-tape {
+    background: repeating-linear-gradient(
+      -45deg,
+      #ffcc00,
+      #ffcc00 15px,
+      #111 15px,
+      #111 30px
+    );
+    height: 20px;
+    border-top: 3px solid #2b2b2b;
+    border-bottom: 3px solid #dfdfdf;
+    margin-bottom: 25px;
+  }
+
+  .crt-screen {
+    background-color: #051405;
+    border-top: 6px solid #1a1a1a;
+    border-left: 6px solid #1a1a1a;
+    border-bottom: 6px solid #b3b3b3;
+    border-right: 6px solid #b3b3b3;
+    padding: 25px;
+    color: #33ff00;
+    text-shadow: 0 0 4px #33ff00;
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    margin-top: 0;
+    font-size: 2.2em;
+    border-bottom: 3px solid #33ff00;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    border-bottom: 2px dashed #33ff00;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    margin-top: 0;
+  }
+
+  p {
+    line-height: 1.6;
+    font-size: 1.1em;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+  }
+
+  .product-card {
+    background-color: #020a02;
+    border: 2px solid #33ff00;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-image-container {
+    width: 100%;
+    height: 200px;
+    border: 2px solid #1a4d1a;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #000;
+  }
+
+  .product-image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: sepia(1) hue-rotate(80deg) saturate(3) brightness(0.8);
+  }
+
+  .product-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .product-desc {
+    font-size: 0.9em;
+    flex: 1;
+    margin-bottom: 15px;
+  }
+
+  .product-price {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .btn-blocky {
+    display: inline-block;
+    background-color: #b3b3b3;
+    color: #000;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-top: 4px solid #ffffff;
+    border-left: 4px solid #ffffff;
+    border-bottom: 4px solid #4d4d4d;
+    border-right: 4px solid #4d4d4d;
+    cursor: pointer;
+    text-align: center;
+    transition: filter 0.1s;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .btn-blocky:active {
+    border-top: 4px solid #4d4d4d;
+    border-left: 4px solid #4d4d4d;
+    border-bottom: 4px solid #ffffff;
+    border-right: 4px solid #ffffff;
+    transform: translate(2px, 2px);
+  }
+
+  .btn-blocky:disabled {
+    background-color: #555;
+    color: #888;
+    cursor: not-allowed;
+    border-top: 4px solid #777;
+    border-left: 4px solid #777;
+    border-bottom: 4px solid #333;
+    border-right: 4px solid #333;
+  }
+
+  .btn-blocky:disabled:active {
+    transform: none;
+    border-top: 4px solid #777;
+    border-left: 4px solid #777;
+    border-bottom: 4px solid #333;
+    border-right: 4px solid #333;
+  }
+
+  .legal-plate {
+    background-color: #d9d9d9;
+    color: #111;
+    border-top: 3px solid #fff;
+    border-left: 3px solid #fff;
+    border-bottom: 3px solid #555;
+    border-right: 3px solid #555;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    line-height: 1.5;
+  }
+
+  .screw-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 70px;
+  }
+
+  .screw {
+    width: 12px;
+    height: 12px;
+    background-color: #a6a6a6;
+    border-radius: 50%;
+    box-shadow: inset 1px 1px 2px #fff, inset -1px -1px 2px #333;
+    position: relative;
+  }
+
+  .screw::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 2px;
+    width: 8px;
+    height: 2px;
+    background-color: #444;
+    transform: rotate(45deg);
+  }
+
+  .bulk-order-panel {
+    background-color: #1a4d1a;
+    border: 2px solid #33ff00;
+    padding: 20px;
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  .bulk-order-panel p {
+    color: #b3ffb3;
+    margin-bottom: 15px;
+  }
+
+  .bulk-order-panel .btn-blocky {
+    width: auto;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #33ff00;
+    text-decoration: none;
+  }
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  #config-warning {
+    background-color: #8b0000;
+    color: #fff;
+    padding: 15px;
+    border: 2px solid #ff3333;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<div class="chassis">
+  <img src="logo.png" alt="Two Part Trading Logo" width="250px" style="display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+
+  <div class="hazard-tape"></div>
+  
+  <div class="crt-screen">
+    <a href="index.html" class="back-link"><< RETURN TO MAIN TERMINAL</a>
+    <h1>SUPPLY DEPOT</h1>
+    <p>> ESTABLISHING SECURE CONNECTION...</p>
+    <p>> RETRIEVING INVENTORY PROTOCOLS...</p>
+
+    <div id="config-warning">
+      SYSTEM ERROR: FIREBASE CONFIGURATION MISSING. PLEASE UPDATE SOURCE CODE WITH VALID CREDENTIALS.
+    </div>
+
+    <p id="loading-msg">> WAITING FOR DATA...</p>
+
+    <div class="products-grid" id="products-container">
+      <!-- Products will be injected here -->
+    </div>
+
+    <div class="bulk-order-panel">
+      <h2>LARGE REQUISITIONS</h2>
+      <p>Need to outfit an entire squad? Bulk orders and special commissions are processed through secure channels.</p>
+      <a href="mailto:contact@twoparttrading.com?subject=Bulk Requisition Inquiry" class="btn-blocky">INITIATE CONTACT</a>
+    </div>
+
+  </div>
+
+  <div class="legal-plate">
+    <div class="screw-column">
+      <div class="screw"></div>
+      <div class="screw"></div>
+    </div>
+    
+    <div style="flex:1;">
+      <strong>TWO PART TRADING - REQUISITIONS DEPT</strong><br>
+      All transactions are final. Gear is provided as-is. Survival is not guaranteed.<br><br>
+      For order inquiries, contact support. Stripe handles all secure payment processing. 
+    </div>
+    
+    <div class="screw-column" style="margin-left: auto;">
+      <div class="screw"></div>
+      <div class="screw"></div>
+    </div>
+  </div>
+
+  <div class="hazard-tape" style="margin-top: 30px; margin-bottom: 0;"></div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+
+  // TODO: Replace with your actual Firebase project config
+  const firebaseConfig = {
+    apiKey: "AIzaSyAgMQB64cJ7l71lrpMc78Z-xMolzY9Vx_w",
+    authDomain: "ryze-messenger.firebaseapp.com",
+    projectId: "ryze-messenger",
+    storageBucket: "ryze-messenger.firebasestorage.app",
+    messagingSenderId: "59103143285",
+    appId: "1:59103143285:web:1ba96df0f04bfeb88f5f3c",
+    measurementId: "G-1Q2T8S1RCL"
+  };
+
+  const productsContainer = document.getElementById('products-container');
+  const loadingMsg = document.getElementById('loading-msg');
+  const configWarning = document.getElementById('config-warning');
+
+  if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+    configWarning.style.display = 'none';
+  }
+
+  async function loadInventory() {
+    try {
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const querySnapshot = await getDocs(collection(db, "products"));
+      
+      loadingMsg.style.display = 'none';
+      productsContainer.innerHTML = '';
+      
+      if (querySnapshot.empty) {
+        productsContainer.innerHTML = '<p>> INVENTORY EMPTY. AWAITING RESUPPLY.</p>';
+      } else {
+        querySnapshot.forEach((doc) => {
+          renderProduct(doc.id, doc.data());
+        });
+      }
+    } catch (error) {
+      console.error("Firebase error: ", error);
+      loadingMsg.style.display = 'none';
+      
+      if (firebaseConfig.apiKey === "YOUR_API_KEY") {
+        // Fallback to mock data for demonstration purposes
+        renderMockData();
+      } else {
+        productsContainer.innerHTML = '<p style="color:#ff3333;">> FATAL ERROR: COULD NOT CONNECT TO INVENTORY DATABASE.</p>';
+      }
+    }
+  }
+
+  function renderProduct(id, product) {
+    // Expected fields: name, description, price, imageUrl, stripeLink
+    const priceFormatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price || 0);
+    const imageUrl = product.imageUrl || '';
+    
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    
+    const imageHTML = imageUrl 
+        ? `<div class="product-image-container"><img src="${imageUrl}" alt="${product.name}"></div>`
+        : `<div class="product-image-container" style="color: #1a4d1a; display: flex; align-items: center; justify-content: center;">[NO IMAGE DATA]</div>`;
+
+    const buttonHTML = product.stripeLink 
+        ? `<a href="${product.stripeLink}" class="btn-blocky" target="_blank">PURCHASE [${priceFormatted}]</a>`
+        : `<button class="btn-blocky" disabled>UNAVAILABLE</button>`;
+
+    card.innerHTML = `
+      ${imageHTML}
+      <div class="product-title">> ${product.name || 'UNKNOWN ITEM'}</div>
+      <div class="product-desc">${product.description || 'No data found in archives.'}</div>
+      <div style="margin-top: auto;">
+        ${buttonHTML}
+      </div>
+    `;
+    
+    productsContainer.appendChild(card);
+  }
+
+  function renderMockData() {
+    const mockData = [
+      {
+        name: "Standard Ration Pack",
+        description: "Contains essential nutrients for 3 days. Tastes like cardboard, but it keeps you moving.",
+        price: 15.00,
+        imageUrl: "",
+        stripeLink: "#"
+      },
+      {
+        name: "Tactical D20 Set",
+        description: "Machined from aircraft-grade aluminum. Guaranteed random distribution.",
+        price: 45.00,
+        imageUrl: "",
+        stripeLink: "#"
+      },
+      {
+        name: "Survival Protocol Compendium",
+        description: "Physical print of the core ruleset. Bound in durable synthetic leather.",
+        price: 60.00,
+        imageUrl: "",
+        stripeLink: "#"
+      }
+    ];
+    
+    mockData.forEach((p, i) => renderProduct(`mock-${i}`, p));
+  }
+
+  // Boot sequence
+  setTimeout(loadInventory, 800); // slight delay for CRT effect
+
+</script>
+</body>
+</html>

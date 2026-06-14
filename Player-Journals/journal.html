@@ -141,8 +141,7 @@
             <h3 style="margin-top: 20px;">THE GOLDEN RULES</h3>
             <ul style="font-size: 12px;">
                 <li><strong>Always Roll 2d6:</strong> Every action is resolved by rolling two six-sided dice, adding your Stat Bonus, and meeting or beating the GM's Target Number.</li>
-                <li><strong>Doubles are Critical:</strong> If both dice show the same number (e.g., two 4s), it is an automatic critical success. In combat, this means double damage.</li>
-                <li><strong>Two Actions Only:</strong> During combat, you have exactly two actions. Firing a gun, wrapping a bandage, running away—everything costs an action.</li>
+                <li><strong>Criticals and Fumbles:</strong> Rolling double 6s is an automatic critical success (in combat, this doubles base damage). Rolling double 1s is an automatic critical failure, regardless of your stat bonuses.</li>                <li><strong>Two Actions Only:</strong> During combat, you have exactly two actions. Firing a gun, wrapping a bandage, running away—everything costs an action.</li>
                 <li><strong>Inventory is Tetris:</strong> If it doesn't fit in your Loadout Grid, you can't carry it. </li>
                 <li><strong>Death is Real:</strong> If your Health hits zero and you are not rescued in 3 rounds, your character is gone. The game continues. You simply adopt another survivor from the Safehouse.</li>
             </ul>
@@ -169,7 +168,7 @@
             </div>
             <div style="border-left: 2px solid black; padding-left: 10px;">
                 <div class="small-label">RANK / LEVEL</div><div style="display:flex; gap: 5px; margin-top:5px; flex-wrap:wrap;"><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div></div>
-                <div class="small-label" style="margin-top: 10px;">XP LEDGER</div>
+                <div class="small-label" style="margin-top: 10px;">XP LEDGER (1 BOX = 10 XP)</div>
                 <div style="display:flex; gap: 2px; margin-top:5px; flex-wrap:wrap;"><div class="box" style="width:8px; height:8px;"></div><div class="box" style="width:8px; height:8px;"></div><div class="box" style="width:8px; height:8px;"></div><div class="box" style="width:8px; height:8px;"></div><div class="box" style="width:8px; height:8px;"></div><div class="box" style="width:8px; height:8px;"></div><div class="box" style="width:8px; height:8px;"></div><div class="box" style="width:8px; height:8px;"></div><div class="box" style="width:8px; height:8px;"></div><div class="box" style="width:8px; height:8px;"></div></div>
             </div>
         </div>
@@ -193,7 +192,7 @@
             <div style="display: flex; align-items: center; gap: 10px;"><span style="font-size: 24px; line-height: 1;">☣</span><div><strong>INFECTION PROTOCOL</strong><br><span style="font-size: 10px;">Check 1 box at dawn. Meds clear 1 box. 3 boxes = TERMINATION.</span></div></div><div class="gauge"><div class="box red-zone"></div><div class="box red-zone"></div><div class="box red-zone"></div></div>
         </div>
         <div style="display: flex; justify-content: space-between; border: 2px dashed var(--black); padding: 10px; align-items: center;">
-            <div><strong>COMA TIMER</strong><br><span style="font-size: 10px;">Triggered at 0 Health. Requires Medical Action within 3 combat rounds.</span></div><div class="gauge"><div class="bubble red-zone"></div><div class="bubble red-zone"></div><div class="bubble red-zone"></div></div>
+            <div><strong>COMA TIMER</strong><br><span style="font-size: 10px;">Triggered at 0 Health. Requires Medical Action within 3 combat rounds (or 1 in-game minute outside of combat).</span></div><div class="gauge"><div class="bubble red-zone"></div><div class="bubble red-zone"></div><div class="bubble red-zone"></div></div>
         </div>
     </div></div>
 
@@ -355,7 +354,12 @@
             <h3>THE 2D6 ENGINE</h3>
             <p>Every check requires rolling two six-sided dice (2d6) and adding the relevant Stat bonus. The GM sets the Target Number (TN) for success based on difficulty.</p>
             <ul><li><strong>7 = Easy</strong></li><li><strong>9 = Normal</strong></li><li><strong>11 = Hard</strong></li></ul>
-            <p><strong>Critical Success:</strong> If the 2d6 roll results in doubles (1-1, 5-5, etc.), the action is an automatic critical success. In combat, this doubles the base damage.</p>
+            <p><strong>Criticals and Fumbles:</strong> Rolling double 6s is an automatic critical success. In combat, this doubles the base damage. Rolling double 1s (snake eyes) is an automatic critical failure.</p>            
+
+            <h3>ADVANTAGE & DISADVANTAGE</h3>
+            <p>Some gear, environments, or tactical situations alter your odds. 
+            <br><strong>Advantage:</strong> Roll 3d6 and keep the two highest dice.
+            <br><strong>Disadvantage:</strong> Roll 3d6 and keep the two lowest dice.</p>
             
             <h3>THE CONDITION PENALTY</h3>
             <p>If any Condition Bar (Health, Stamina, Food) reaches zero, check a Condition Critical penalty box. You take a cumulative -1 to all rolls per checked box (max -3). </p>
@@ -366,13 +370,13 @@
             <h3>THE 2-ACTION ECONOMY</h3>
             <p>During combat, a player has exactly 2 Actions per turn. Everything except talking costs an action. You can attack twice, move twice, or mix actions (e.g., Reload + Shoot).</p>
 
-            <h3>WEAPON DAMAGE</h3>
-            <p>Weapons deal flat damage to keep combat moving quickly.</p>
+            <h3>WEAPON DAMAGE & MODIFICATIONS</h3>
+            <p>Weapons deal flat base damage to keep combat brutally fast. However, these base stats can be boosted by crafting and attaching accessories or mods to a weapon's Modification Nodes.</p>
             <ul>
-                <li><strong>Light Melee:</strong> 1 Dmg (Adjacent)</li>
-                <li><strong>Heavy Melee:</strong> 2 Dmg (Adjacent)</li>
-                <li><strong>Sidearm:</strong> 2 Dmg (Close)</li>
-                <li><strong>Long Gun:</strong> 3 Dmg (Far)</li>
+                <li><strong>Light Melee / Unarmed:</strong> 1 Base Dmg (Adjacent)</li>
+                <li><strong>Heavy Melee:</strong> 2 Base Dmg (Adjacent)</li>
+                <li><strong>Sidearm:</strong> 2 Base Dmg (Close)</li>
+                <li><strong>Long Gun / Special:</strong> 3 Base Dmg (Far)</li>
             </ul>
         </div>
     </div></div>
@@ -385,7 +389,16 @@
             <p>Inventory is tracked visually. The Rig holds Quick Access items (0 actions to retrieve in combat). The Pack holds Deep Storage items (requires 1 action to retrieve). Weapons take up slots and feature visual checkboxes for ammo and durability.</p>
 
             <h3>SCAVENGING & TAGS</h3>
-            <p>Roll <strong>2d6 + Brains</strong> to scavenge a location. Success yields Item Tags (e.g., [Medical], [Auto], [Food]). The GM consults drop tables in the Outbreak Dossier to determine the exact items found based on the tags.</p>
+            <p>Roll <strong>2d6 + Brains</strong> to scavenge a location. Success yields broad Item Tags (e.g., [Medical], [Auto], [Food]). The GM consults drop tables to determine exact usable items.</p>
+            <h3>SALVAGING RAW MATERIALS</h3>
+            <p>Crafting recipes often require specific raw materials. During downtime, you can break down your broad scavenging tags at a Workbench to yield specific crafting components:</p>
+            <ul>
+                <li><strong>[HARDWARE]</strong> breaks down into 2 [MECHANICAL], [WOOD], or [SCRAP METAL]</li>
+                <li><strong>[MEDICAL]</strong> breaks down into 2 [CHEMICAL], [PLASTIC], or [GLASS]</li>
+                <li><strong>[FOOD]</strong> breaks down into 2 [BIOMAT] or [WATER]</li>
+                <li><strong>[AUTO]</strong> breaks down into 2 [SCRAP METAL] or [BATTERY]</li>
+                <li><strong>[WEAPONS & AMMO]</strong> breaks down into 2 [EXPLOSIVE] or [SCRAP METAL]</li>
+            </ul>
 
             <h3>THE SAFEHOUSE INTEGRITY</h3>
             <p>Tracked from 0% to 100%. A building must reach <strong>75% Integrity</strong> to be a secure HQ. Safehouses passively lose 5% Integrity every in-game week unless maintained.</p>
@@ -409,8 +422,7 @@
             
             <table>
                 <tr class="black-bg"><th>SPECIMEN</th><th>HEALTH</th><th>DAMAGE</th><th>TACTICAL TRAIT</th></tr>
-                <tr><td><strong>THE WALKER</strong> (Swarm)</td><td>2</td><td>1</td><td style="text-transform: none;"><strong>Grapple:</strong> If two or more Walkers are engaged with a player, that player loses 1 Action attempting to shove them off before they can move or shoot.</td></tr>
-                <tr><td><strong>THE RUNNER</strong> (Pursuit)</td><td>3</td><td>1</td><td style="text-transform: none;"><strong>Relentless:</strong> Runners ignore standard movement rules. They can sprint across an entire combat zone AND attack in the same turn. Escaping costs Stamina.</td></tr>
+                <td style="text-transform: none;"><strong>Grapple:</strong> If two or more Walkers are engaged with a player, that player must automatically spend 1 Action to shove them off before they can move, attack, or use items.</td>                <tr><td><strong>THE RUNNER</strong> (Pursuit)</td><td>3</td><td>1</td><td style="text-transform: none;"><strong>Relentless:</strong> Runners ignore standard movement rules. They can sprint across an entire combat zone AND attack in the same turn. Escaping costs Stamina.</td></tr>
                 <tr><td><strong>THE SPITTER</strong> (Artillery)</td><td>2</td><td>1 (Ranged)</td><td style="text-transform: none;"><strong>Corrosive Bile:</strong> Instead of normal damage, a Spitter's attack forces the player to either check an Infection box OR destroy one Durability Bubble on their gear.</td></tr>
                 <tr><td><strong>THE GRONK</strong> (Juggernaut)</td><td>8</td><td>3</td><td style="text-transform: none;"><strong>Thick Skull:</strong> Immune to Light Melee weapons. Gronks deal massive structural damage—destroying 10% Safehouse Integrity per strike.</td></tr>
             </table>
@@ -470,7 +482,7 @@
                         <tr><td>Unsuppressed Sidearm</td><td>+3 Ticks per shot</td></tr>
                         <tr><td>Shotgun / Explosive</td><td>INSTANT FILL</td></tr>
                     </table>
-                    <p style="font-size: 10px; margin-top: 5px; font-style: italic;">*Staying silent for 10 in-game minutes removes 1 Tick.</p>
+                    <p style="font-size: 10px; margin-top: 5px; font-style: italic;">*Staying silent for 10 in-game minutes (outside of combat) removes 1 Tick.</p>
                 </div>
                 <div>
                     <h3>CONDITION PENALTIES</h3>
