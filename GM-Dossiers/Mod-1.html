@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survival Protocol: The Outbreak Dossier</title>
+    <style>
+        /* BASE & SCREEN STYLES */
+        :root {
+            --black: #111;
+            --font-main: 'Courier New', Courier, monospace;
+        }
+        
+        body { background-color: #333; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+
+        /* PAGE LAYOUT */
+        .page {
+            background-color: white; width: 7.5in; height: 10in; margin-bottom: 20px; box-sizing: border-box; font-family: var(--font-main); color: var(--black); position: relative;
+            background-image: linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 0.25in 0.25in;
+        }
+
+        .cover-page { background-color: var(--black); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border: 12px solid white; }
+        .divider-page { background-color: var(--black); color: white; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 1in; border: 12px solid white; }
+        .content-layer { background: rgba(255,255,255,0.95); padding: 0.25in; height: 100%; box-sizing: border-box; border: 4px solid var(--black); display: flex; flex-direction: column; gap: 15px; }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3, .caps { text-transform: uppercase; margin: 0; }
+        h1 { font-size: 24px; font-weight: bold; border-bottom: 3px solid var(--black); padding-bottom: 5px; }
+        h2 { font-size: 18px; background: var(--black); color: white; padding: 3px 8px; display: inline-block; }
+        h3 { font-size: 14px; margin-top: 10px; border-bottom: 1px solid var(--black); display: inline-block;}
+        
+        .header-block { display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--black); padding-bottom: 10px; }
+        .logo-area { text-align: right; font-size: 10px; font-weight: bold; }
+        .logo-area img { max-width: 120px; max-height: 50px; display: block; margin-bottom: 5px; filter: grayscale(100%); }
+
+        .black-bg { background: var(--black); color: white; }
+
+        /* RULEBOOK TEXT STYLING */
+        .rules-text { font-size: 11px; line-height: 1.4; text-transform: none; column-count: 2; column-gap: 30px; }
+        .rules-text p { margin-bottom: 10px; text-transform: none; }
+        .rules-text ul { margin-top: 0; padding-left: 15px; }
+        .rules-text li { margin-bottom: 5px; text-transform: none; }
+        .rules-text h3 { text-transform: uppercase; margin-bottom: 5px; border-bottom: none; display: block; margin-top: 15px;}
+
+        /* GM SPECIFIC ELEMENTS */
+        .read-aloud { background: #eee; border-left: 4px solid var(--black); padding: 10px; font-style: italic; font-size: 11px; margin-bottom: 10px; column-span: all;}
+        .gm-note { border: 2px dashed var(--black); padding: 10px; font-weight: bold; font-size: 10px; margin-bottom: 10px; text-transform: uppercase; background: white;}
+
+        /* BOXES & GAUGES */
+        .box { width: 18px; height: 18px; border: 2px solid var(--black); display: inline-block; }
+        .bubble { width: 18px; height: 18px; border: 2px solid var(--black); border-radius: 50%; display: inline-block; }
+        .gauge { display: flex; gap: 2px; }
+
+        /* TABLES & GRIDS */
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; margin-bottom: 10px;}
+        th, td { border: 1px solid var(--black); padding: 5px; text-align: left; font-size: 10px; }
+        th { text-transform: uppercase; background: var(--black); color: white;}
+        
+        /* HANDOUT CARDS */
+        .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10px; }
+        .recipe-card { border: 2px dashed var(--black); padding: 15px; background: white; text-align: center; }
+        .map-box { border: 4px solid var(--black); background: #eee; padding: 15px; position: relative; margin-top: 10px;}
+        
+        /* PRINT MEDIA QUERIES */
+        @media print {
+            body { background: none; padding: 0; }
+            @page { size: 8.5in 11in; margin: 0.5in; }
+            .page { width: 7.5in; height: 10in; margin: 0; border: none; page-break-after: always; }
+            .cover-page, .divider-page { border: 12px solid var(--black); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. COVER PAGE -->
+    <div class="page cover-page">
+        <p style="font-size: 14px; letter-spacing: 4px; color: #aaa;">GAME MASTER'S GUIDE</p>
+        <h1 style="border: none; font-size: 50px; margin-top: 10px; margin-bottom: 10px; line-height: 0.9;">THE OUTBREAK<br>DOSSIER</h1>
+        <div style="width: 100px; height: 4px; background: white; margin: 30px auto;"></div>
+        <p style="font-size: 18px; font-weight: bold; letter-spacing: 2px;">FEATURING MODULE 01: END OF THE LINE</p>
+        
+        <p style="font-size: 14px; font-weight: bold; margin-top: 30px; background: white; color: var(--black); padding: 5px 20px; display: inline-block;">PLAYERS: 2-5 | EST. PLAYTIME: 3-5 HOURS</p>
+        
+        <div style="position: absolute; bottom: 50px;">
+            <img src="../logo.png" alt="Two Part Trading" style="filter: invert(1); max-width: 150px;">
+            <p style="font-size: 10px; margin-top: 10px; color: #aaa;">PUBLISHED BY TWO PART TRADING INC.</p>
+        </div>
+    </div>
+
+    <!-- 2. TABLE OF CONTENTS -->
+    <div class="page"><div class="content-layer">
+        <h1 style="font-size: 30px; text-align: center; margin-top: 20px;">TABLE OF CONTENTS</h1>
+        <div style="margin: 40px 20px;">
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--black); padding-bottom: 5px; margin-bottom: 15px;"><strong class="caps">00. THE OVERSEER'S ROLE</strong> <span>PAGE 03</span></div>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 10px;">SECTION ONE // SYSTEM RULES</h3>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--black); padding-bottom: 5px; margin-bottom: 10px;"><span class="caps">I. Core Engine & Target Numbers</span> <span>PAGE 05</span></div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--black); padding-bottom: 5px; margin-bottom: 10px;"><span class="caps">II. The Decibel Gauge & Stealth</span> <span>PAGE 06</span></div>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 10px;">SECTION TWO // MODULE 01: END OF THE LINE</h3>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--black); padding-bottom: 5px; margin-bottom: 10px;"><span class="caps">Act I: The Flashpoint (Day Zero)</span> <span>PAGE 08</span></div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--black); padding-bottom: 5px; margin-bottom: 10px;"><span class="caps">Act II: The Foothold & Act III: Dead Air</span> <span>PAGE 09</span></div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--black); padding-bottom: 5px; margin-bottom: 10px;"><span class="caps">Act IV: The Pharmacy Siege</span> <span>PAGE 10</span></div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--black); padding-bottom: 5px; margin-bottom: 10px;"><span class="caps">Beyond the Mission: Sandbox Transition</span> <span>PAGE 11</span></div>
+
+            <h3 style="margin-top: 30px; margin-bottom: 10px;">SECTION THREE // OVERSEER TOOLS</h3>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--black); padding-bottom: 5px; margin-bottom: 10px;"><span class="caps">Threat Boards & Decibel Trackers</span> <span>PAGE 13</span></div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--black); padding-bottom: 5px; margin-bottom: 10px;"><span class="caps">Master Municipal Grid</span> <span>PAGE 14</span></div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--black); padding-bottom: 5px; margin-bottom: 10px;"><span class="caps">Expanded Scavenging Tables (Drop Loot)</span> <span>PAGE 15</span></div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--black); padding-bottom: 5px; margin-bottom: 10px;"><span class="caps">Player Handouts: Starter Recipes</span> <span>PAGE 16</span></div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--black); padding-bottom: 5px; margin-bottom: 10px;"><span class="caps">Player Handouts: Tactical Maps</span> <span>PAGE 17</span></div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted var(--black); padding-bottom: 5px; margin-bottom: 10px;"><strong class="caps">Requisition Terminal (Supply Scan)</strong> <span>PAGE 18</span></div>
+        </div>
+    </div></div>
+
+    <!-- 3. SYSTEM INFO -->
+    <div class="page"><div class="content-layer">
+        <h1 style="text-align: center; margin-top: 20px;">00. THE OVERSEER'S ROLE</h1>
+        <div class="rules-text" style="column-count: 1; padding: 20px;">
+            <p style="font-size: 14px; font-weight: bold; text-align: center;">YOU ARE THE WORLD. AND THE WORLD IS UNFORGIVING.</p>
+            <p style="font-size: 12px; margin-top: 20px;">As the Game Master (The Overseer) in <strong>Survival Protocol</strong>, your job is not to actively kill the players. The mechanics, the starvation, and the Horde will do that for you. Your job is to present a gritty, logical, and terrifying reality, and let the players make hard choices.</p>
+            
+            <h3 style="margin-top: 20px;">THE FOUR PILLARS OF RUNNING THE GAME</h3>
+            <ul style="font-size: 12px; line-height: 1.6;">
+                <li><strong>Manage the Clocks:</strong> Never let the players feel entirely safe. If they are dawdling in a building, advance the Watch Dial. If they are arguing, tick up the Decibel Gauge. Time is a resource.</li>
+                <li><strong>Fail Forward:</strong> When a player fails a 2d6 roll, it shouldn't just mean "nothing happens." It means the situation gets worse. They drop the medical supplies, the gun jams, or a Walker grabs their ankle.</li>
+                <li><strong>Enforce the Grid:</strong> If a player finds a shotgun but their backpack is full, do not let them "pocket it." Make them choose between the gun and their last can of food.</li>
+                <li><strong>Let Death Matter:</strong> Permadeath is a feature, not a bug. When a character's Health hits 0 and the Coma clock runs out, they are gone. Prompt them to adopt an NPC from the Safehouse. The story is about the Haven, not any single hero.</li>
+            </ul>
+        </div>
+    </div></div>
+
+    <!-- 4. DIVIDER 1 -->
+    <div class="page divider-page">
+        <p style="font-size: 14px; font-weight: bold; letter-spacing: 2px;">SECTION ONE // MASTER DIRECTIVES</p>
+        <h1 style="border: none; font-size: 40px; margin-top: 10px; line-height: 1;">SYSTEM RULES &<br>MECHANICS</h1>
+        <div style="width: 50px; height: 4px; background: white; margin-top: 20px;"></div>
+    </div>
+
+    <!-- 5. RULES (Condensed) -->
+    <div class="page"><div class="content-layer">
+        <h1 style="text-align: center; margin-top: 20px;">I. CORE ENGINE & TARGET NUMBERS</h1>
+        <div class="rules-text">
+            <h3>THE 2D6 ENGINE</h3>
+            <p>Every check requires rolling two six-sided dice (2d6) and adding the relevant Stat bonus (Brains, Strength, or Reputation). As the GM, you set the Target Number (TN) for success.</p>
+            <ul>
+                <li><strong>TN 7 (Easy):</strong> Bashing a rotted wooden door.</li>
+                <li><strong>TN 9 (Normal):</strong> Firing a weapon accurately under stress.</li>
+                <li><strong>TN 11 (Hard):</strong> Hotwiring a car with improvised tools.</li>
+                <li><strong>TN 13+ (Extreme):</strong> Performing surgery without a kit.</li>
+            </ul>
+            <p><strong>Critical Success:</strong> Doubles (two 4s, two 6s) guarantee success and double base damage in combat.</p>
+            
+            <h3>COMBAT & INITIATIVE</h3>
+            <p>Roll Group Initiative. <strong>2d6 + Brains</strong> for the Survivors. A flat <strong>2d6</strong> for the Horde. Highest roll takes their entire group's turns in any order. The 2-Action economy is strict: Moving, shooting, reloading, and handing an item to an ally all cost 1 Action.</p>
+
+            <h3>CONDITION CRITICAL</h3>
+            <p>Players must track Health, Stamina, and Food. If a bar hits zero, they take a cumulative -1 to all rolls. Do not remind them to mark off Food or Stamina during travel—if they forget and you catch them, apply the penalty immediately.</p>
+            
+            <div class="gm-note">
+                GM RULE: FLAT DAMAGE<br>
+                Do not roll for damage. Weapons deal flat damage (Light Melee 1, Sidearms 2, Long Guns 3). This keeps combat brutally fast and focuses the tension on the 2d6 hit roll.
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 6. RULES (GM Specific) -->
+    <div class="page"><div class="content-layer">
+        <h1 style="text-align: center; margin-top: 20px;">II. THE DECIBEL GAUGE & STEALTH</h1>
+        <div class="rules-text">
+            <h3>TRACKING TENSION</h3>
+            <p>The Horde operates on the "Proximity Threat" rule. They attack the closest loud noise. You track this using the 6-segment Decibel Gauge.</p>
+            <ul>
+                <li><strong>0 Ticks:</strong> Silent melee kills.</li>
+                <li><strong>+1 Tick:</strong> Failed stealth roll, suppressed gunfire, using a flashlight outdoors at night.</li>
+                <li><strong>+2 Ticks:</strong> Kicking down a door, breaking glass.</li>
+                <li><strong>+3 Ticks:</strong> Firing an unsuppressed handgun.</li>
+                <li><strong>Instant Fill:</strong> Shotguns, explosives, vehicle crashes.</li>
+            </ul>
+
+            <h3>THE HORDE AMBUSH</h3>
+            <p>When the 6th segment of the gauge is filled, it "Pegs Out." You immediately interrupt the turn order, clear the gauge back to zero, and trigger an Ambush Phase. Walkers burst through windows or drop from ceilings into close combat with the players.</p>
+
+            <h3>SCAVENGING & THE TAG PIPELINE</h3>
+            <p>Players roll 2d6 + Brains to search a room. On a success, do not give them an item yet. Give them an <strong>Item Tag</strong> based on the location (e.g., searching a clinic yields a `[Medical]` tag). During downtime or when they open their packs, you roll on the Drop Tables (Page 15) to resolve exactly what that tag represents.</p>
+            
+            <div class="gm-note">
+                DISSIPATING NOISE<br>
+                If the players can stay completely quiet for 10 in-game minutes (taking no actions other than moving slowly), you may erase 1 segment from the Decibel Gauge. Let them sweat it out in a closet.
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 7. DIVIDER 2 -->
+    <div class="page divider-page">
+        <p style="font-size: 14px; font-weight: bold; letter-spacing: 2px;">SECTION TWO // SCENARIO FILES</p>
+        <h1 style="border: none; font-size: 40px; margin-top: 10px; line-height: 1;">MODULE 01:<br>END OF THE LINE</h1>
+        <div style="width: 50px; height: 4px; background: white; margin-top: 20px;"></div>
+    </div>
+
+    <!-- 8. STORY ACT 1 -->
+    <div class="page"><div class="content-layer">
+        <h1 style="text-align: center; margin-top: 20px;">ACT I: THE FLASHPOINT (DAY ZERO)</h1>
+        <div class="rules-text" style="column-count: 1;">
+            <p><strong>The Situation:</strong> The players are passengers on a night-line motorcoach halted at a military checkpoint 10 miles outside Meridian City. The military is quarantining civilians, but the infection has already breached the perimeter.</p>
+
+            <div class="read-aloud">
+                "The air brakes hiss, jolting you awake. Outside the rain-streaked windows, the highway is bathed in harsh halogen floodlights. The road is blocked by concrete barriers and razor wire. Men in heavy military surplus and yellow hazmat suits are swarming the vehicles. The bus driver opens the door, and two soldiers step aboard. One holds a thermal scanner; the other has his hand resting on a holstered sidearm. 'By order of the CDC, Meridian City is under Quarantine,' the soldier barks. 'Do not stand up until you are called.'"
+            </div>
+
+            <h3>THE OUTBREAK & THE CHOICE</h3>
+            <p>Ask the players for their Occupations. A quick Brains roll reveals the soldiers are terrified and treating this like a biological threat, not a flu. Before players can act, a passenger begins coughing violently.</p>
+
+            <div class="read-aloud">
+                "The soldier’s thermal scanner flashes red. They grab the coughing passenger, dragging him toward the door. The passenger thrashes, his jaw snapping wildly, and his teeth sink deep into the lead soldier’s wrist, tearing through the hazmat suit. The soldier screams, dropping his rifle. Outside, people in the triage tents suddenly rise to their feet. The checkpoint has fallen. You have seconds to act."
+            </div>
+
+            <div class="gm-note" style="text-align: center; margin-top: 15px;">PRESENT THE ULTIMATUM: "DO YOU SURRENDER AND HOLD IN THE PENS, FLEE INTO THE DARK WOODS, OR PUSH THROUGH THE BLOCKADE IN A VEHICLE?"</div>
+
+            <p><strong>Route A (Comply & Breakout):</strong> Stripped of gear, players are trapped in a pen. They must use Strength (TN 9) to break the fence as Walkers swarm the camp.<br>
+            *The Transition:* You break the lock just as the fence bows under the weight of the dead. You sprint through the abandoned triage tents, the screams fading into the rain. You run until your lungs burn and the sky begins to lighten. You have reached the edge of Meridian City.</p>
+            
+            <p><strong>Route B (The Woods):</strong> Players sprint into the freezing forest. Suffer -2 Night Ops penalty. Failed Brains navigation rolls add +1 Decibel tick as they are hunted.<br>
+            *The Transition:* The darkness of the pines is absolute. You navigate by lightning, slipping in the mud, until the treeline abruptly breaks. Your boots hit the wet asphalt of a frontage road just as the gray dawn reveals the Meridian City skyline.</p>
+            
+            <p><strong>Route C (The Highway Push):</strong> Players hijack a Humvee or the bus. Roll Strength/Brains to Ram the barricade. Destroys 30% Vehicle Integrity and causes 1 whiplash damage to all.<br>
+            *The Transition:* The vehicle smashes through the concrete, the chassis screaming as you hit the open highway. You leave the chaos miles behind. As the engine finally sputters and dies from the impact damage, the sun crests the horizon, illuminating the city limits ahead.</p>
+        </div>
+    </div></div>
+
+    <!-- 9. STORY ACT 2 & 3 -->
+    <div class="page"><div class="content-layer">
+        <h1 style="text-align: center; margin-top: 10px;">ACT II: THE FOOTHOLD (DAY 1)</h1>
+        <div class="rules-text" style="column-count: 1;">
+            <p><strong>The Setup:</strong> The players have escaped the checkpoint and arrive on the outskirts of Meridian City (Sector A-1) as dawn breaks. Deduct 1 Food and 1 Stamina from all players for daily upkeep.</p>
+            <p>Present them with three shelter options to claim as their first Safehouse:</p>
+            <ul>
+                <li><strong>Gas Station:</strong> Guaranteed `[Fuel]` tags. Starts at 30% Integrity (broken glass).</li>
+                <li><strong>Storage Facility:</strong> Secure steel doors (60% Integrity). Zero food inside.</li>
+                <li><strong>Suburban Home:</strong> Guaranteed `[Food]`. A family of Walkers is locked inside, requiring immediate combat.</li>
+            </ul>
+            <p>Once secured, introduce the Downtime Phase (Watch Dial) and let them spend 1 Action to barricade or heal.</p>
+
+            <h1 style="text-align: center; margin-top: 30px;">ACT III: DEAD AIR (DAY 2)</h1>
+            <p><strong>The Hook:</strong> While searching the Safehouse, a player finds a hand-crank emergency radio.</p>
+            
+            <div class="read-aloud">
+                "You crank the handle until the battery light flickers green. Static hisses, followed by a looping military broadcast: '...Evac flights are grounded. We have secured a surplus cache of medical supplies and field rations at the Sector C-3 Pharmacy Depot. We are locking the vault and holding out on the roof. God help us...'"
+            </div>
+
+            <p><strong>The Trek:</strong> Traveling from Sector A-1 to Sector C-3 requires moving through two Hostile blocks. Deduct 1 Stamina from everyone. Ask for Stealth rolls; failures build the Decibel Gauge.</p>
+        </div>
+    </div></div>
+
+    <!-- 10. STORY ACT 4 & SANDBOX -->
+    <div class="page"><div class="content-layer">
+        <h1 style="text-align: center; margin-top: 10px;">ACT IV: THE PHARMACY SIEGE</h1>
+        <div class="rules-text" style="column-count: 1;">
+            <p><strong>The Scene:</strong> The players arrive at the Pharmacy Depot. The soldiers are dead on the roof, but the steel vault is locked. Opening the vault requires a Brains roll (hotwire) or Strength roll (crank) at TN 11.</p>
+            <p>As soon as the vault cracks open, instantly fill the Decibel Gauge to maximum.</p>
+
+            <div class="read-aloud">
+                "The heavy steel door groans upward. Behind you, a terrifying roar vibrates through the alleyway. Rounding the corner is a hulking figure—a soldier swollen to grotesque proportions by the virus, bursting through his Kevlar armor. A Gronk. A half-dozen Walkers shamble in behind it. You are trapped between the horde and the open vault."
+            </div>
+
+            <p><strong>Tactics:</strong> The Gronk has 8 Health. Light melee deals 0 damage. The Walkers will grapple players, draining their actions so they cannot run. Force them to use teamwork or shoot the `[Combustible]` barrels in the alley.</p>
+
+            <h1 style="text-align: center; margin-top: 30px;">BEYOND THE MISSION</h1>
+            <div class="gm-note" style="text-align: center;">THE TUTORIAL IS OVER. AWARD THE SPOILS AND TRANSITION TO THE OPEN SANDBOX.</div>
+            <p><strong>The Spoils:</strong> Everyone gains 100 XP (Level Up!). Roll twice on `[Medical]` and `[Food]` drop tables. Award 10 Value in Ammo.</p>
+            <p><strong>Campaign Hooks:</strong></p>
+            <ul>
+                <li><strong>The Radio:</strong> A human voice comes over the comms asking about the explosion at the pharmacy.</li>
+                <li><strong>The Roster:</strong> A starving civilian appears near the Safehouse. Players can use Reputation to recruit them.</li>
+                <li><strong>The Rot:</strong> The Safehouse takes its first 5% weekly decay, forcing a scavenging run for `[Hardware]` tags.</li>
+            </ul>
+        </div>
+    </div></div>
+
+    <!-- 11. DIVIDER 3 -->
+    <div class="page divider-page">
+        <p style="font-size: 14px; font-weight: bold; letter-spacing: 2px;">SECTION THREE // OVERSEER ASSETS</p>
+        <h1 style="border: none; font-size: 40px; margin-top: 10px; line-height: 1;">GM TOOLS &<br>TRACKERS</h1>
+        <div style="width: 50px; height: 4px; background: white; margin-top: 20px;"></div>
+    </div>
+
+    <!-- 12. GM SHEETS (THREAT & DECIBEL) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block"><div><h1>ACTIVE COMBAT TRACKER</h1><p style="margin-top: 5px; font-weight: bold;">THREAT BOARDS & DECIBEL GAUGE</p></div></div>
+        
+        <h2>THE DECIBEL GAUGE (NOISE / TENSION)</h2>
+        <div style="border: 4px solid var(--black); padding: 20px; display: flex; justify-content: space-around; background: #eee; margin-top: 5px; margin-bottom: 20px;">
+            <div class="box" style="width: 40px; height: 40px;"></div>
+            <div class="box" style="width: 40px; height: 40px;"></div>
+            <div class="box" style="width: 40px; height: 40px;"></div>
+            <div class="box" style="width: 40px; height: 40px; background: orange;"></div>
+            <div class="box" style="width: 40px; height: 40px; background: orangered;"></div>
+            <div class="box" style="width: 40px; height: 40px; background: darkred;"></div>
+        </div>
+
+        <h2>THREAT BOARDS (MONSTER HEALTH)</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;">
+            <div style="border: 2px solid var(--black); padding: 10px;">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--black); padding-bottom:5px;"><strong>SPECIMEN:</strong> <div style="border-bottom: 1px dashed var(--black); width: 100px;"></div></div>
+                <div style="margin-top: 5px;">HP: <div class="gauge" style="display:inline-flex; margin-left:10px;"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div></div>
+            </div>
+            <div style="border: 2px solid var(--black); padding: 10px;">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--black); padding-bottom:5px;"><strong>SPECIMEN:</strong> <div style="border-bottom: 1px dashed var(--black); width: 100px;"></div></div>
+                <div style="margin-top: 5px;">HP: <div class="gauge" style="display:inline-flex; margin-left:10px;"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div></div>
+            </div>
+            <div style="border: 2px solid var(--black); padding: 10px;">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--black); padding-bottom:5px;"><strong>SPECIMEN:</strong> <div style="border-bottom: 1px dashed var(--black); width: 100px;"></div></div>
+                <div style="margin-top: 5px;">HP: <div class="gauge" style="display:inline-flex; margin-left:10px;"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div></div>
+            </div>
+            <div style="border: 2px solid var(--black); padding: 10px;">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--black); padding-bottom:5px;"><strong>SPECIMEN:</strong> <div style="border-bottom: 1px dashed var(--black); width: 100px;"></div></div>
+                <div style="margin-top: 5px;">HP: <div class="gauge" style="display:inline-flex; margin-left:10px;"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div></div>
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 13. MASTER GRID -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block"><div><h1>MASTER MUNICIPAL GRID</h1><p style="margin-top: 5px; font-weight: bold;">OVERSEER EYES ONLY // SECTOR PLACEMENTS</p></div></div>
+        
+        <div style="position: relative; width: calc(100% - 20px); height: 6in; border: 4px solid var(--black); background-color: white; background-image: linear-gradient(var(--black) 1px, transparent 1px), linear-gradient(90deg, var(--black) 1px, transparent 1px); background-size: 0.46in 0.46in; margin-top: 35px; margin-left: 20px;">
+            <!-- X-Axis -->
+            <div style="position: absolute; top: -18px; left: 0; width: 100%; display: flex; justify-content: space-around; font-size: 10px; font-weight: bold;">
+                <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span>
+            </div>
+            <!-- Y-Axis -->
+            <div style="position: absolute; top: 0; left: -18px; height: 100%; display: flex; flex-direction: column; justify-content: space-around; font-size: 10px; font-weight: bold;">
+                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+            </div>
+            <!-- Pre-placed markers -->
+            <div style="position: absolute; top: 0.23in; left: 0.23in; font-size: 24px; font-weight: bold; transform: translate(-50%, -50%);">⌂</div> <!-- A-1 Safehouse -->
+            <div style="position: absolute; top: 1.15in; left: 1.15in; font-size: 24px; font-weight: bold; transform: translate(-50%, -50%); color: darkred;">☣</div> <!-- C-3 Pharmacy -->
+        </div>
+
+        <div class="gm-note" style="margin-top: 20px;">
+            USE THIS MAP TO PLOT RIVAL FACTION TERRITORIES, HORDE MIGRATIONS, AND HIGH-VALUE LOOT CACHES. DO NOT SHOW TO PLAYERS.
+        </div>
+    </div></div>
+
+    <!-- 14. EXPANDED DROP TABLES -->
+    <div class="page"><div class="content-layer">
+        <h1 style="text-align: center; margin-top: 10px;">EXPANDED SCAVENGING TABLES</h1>
+        <p style="font-size: 10px; text-align: center; margin-bottom: 10px;">ROLL 2D6 WHEN RESOLVING A FOUND ITEM TAG.</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <table>
+                <tr><th colspan="2">[MEDICAL] TAG RESULTS</th></tr>
+                <tr><td>2-4</td><td>Soiled Bandages (1 Durability)</td></tr>
+                <tr><td>5-8</td><td>Painkillers (Restores 1 Health)</td></tr>
+                <tr><td>9-11</td><td>Infection Suppressant (Clears 1 Box)</td></tr>
+                <tr><td>12</td><td>Trauma Kit (Restores all Health)</td></tr>
+            </table>
+            <table>
+                <tr><th colspan="2">[FOOD] TAG RESULTS</th></tr>
+                <tr><td>2-4</td><td>Spoiled Rations (Restores 0, cures hunger)</td></tr>
+                <tr><td>5-8</td><td>Canned Goods (Restores 1 Food)</td></tr>
+                <tr><td>9-11</td><td>MRE (Restores 2 Food)</td></tr>
+                <tr><td>12</td><td>Pristine Water Jug (Restores 3 Food)</td></tr>
+            </table>
+            <table>
+                <tr><th colspan="2">[HARDWARE] TAG RESULTS</th></tr>
+                <tr><td>2-4</td><td>Rusted Nails & Screws (1 Crafting Use)</td></tr>
+                <tr><td>5-8</td><td>Duct Tape (Restores 1 Weapon Durability)</td></tr>
+                <tr><td>9-11</td><td>Power Tools (+1 to Safehouse Repairs)</td></tr>
+                <tr><td>12</td><td>Portable Generator (Powers Base for 1 Wk)</td></tr>
+            </table>
+            <table>
+                <tr><th colspan="2">[AUTO] TAG RESULTS</th></tr>
+                <tr><td>2-4</td><td>Scrap Metal (Fixes 5% Vehicle Integrity)</td></tr>
+                <tr><td>5-8</td><td>Siphoned Gas (Restores 1 Fuel Bubble)</td></tr>
+                <tr><td>9-11</td><td>Full Jerrycan (Restores 3 Fuel Bubbles)</td></tr>
+                <tr><td>12</td><td>Car Battery (Used for high-tier crafting)</td></tr>
+            </table>
+        </div>
+
+        <table style="margin-top: 10px;">
+            <tr><th colspan="3" style="text-align: center;">[WEAPONS & AMMO] TAG RESULTS</th></tr>
+            <tr><td><strong>2-4</strong></td><td>Loose Handgun Bullets</td><td>Adds 3 checks to Sidearm ammo track.</td></tr>
+            <tr><td><strong>5-8</strong></td><td>Heavy Melee Weapon</td><td>Fire Axe, Sledgehammer (Base Dmg 2).</td></tr>
+            <tr><td><strong>9-11</strong></td><td>Box of Ammunition</td><td>Fills 1 entire Weapon ammo track.</td></tr>
+            <tr><td><strong>12</strong></td><td>Pristine Firearm</td><td>Long Gun (Rifle/Shotgun) with full ammo.</td></tr>
+        </table>
+    </div></div>
+
+    <!-- 15. HANDOUTS (RECIPE CARDS) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block"><div><h1>PLAYER HANDOUTS</h1><p style="margin-top: 5px; font-weight: bold;">STARTER OCCUPATION RECIPE CARDS</p></div></div>
+        <div class="gm-note" style="text-align: center;">PRINT THIS PAGE, CUT OUT THE CARDS, AND HAND THEM TO PLAYERS BASED ON THEIR CHOSEN BACKGROUNDS.</div>
+        
+        <div class="card-grid">
+            <!-- Card 1 -->
+            <div class="recipe-card">
+                <h3 style="margin-bottom: 10px;">ADRENALINE SYRINGE</h3>
+                <p style="font-size: 10px; margin-bottom: 15px;"><em>First Responder Starter Blueprint</em><br>Instantly revives a player from a Coma state with 2 Health bubbles restored.</p>
+                <div style="font-size: 10px; font-weight: bold; margin-bottom: 5px;">COMPONENTS REQUIRED:</div>
+                <div style="display: flex; justify-content: center; gap: 10px;">
+                    <div style="border: 1px solid black; padding: 5px; font-size: 8px;">[MEDICAL]</div>
+                    <div style="border: 1px solid black; padding: 5px; font-size: 8px;">[HARDWARE]</div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="recipe-card">
+                <h3 style="margin-bottom: 10px;">PIPE BOMB</h3>
+                <p style="font-size: 10px; margin-bottom: 15px;"><em>Grease Monkey Starter Blueprint</em><br>Deals 4 Damage to all targets in a Close zone. Instantly fills the Decibel Gauge.</p>
+                <div style="font-size: 10px; font-weight: bold; margin-bottom: 5px;">COMPONENTS REQUIRED:</div>
+                <div style="display: flex; justify-content: center; gap: 10px;">
+                    <div style="border: 1px solid black; padding: 5px; font-size: 8px;">[HARDWARE]</div>
+                    <div style="border: 1px solid black; padding: 5px; font-size: 8px;">[AUTO]</div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="recipe-card">
+                <h3 style="margin-bottom: 10px;">MOLOTOV COCKTAIL</h3>
+                <p style="font-size: 10px; margin-bottom: 15px;"><em>Shift Worker Starter Blueprint</em><br>Creates a zone of fire that deals 2 Damage per turn to anyone inside it. Lasts 3 turns.</p>
+                <div style="font-size: 10px; font-weight: bold; margin-bottom: 5px;">COMPONENTS REQUIRED:</div>
+                <div style="display: flex; justify-content: center; gap: 10px;">
+                    <div style="border: 1px solid black; padding: 5px; font-size: 8px;">[AUTO] (Fuel)</div>
+                    <div style="border: 1px solid black; padding: 5px; font-size: 8px;">[HARDWARE]</div>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="recipe-card">
+                <h3 style="margin-bottom: 10px;">WATER FILTER</h3>
+                <p style="font-size: 10px; margin-bottom: 15px;"><em>Desk Jockey Starter Blueprint</em><br>Purifies standing water. Converts any empty bottle into 2 Food/Water bubbles.</p>
+                <div style="font-size: 10px; font-weight: bold; margin-bottom: 5px;">COMPONENTS REQUIRED:</div>
+                <div style="display: flex; justify-content: center; gap: 10px;">
+                    <div style="border: 1px solid black; padding: 5px; font-size: 8px;">[HARDWARE]</div>
+                    <div style="border: 1px solid black; padding: 5px; font-size: 8px;">[SCRAP / FABRIC]</div>
+                </div>
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 16. HANDOUTS (MAPS) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block"><div><h1>PLAYER HANDOUTS</h1><p style="margin-top: 5px; font-weight: bold;">TACTICAL BLUEPRINTS & MAPS</p></div></div>
+        <div class="gm-note" style="text-align: center;">HAND THESE VISUAL AIDS TO PLAYERS TO HELP MANAGE COMBAT ZONES AND SAFEHOUSE PLANNING.</div>
+        
+        <h3 style="margin-top: 10px;">MILITARY HUMVEE (ROUTE C ESCAPE)</h3>
+        <div class="map-box" style="height: 150px; display: flex; align-items: center; justify-content: center;">
+            <div style="border: 4px solid var(--black); width: 250px; height: 100px; display: grid; grid-template-columns: 1fr 2fr 1fr; background: white;">
+                <div style="border-right: 2px solid var(--black); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; writing-mode: vertical-rl;">ENGINE / HOOD</div>
+                <div style="display: grid; grid-template-rows: 1fr 1fr;">
+                    <div style="border-bottom: 2px solid var(--black); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold;">DRIVER SEAT</div>
+                    <div style="display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold;">PASSENGER CABIN</div>
+                </div>
+                <div style="border-left: 2px solid var(--black); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; writing-mode: vertical-rl;">TRUNK / BED</div>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 20px;">SECTOR A-1 GAS STATION (DAY 1 SAFEHOUSE)</h3>
+        <div class="map-box" style="height: 300px; display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; gap: 5px;">
+            <div style="border: 2px solid var(--black); background: white; padding: 10px; grid-row: 1 / 3;">
+                <p style="font-size: 12px; font-weight: bold; margin-bottom: 5px; text-align: center;">STOREFRONT (MAIN LOBBY)</p>
+                <div style="width: 100%; height: 2px; background: dashed var(--black); margin: 20px 0;"></div>
+                <p style="font-size: 10px; text-align: center;">SHATTERED GLASS DOORS (VULNERABLE)</p>
+            </div>
+            <div style="border: 2px solid var(--black); background: white; padding: 10px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <p style="font-size: 12px; font-weight: bold; margin-bottom: 5px;">STORAGE CLOSET</p>
+                <p style="font-size: 10px;">SECURE DOOR</p>
+            </div>
+            <div style="border: 2px solid var(--black); background: white; padding: 10px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <p style="font-size: 12px; font-weight: bold; margin-bottom: 5px;">GARAGE BAY</p>
+                <p style="font-size: 10px;">ROLL-UP DOOR</p>
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 17. EXIT SCAN (REQUISITION TERMINAL) -->
+    <div class="page"><div class="content-layer" style="border: 12px solid var(--black); text-align: center; justify-content: center;">
+        
+        <h1 style="border: none; font-size: 36px; margin-bottom: 5px;">REQUISITION TERMINAL</h1>
+        <p style="font-weight: bold; font-size: 14px; letter-spacing: 2px;">SECURE COMMUNICATOR LINK</p>
+        <div style="width: 50px; height: 4px; background: var(--black); margin: 20px auto;"></div>
+        
+        <h3 style="font-size: 18px; margin-bottom: 15px; border: none;">IS THE SAFE HAVEN EXPANDING?</h3>
+        
+        <p style="font-size: 12px; max-width: 80%; margin: 0 auto 30px auto; line-height: 1.5; font-family: sans-serif;">
+            The Outbreak Dossier is just the beginning. As your players secure their stronghold and push deeper into the Quarantine Zone, you will need more tools to oversee the apocalypse. 
+        </p>
+
+        <div style="border: 4px dashed var(--black); padding: 30px; margin: 0 auto; display: inline-block;">
+            <p style="font-weight: bold; font-size: 16px; margin-bottom: 10px;">SCAN THE QR CODE LOCATED ON THE<br>BACK COVER OF THIS BINDER.</p>
+            <p style="font-size: 10px; font-style: italic;">(Refer to print artifact: image_63df60.png)</p>
+        </div>
+
+        <p style="font-size: 12px; margin-top: 30px; font-weight: bold;">AVAILABLE OVERSEER REQUISITIONS:</p>
+        <ul style="list-style: none; padding: 0; font-size: 12px; font-family: sans-serif; line-height: 1.8;">
+            <li>» PHYSICAL PLAYER JOURNALS (PACK OF 4)</li>
+            <li>» NEW CAMPAIGN MODULES & EXPANSIONS</li>
+            <li>» PHYSICAL RECIPE CARDS & LOOT DECKS</li>
+            <li>» TACTICAL MUNICIPAL SECTOR MAPS</li>
+        </ul>
+
+        <div style="margin-top: auto;">
+            <img src="../logo.png" alt="Two Part Trading" style="max-width: 150px; filter: grayscale(100%);">
+            <p style="font-size: 10px; margin-top: 5px;">WWW.TWOPARTTRADING.COM // STAY ALIVE</p>
+        </div>
+    </div></div>
+
+    <!-- 18. BACK COVER -->
+    <div class="page cover-page">
+        <h1 style="border: none; font-size: 30px; line-height: 1.2; width: 80%;">"THE TENSION IS IN THE SILENCE. THE TERROR IS IN THE NOISE."</h1>
+        <div style="width: 100px; height: 4px; background: white; margin: 30px auto;"></div>
+        
+        <p style="font-size: 14px; width: 70%; line-height: 1.6; text-align: left; margin-bottom: 20px;">
+            <strong>THE OUTBREAK DOSSIER</strong> is the ultimate Game Master's guide to running <em>Survival Protocol</em>. Inside this classified manual, you will find everything you need to run the fast-paced, highly tactical 2d6 engine. 
+        </p>
+        <p style="font-size: 14px; width: 70%; line-height: 1.6; text-align: left; margin-bottom: 40px;">
+            Included is <strong>Module 01: End of the Line</strong>, a harrowing introductory scenario that throws players onto a quarantined motorcoach on Day Zero. Manage the Decibel Gauge, trigger Horde Ambushes, and watch your players fight tooth and nail to secure their very first Safehouse.
+        </p>
+
+        <p style="font-size: 12px; font-weight: bold; background: white; color: var(--black); padding: 5px 20px; display: inline-block; margin-bottom: 30px;">PLAYERS: 2-5 | EST. PLAYTIME: 3-5 HOURS</p>
+
+        <img src="../logo.png" alt="Two Part Trading" style="filter: invert(1); max-width: 150px; margin-bottom: 10px;">
+        <p style="font-size: 10px; color: #aaa;">DOCUMENT CLASSIFICATION: OVERSEER_A</p>
+        
+        <!-- Represents the QR Code placement from the image reference -->
+        <div style="width: 80px; height: 80px; background: white; display: flex; align-items: center; justify-content: center; position: absolute; bottom: 30px; right: 30px;">
+            <p style="color: black; font-size: 10px; font-weight: bold; margin: 0;">QR CODE</p>
+        </div>
+    </div>
+
+</body>
+</html>
