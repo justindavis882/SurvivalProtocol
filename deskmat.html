@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survival Protocol: Tactical Desk Mat</title>
+    <style>
+        :root {
+            --black: #111;
+            --font-main: 'Courier New', Courier, monospace;
+        }
+        
+        body {
+            background-color: #555;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 13x19 CANVAS WITH 1-INCH MARGINS */
+        .mat-canvas {
+            background-color: white;
+            width: 19in;
+            height: 13in;
+            box-sizing: border-box;
+            padding: 1in; /* This creates the 11x17 safe zone */
+            font-family: var(--font-main);
+            color: var(--black);
+            position: relative;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 0.25in 0.25in;
+        }
+
+        .safe-zone {
+            width: 100%;
+            height: 100%;
+            border: 6px solid var(--black);
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            padding: 0.25in;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3, p { margin: 0; text-transform: uppercase; }
+        h1 { font-size: 32px; font-weight: bold; }
+        h2 { font-size: 18px; background: var(--black); color: white; padding: 4px 10px; display: inline-block; margin-bottom: 10px; }
+        .small-label { font-size: 12px; font-weight: bold; }
+
+        .header-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 4px solid var(--black);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* MAIN LAYOUT */
+        .main-content {
+            display: flex;
+            gap: 30px;
+            flex: 1;
+            height: 100%;
+        }
+
+        /* LEFT COLUMN (CLOCK & TRACKERS) */
+        .left-col {
+            flex: 0 0 4.5in;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .clock-container {
+            border: 4px solid var(--black);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+        }
+
+        /* ANALOG CLOCK SVG STYLING */
+        .clock-svg {
+            width: 3.5in;
+            height: 3.5in;
+        }
+
+        .notes-box {
+            border: 4px solid var(--black);
+            background: repeating-linear-gradient(white, white 29px, #ccc 29px, #ccc 30px);
+            flex: 1;
+            padding: 10px;
+            position: relative;
+        }
+        .notes-box h2 { position: absolute; top: -15px; left: 10px; }
+
+        /* RIGHT COLUMN (CALENDAR) */
+        .right-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: auto repeat(5, 1fr);
+            gap: 3px;
+            background: var(--black);
+            border: 4px solid var(--black);
+            flex: 1;
+        }
+
+        .cal-header {
+            background: var(--black);
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .cal-cell {
+            background: white;
+            position: relative;
+            padding: 5px;
+        }
+
+        .cal-date-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--black);
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+
+        .box { width: 24px; height: 24px; border: 3px solid var(--black); display: inline-block; }
+        .gauge { display: flex; gap: 5px; }
+
+        @media print {
+            body { background: none; padding: 0; }
+            @page { size: 19in 13in landscape; margin: 0; }
+            .mat-canvas { margin: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mat-canvas">
+        <div class="safe-zone">
+            
+            <!-- HEADER -->
+            <div class="header-block">
+                <div>
+                    <h1>OPERATIONAL DESK MAT</h1>
+                    <p style="font-size: 14px; font-weight: bold; letter-spacing: 2px; margin-top: 5px;">SURVIVAL PROTOCOL // TABLETOP ASSET</p>
+                </div>
+                <div style="text-align: right;">
+                    <div class="small-label">CALLSIGN / CAMPAIGN</div>
+                    <div style="border-bottom: 2px dashed var(--black); width: 250px; height: 20px; margin-bottom: 10px;"></div>
+                    <p style="font-size: 10px; font-weight: bold;">PUBLISHED BY TWO PART TRADING INC.</p>
+                </div>
+            </div>
+
+            <!-- CONTENT SPLIT -->
+            <div class="main-content">
+                
+                <!-- LEFT SIDE: CLOCK AND NOTES -->
+                <div class="left-col">
+                    
+                    <!-- ANALOG CLOCK -->
+                    <div class="clock-container">
+                        <h2 style="margin-top: -35px;">12-HOUR ACTION DIAL</h2>
+                        <svg class="clock-svg" viewBox="0 0 100 100">
+                            <!-- Outer Rim -->
+                            <circle cx="50" cy="50" r="48" fill="white" stroke="#111" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="44" fill="none" stroke="#111" stroke-width="1" stroke-dasharray="2 2"/>
+                            
+                            <!-- 12 Hour Ticks -->
+                            <line x1="50" y1="5" x2="50" y2="15" stroke="#111" stroke-width="3"/>
+                            <line x1="50" y1="85" x2="50" y2="95" stroke="#111" stroke-width="3"/>
+                            <line x1="5" y1="50" x2="15" y2="50" stroke="#111" stroke-width="3"/>
+                            <line x1="85" y1="50" x2="95" y2="50" stroke="#111" stroke-width="3"/>
+                            
+                            <!-- Minor Ticks -->
+                            <line x1="72.5" y1="11" x2="67.5" y2="19.6" stroke="#111" stroke-width="2"/>
+                            <line x1="89" y1="27.5" x2="80.4" y2="32.5" stroke="#111" stroke-width="2"/>
+                            <line x1="89" y1="72.5" x2="80.4" y2="67.5" stroke="#111" stroke-width="2"/>
+                            <line x1="72.5" y1="89" x2="67.5" y2="80.4" stroke="#111" stroke-width="2"/>
+                            <line x1="27.5" y1="89" x2="32.5" y2="80.4" stroke="#111" stroke-width="2"/>
+                            <line x1="11" y1="72.5" x2="19.6" y2="67.5" stroke="#111" stroke-width="2"/>
+                            <line x1="11" y1="27.5" x2="19.6" y2="32.5" stroke="#111" stroke-width="2"/>
+                            <line x1="27.5" y1="11" x2="32.5" y2="19.6" stroke="#111" stroke-width="2"/>
+
+                            <!-- Center Dot -->
+                            <circle cx="50" cy="50" r="3" fill="#111"/>
+
+                            <!-- Center Crosshairs for Tactical Look -->
+                            <line x1="50" y1="20" x2="50" y2="80" stroke="#ccc" stroke-width="0.5"/>
+                            <line x1="20" y1="50" x2="80" y2="50" stroke="#ccc" stroke-width="0.5"/>
+                        </svg>
+                        <p style="font-size: 10px; margin-top: 10px; text-align: center;">USE DRY-ERASE MARKER TO TRACK DOWNTIME OPERATIONS OR IN-GAME MISSION CLOCKS.</p>
+                    </div>
+
+                    <!-- THREAT TRACKER -->
+                    <div style="border: 4px solid var(--black); padding: 15px; background: white;">
+                        <h2 style="margin-top: -30px; margin-bottom: 15px;">DECIBEL GAUGE</h2>
+                        <div class="gauge" style="justify-content: space-between;">
+                            <div class="box"></div><div class="box"></div><div class="box"></div>
+                            <div class="box" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, var(--black) 2px, var(--black) 4px);"></div>
+                            <div class="box" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, var(--black) 2px, var(--black) 4px);"></div>
+                            <div class="box" style="background: var(--black);"></div>
+                        </div>
+                    </div>
+
+                    <!-- NOTES -->
+                    <div class="notes-box">
+                        <h2>FIELD NOTES / RESOURCES</h2>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE: CALENDAR -->
+                <div class="right-col">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 5px;">
+                        <h2>MONTHLY LOG</h2>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="small-label">MONTH / YEAR:</span>
+                            <div style="border-bottom: 2px dashed var(--black); width: 200px; height: 15px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="calendar-grid">
+                        <div class="cal-header">MON</div>
+                        <div class="cal-header">TUE</div>
+                        <div class="cal-header">WED</div>
+                        <div class="cal-header">THU</div>
+                        <div class="cal-header">FRI</div>
+                        <div class="cal-header">SAT</div>
+                        <div class="cal-header">SUN</div>
+
+                        <!-- 35 Blank Cells (7 columns x 5 rows) -->
+                        <!-- Row 1 -->
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <!-- Row 2 -->
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <!-- Row 3 -->
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <!-- Row 4 -->
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <!-- Row 5 -->
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                        <div class="cal-cell"><div class="cal-date-box"></div></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
