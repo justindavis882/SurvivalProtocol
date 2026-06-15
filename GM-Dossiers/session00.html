@@ -511,7 +511,200 @@
         </div>
     </div></div>
 
-    <!-- 18. EXIT SCAN (REQUISITION TERMINAL) -->
+    <!-- 18. HAZARDS -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div>
+                <h1>SECTOR HAZARDS &amp; ENVIRONMENT</h1>
+                <p style="margin-top: 5px; font-weight: bold;">OVERSEER ASSETS // FIELD MODIFIERS</p>
+            </div>
+            <div class="logo-area">PAGE 19</div>
+        </div>
+
+        <div class="rules-text" style="column-count: 1;">
+            <h3>ATMOSPHERIC HAZARDS</h3>
+            <p>When survivors venture beyond the Safehouse, roll 1d6 or select an environmental modifier to set the scene and change the mechanical tension framework:</p>
+            
+            <table>
+                <tr>
+                    <th style="width: 20%;">ENVIRONMENT</th>
+                    <th>MECHANICAL EFFECT ON THE 2D6 ENGINE</th>
+                </tr>
+                <tr>
+                    <td><strong>1-2: Torrential Rain</strong></td>
+                    <td>Unsuppressed gunfire builds the Decibel Gauge by -1 less tick due to the ambient downpour. However, all Brains-based navigation and tracking rolls suffer Disadvantage.</td>
+                </tr>
+                <tr>
+                    <td><strong>3-4: Absolute Blackout</strong></td>
+                    <td>Survivors must operate flashlights or flares. Navigating outdoors at night without a light adds a permanent -2 Night Ops penalty to all combat actions. Using a light source adds +1 Decibel tick every 10 in-game minutes.</td>
+                </tr>
+                <tr>
+                    <td><strong>5-6: Toxic Spill Smoke</strong></td>
+                    <td>Sectors filled with chemical or organic fire smoke drain 1 Stamina point per turn of active combat unless a survivor is equipped with a functional `[Gas Mask]`.</td>
+                </tr>
+            </table>
+
+            <h3>SECTOR TRAITS MATRIX</h3>
+            <p>Every unexplored municipal block contains structural terrain features. Use these to dynamically pressure tactical choices during grid movement:</p>
+
+            <ul>
+                <li><strong>Choke Point (Alleyways/Wrecks):</strong> Survivors cannot use their 2-Action economy to "Disengage" from close combat safely. They must kill the adjacent threat or provoke an immediate free counter-attack.</li>
+                <li><strong>Broken Glass Fields:</strong> Any failed Stealth check in this sector instantly generates <strong>+2 Decibel ticks</strong> instead of the standard +1. Melee attacks here that result in a Fumble break weapon durability.</li>
+                <li><strong>Structural Instability:</strong> Forcing open doors or using explosives triggers localized structural collapses. Survivors must make a Strength check (TN 9) or get pinned beneath debris, taking 1 flat damage.</li>
+            </ul>
+
+            <div class="gm-note">
+                OVERSEER RULE: LOGICAL CONSEQUENCES<br>
+                Environmental hazards affect the Horde too. If players are clever, they can lure Walkers into Toxic Spill Zones to let the environment strip down monster health before initiating an active engagement.
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 19. SETTLEMENTS -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div>
+                <h1>THE SETTLEMENT LEDGER</h1>
+                <p style="margin-top: 5px; font-weight: bold;">HAVEN MANAGEMENT // RETURNING FROM THE FIELD</p>
+            </div>
+            <div class="logo-area">PAGE 20</div>
+        </div>
+
+        <h2>HAVEN FORTIFICATION INTEGRITY</h2>
+        <div style="border: 2px solid var(--black); padding: 12px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between;">
+            <strong>STRUCTURAL INTEGRITY STATUS:</strong>
+            <div class="gauge">
+                <div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div>
+                <div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div>
+                <span style="font-size: 10px; font-weight: bold; margin-left: 10px;">(EACH BOX = 10%)</span>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+                <h2>RESOURCE LOGISTICS DEPOT</h2>
+                <table style="margin-top: 5px;">
+                    <tr><th>RESOURCE STOCKPILE</th><th>QTY</th></tr>
+                    <tr><td><strong>SECURED FOOD RATIONS</strong></td><td></td></tr>
+                    <tr><td><strong>CLEAN WATER RESERVES</strong></td><td></td></tr>
+                    <tr><td><strong>FUEL &amp; GASOLINE (BUBBLES)</strong></td><td></td></tr>
+                    <tr><td><strong>HARDWARE &amp; SCRAP METAL</strong></td><td></td></tr>
+                    <tr><td><strong>MEDICAL &amp; INFECTION KITS</strong></td><td></td></tr>
+                </table>
+            </div>
+            <div>
+                <h2>ACTIVE INFRASTRUCTURE UPGRADES</h2>
+                <table style="margin-top: 5px;">
+                    <tr><th>BUILT INFRASTRUCTURE</th><th>IMPACT EFFECT</th></tr>
+                    <tr><td>[ ] Rainwater Collector</td><td>+1 Water reserve / week</td></tr>
+                    <tr><td>[ ] Reinforced Gate</td><td>+20% Base Fortification</td></tr>
+                    <tr><td>[ ] Emergency Infirmary</td><td>Coma clocks tick 50% slower</td></tr>
+                    <tr><td>[ ] Hydroponics Bay</td><td>Consumes 1 less Food stockpile</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="rules-text" style="column-count: 1; margin-top: 10px;">
+            <h3>THE END-OF-WEEK UPKEEP SYSTEM</h3>
+            <p>Once a cycle completes or survivors return from a multi-day operation, resolve the following mechanical steps in strict chronological order:</p>
+            <ol style="font-size: 11px; padding-left: 20px; line-height: 1.4;">
+                <li><strong>The Consumption Step:</strong> Deduct 1 unit of Secure Food and Clean Water for every active NPC and Survivor currently resting inside the Haven. If quantities hit zero, all occupants begin the next mission starving (-1 penalty).</li>
+                <li><strong>Structural Decay Check:</strong> Roll 2d6. On a result of 7 or lower, the base defenses undergo wear and tear. Deduct 10% from the Haven Fortification Gauge. Survivors must commit a `[Hardware]` tag and spend a Downtime Action to patch it up.</li>
+            </ol>
+        </div>
+
+        <div class="gm-note" style="margin-top: auto;">
+            OVERSEER DIRECTIVE<br>
+            If the Haven's Fortification Integrity hits 0%, a Horde Ambush triggers automatically during the next Downtime Phase. Treat the interior of the safehouse as a Hostile Zone with zero defensive exit bonuses.
+        </div>
+    </div></div>
+
+    <!-- 20. NPCS & FACTIONS -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div>
+                <h1>INSTANT NPC &amp; FACTION GENERATOR</h1>
+                <p style="margin-top: 5px; font-weight: bold;">OVERSEER EYES ONLY // RANDOM ENCOUNTERS</p>
+            </div>
+            <div class="logo-area">PAGE 21</div>
+        </div>
+
+        <p style="font-size: 11px; margin: 0;">When survivors cross paths with living elements in the Quarantine Zone, use these immediate response tables to frame the interaction variables instantly.</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 5px;">
+            <table>
+                <tr><th colspan="2">2D6 IMMEDIATE DISPOSITION TABLE</th></tr>
+                <tr><td style="width: 15%;"><strong>2-3</strong></td><td><strong>Murderous / Aggressive:</strong> They setup an ambush line or demand all player gear at gunpoint.</td></tr>
+                <tr><td><strong>4-6</strong></td><td><strong>Hostile / Terrified:</strong> Defensive stance. Will open fire if players step inside medium range.</td></tr>
+                <tr><td><strong>7-9</strong></td><td><strong>Cautious / Neutral:</strong> Willing to trade tags on a 1:1 barter system. Weapons are drawn.</td></tr>
+                <tr><td><strong>10-12</strong></td><td><strong>Desperate / Helpful:</strong> Seeking shelter. Willing to join the Haven and share intel.</td></tr>
+            </table>
+
+            <table>
+                <tr><th colspan="2">2D6 STRANDED BACK STORY SKILLS</th></tr>
+                <tr><td style="width: 15%;"><strong>2-4</strong></td><td><strong>Ex-Field Medic:</strong> If assigned to base, reduces all recovery clocks by 24 hours.</td></tr>
+                <tr><td><strong>5-7</strong></td><td><strong>Scrap Machinist:</strong> Successfully parsing a `[Hardware]` tag yields +1 additional crafting use.</td></tr>
+                <tr><td><strong>8-10</strong></td><td><strong>Ex-Military Scout:</strong> Map routing costs 0 Stamina during city-wide hex movements.</td></tr>
+                <tr><td><strong>11-12</strong></td><td><strong>Zone Scavenger:</strong> Free reroll on low-tier `[Food]` drop tables once per deployment.</td></tr>
+            </table>
+        </div>
+
+        <h3>COMPLICATIONS &amp; SECRET MOTIVATIONS (ROLL 1D6)</h3>
+        <table style="margin-top: 5px;">
+            <tr><th style="width: 10%;">ROLL</th><th style="width: 25%;">TRAIT TYPE</th><th>NARRATIVE COMPLICATION &amp; MECHANICAL PAYOFF</th></tr>
+            <tr><td><strong>1-2</strong></td><td><strong>Bitten in Secret</strong></td><td>The NPC is infected and hiding the bite. Within 48 in-game hours, they will die silently in their sleep and turn into a Walker inside the safehouse walls.</td></tr>
+            <tr><td><strong>3-4</strong></td><td><strong>Rival Infiltrator</strong></td><td>They belong to an aggressive outsider faction. They are mapping your safehouse resource nodes. Base structural decay rolls take a permanent -2 modifier while present.</td></tr>
+            <tr><td><strong>5-6</strong></td><td><strong>Valuable Assets</strong></td><td>They possess a mechanical vehicle key or locked lockbox containing high-tier `[Weapons &amp; Ammo]` tags, but require immediate escort to an extraction hex.</td></tr>
+        </table>
+
+        <div class="gm-note" style="margin-top: auto;">
+            OVERSEER ADVICE: HUMAN REPUTATION<br>
+            Do not make every human encounter a firefight. The psychological threat of a desperate father willing to backstab the party for a single can of baby formula is far more compelling than an endless meat grinder of nameless bandits.
+        </div>
+    </div></div>
+
+    <!-- 21. HORDES & AI -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div>
+                <h1>HORDE VARIANTS &amp; TACTICAL AI</h1>
+                <p style="margin-top: 5px; font-weight: bold;">MINI-BESTIARY // ENHANCED EXTERMINATION PROFILE</p>
+            </div>
+            <div class="logo-area">PAGE 22</div>
+        </div>
+
+        <div class="rules-text" style="column-count: 1;">
+            <p>While standard Walkers handle ongoing resource attrition, tactical variants force survivors out of simple positions and break predictable group configurations.</p>
+            
+            <hr>
+            
+            <h3 style="margin-top: 5px;">1. THE SCREAMER (TACTICAL ENEMY PROFILE)</h3>
+            <p><strong>Attributes:</strong> Health 2 | Armor 0 | Speed 3 Actions (Movement Focus)</p>
+            <p><strong>Behavior Directive:</strong> The Screamer actively flees direct close-quarter melee combat. It utilizes its action economy to maintain maximal distance from weapons while remaining within sight of the party. If it starts its turn unhindered and fully aware of the survivors, it lets loose a shrill shriek that <strong>instantly fills the Decibel Gauge by +3 ticks</strong>.</p>
+
+            <hr>
+
+            <h3>2. THE STALKER (TACTICAL ENEMY PROFILE)</h3>
+            <p><strong>Attributes:</strong> Health 4 | Armor 1 | Speed 2 Actions (Ambusher Focus)</p>
+            <p><strong>Behavior Directive:</strong> Operates entirely from deep shadows or blind spots. Survivors suffer Disadvantage on all Brains-based perception rolls to detect its presence. The Stalker bypasses front-line fighters, prioritizing the survivor with the lowest remaining Stamina pool. On a successful hit, it applies a <strong>"Pinned" condition</strong>, draining 1 Action from the victim every turn until an adjacent ally uses a Melee strike to peel the monster off.</p>
+
+            <hr>
+
+            <h3>3. HORDE MIGRATION &amp; SECTOR OVERRUNS</h3>
+            <p>During the upkeep phase, the Horde migrates across the Master Municipal Grid. If the Decibel Gauge hits maximum value multiple times within a single sector, that hex becomes permanently **Overrun** (marked with a ☣ indicator).</p>
+            <ul>
+                <li>Overrun sectors double the deployment cost of Stamina when traveling through them.</li>
+                <li>All scavenging attempts within an Overrun zone suffer Disadvantage, and any failure on a 2d6 search roll automatically drops a Walker into immediate close-quarter combat with the active player.</li>
+            </ul>
+
+            <div class="gm-note" style="margin-top: 15px;">
+                AI TARGETING PROTOCOLS<br>
+                Unless stated otherwise by specific tactical variant rules, monsters always move toward and strike the character who generated the latest tick on the Decibel Gauge. Sound is their primary targeting vector.
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 22. EXIT SCAN (REQUISITION TERMINAL) -->
     <div class="page"><div class="content-layer" style="border: 12px solid var(--black); text-align: center; justify-content: center;">
         
         <h1 style="border: none; font-size: 36px; margin-bottom: 5px;">REQUISITION TERMINAL</h1>
@@ -543,7 +736,8 @@
         </div>
     </div></div>
 
-    <!-- 19. BACK COVER -->
+
+    <!-- 23. BACK COVER -->
     <div class="page cover-page">
         <h1 style="border: none; font-size: 30px; line-height: 1.2; width: 80%;">"THE TENSION IS IN THE SILENCE. THE TERROR IS IN THE NOISE."</h1>
         <div style="width: 100px; height: 4px; background: white; margin: 30px auto;"></div>
@@ -560,6 +754,5 @@
         <img src="../logo.png" alt="Two Part Trading" style="filter: invert(1); max-width: 150px; margin-bottom: 10px;">
         <p style="font-size: 10px; color: #aaa;">DOCUMENT CLASSIFICATION: OVERSEER_A</p>
     </div>
-
 </body>
 </html>
