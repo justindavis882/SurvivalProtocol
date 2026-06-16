@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survival Protocol: GM Dossier 01 - The Liquidation Protocol</title>
+    <style>
+    /* BASE & SCREEN STYLES */
+    :root {
+        --black: #111;
+        --font-main: 'Courier New', Courier, monospace;
+    }
+    
+    body { background-color: #333; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+    
+    /* PAGE LAYOUT */
+    .page {
+        background-color: white; width: 7.5in; height: 10in; margin-bottom: 20px; box-sizing: border-box; font-family: var(--font-main); color: var(--black); position: relative;
+        background-image: linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 0.25in 0.25in;
+        overflow: hidden;
+    }
+    .cover-page { background-color: var(--black); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border: 12px solid white; }
+    .divider-page { background-color: var(--black); color: white; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 1in; border: 12px solid white; }
+    .content-layer { background: rgba(255,255,255,0.95); padding: 0.25in; height: 100%; box-sizing: border-box; border: 4px solid var(--black); display: flex; flex-direction: column; gap: 10px; }
+    
+    /* TYPOGRAPHY */
+    h1, h2, h3, .caps { text-transform: uppercase; margin: 0; }
+    h1 { font-size: 22px; font-weight: bold; border-bottom: 3px solid var(--black); padding-bottom: 4px; }
+    h2 { font-size: 16px; background: var(--black); color: white; padding: 3px 8px; display: inline-block; }
+    h3 { font-size: 13px; margin-top: 8px; border-bottom: 1px solid var(--black); display: inline-block;}
+    
+    .header-block { display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--black); padding-bottom: 8px; }
+    .logo-area { text-align: right; font-size: 10px; font-weight: bold; }
+    .logo-area img { max-width: 120px; max-height: 50px; display: block; margin-bottom: 5px; filter: grayscale(100%); }
+    .black-bg { background: var(--black); color: white; }
+    
+    /* RULEBOOK TEXT STYLING */
+    .rules-text { font-size: 11px; line-height: 1.3; text-transform: none; column-count: 2; column-gap: 20px; }
+    .rules-text p { margin-bottom: 6px; text-transform: none; }
+    .rules-text ul { margin-top: 0; padding-left: 15px; margin-bottom: 6px; }
+    .rules-text li { margin-bottom: 4px; text-transform: none; }
+    .rules-text h3 { text-transform: uppercase; margin-bottom: 4px; border-bottom: none; display: block; margin-top: 10px;}
+    
+    /* GM SPECIFIC ELEMENTS */
+    .read-aloud { background: #eee; border-left: 4px solid var(--black); padding: 8px; font-style: italic; font-size: 10.5px; margin-bottom: 8px; column-span: all; line-height: 1.3;}
+    .gm-note { border: 2px dashed var(--black); padding: 8px; font-weight: bold; font-size: 9.5px; margin-bottom: 8px; text-transform: uppercase; background: white;}
+    .lined-bg { background: repeating-linear-gradient(white, white 23px, #ccc 23px, #ccc 24px); border: 2px solid var(--black); flex: 1; margin-top: 10px;}
+    
+    /* BOXES & GAUGES */
+    .box { width: 18px; height: 18px; border: 2px solid var(--black); display: inline-block; }
+    .bubble { width: 18px; height: 18px; border: 2px solid var(--black); border-radius: 50%; display: inline-block; }
+    .gauge { display: flex; gap: 2px; }
+    
+    /* TABLES & GRIDS */
+    table { width: 100%; border-collapse: collapse; margin-top: 5px; margin-bottom: 10px;}
+    th, td { border: 1px solid var(--black); padding: 5px; text-align: left; font-size: 10px; }
+    th { text-transform: uppercase; background: var(--black); color: white;}
+    
+    /* SCENARIO TRACKER CUSTOM STYLES */
+    .integrity-track { display: flex; width: 100%; border: 2px solid var(--black); height: 25px; margin-top: 5px; background: white; }
+    .int-box { flex: 1; border-right: 1px solid var(--black); display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: bold;}
+    .int-safe { border-left: 4px solid var(--black); background: #ccc; }
+    
+    /* BLUEPRINT CARD STYLES (LANDSCAPE) */
+    .recipe-wrapper { display: flex; flex-direction: column; gap: 15px; justify-content: center; align-items: center; flex-grow: 1; margin-top: 10px;}
+    .card { width: 5in; height: 3.2in; background-color: #0b3d91; background-size: 0.5in 0.5in, 0.5in 0.5in, 0.1in 0.1in, 0.1in 0.1in; color: #ffffff; position: relative; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.5); font-family: "Courier New", Courier, monospace;}
+    .card-inner { position: absolute; top: 0.1in; left: 0.1in; right: 0.1in; bottom: 0.1in; border: 2px solid #ffffff; display: flex; flex-direction: column; padding: 0.1in; background: rgba(11, 61, 145, 0.9); }
+    .card-inner::before, .card-inner::after { content: ''; position: absolute; width: 0.15in; height: 0.15in; border: 2px solid #fff; }
+    .card-inner::before { top: -4px; left: -4px; border-right: none; border-bottom: none; }
+    .card-inner::after { bottom: -4px; right: -4px; border-left: none; border-top: none; }
+    .card .header { display: flex; justify-content: space-between; border-bottom: 1px dashed #ffffff; padding-bottom: 0.05in; font-size: 0.09in; text-transform: uppercase; letter-spacing: 1px; border-top: none;}
+    .card .title-area { margin-top: 0.05in; text-align: left;}
+    .card .title-area h2 { margin: 0; font-size: 0.18in; text-transform: uppercase; letter-spacing: 1px; background: transparent; padding: 0;}
+    .card .subtitle { font-size: 0.09in; opacity: 0.8; }
+    .card .content { display: flex; flex-direction: row; flex-grow: 1; margin-top: 0.05in; gap: 0.1in; align-items: stretch; }
+    .card .schematic-box { flex: 1; border: 1px solid rgba(255,255,255,0.5); position: relative; padding: 0.05in; text-align: center; display: flex; justify-content: center; align-items: center; }
+    .card .schematic-label { position: absolute; bottom: 2px; right: 4px; font-size: 0.07in; opacity: 0.6; }
+    .card .stats-box { flex: 1; display: flex; flex-direction: column; gap: 0.05in; justify-content: center;}
+    .card .ingredient-header { font-size: 0.09in; font-weight: bold; border-bottom: 1px solid #fff; margin-bottom: 2px; display: flex; justify-content: space-between; }
+    .card .stat-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.3); font-size: 0.1in; padding-bottom: 2px; }
+    .card .tag-name { background-color: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 2px; }
+    .card .stat-val { font-weight: bold; }
+    .card .description { font-size: 0.09in; line-height: 1.3; margin-top: 0.05in; text-align: left; }
+    .card .footer { margin-top: auto; border-top: 1px solid #ffffff; padding-top: 0.05in; display: flex; justify-content: space-between; font-size: 0.07in; text-transform: uppercase; }
+    
+    /* MAP STYLES */
+    .map-box { border: 4px solid var(--black); background: #111; padding: 15px; position: relative; margin-top: 10px; color: #33ff00; font-family: monospace;}
+    
+    /* PRINT MEDIA QUERIES */
+    @media print {
+        body { background: none; padding: 0; }
+        @page { size: 8.5in 11in; margin: 0.5in; }
+        .page { width: 7.5in; max-height: 10in; margin: 0; border: none; page-break-after: always; page-break-inside: avoid; }
+        .cover-page, .divider-page { border: 12px solid var(--black); height: 10in; }
+        .card { box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+    </style>
+</head>
+<body>
+    <!-- 1. COVER PAGE -->
+    <div class="page cover-page">
+        <p style="font-size: 14px; letter-spacing: 4px; color: #aaa;">GAME MASTER'S GUIDE</p>
+        <h1 style="border: none; font-size: 50px; margin-top: 10px; margin-bottom: 10px; line-height: 0.9;">THE LIQUIDATION<br>PROTOCOL</h1>
+        <div style="width: 100px; height: 4px; background: white; margin: 30px auto;"></div>
+        <p style="font-size: 18px; font-weight: bold; letter-spacing: 2px;">FEATURING DOSSIER 01: LOGISTICS HUB F-4</p>
+        
+        <p style="font-size: 14px; font-weight: bold; margin-top: 30px; background: white; color: var(--black); padding: 5px 20px; display: inline-block;">PLAYERS: 2-5 | EST. PLAYTIME: 12-18 HOURS</p>
+        
+        <div style="position: absolute; bottom: 50px;">
+            <img src="../logo.png" alt="Two Part Trading" style="filter: invert(1); max-width: 150px;">
+            <p style="font-size: 10px; margin-top: 10px; color: #aaa;">PUBLISHED BY TWO PART TRADING STORE</p>
+        </div>
+    </div>
+
+    <!-- 2. TABLE OF CONTENTS / OVERSEER BRIEFING -->
+    <div class="page"><div class="content-layer">
+        <div class="logo-area">PAGE 02</div>
+        <h1 style="font-size: 30px; text-align: center; margin-top: 20px;">OVERSEER BRIEFING</h1>
+        <div class="rules-text" style="column-count: 1; padding: 10px 20px;">
+            <p style="font-size: 14px; font-weight: bold; text-align: center;">THE TUTORIAL IS OVER. THE REALITY OF UPKEEP BEGINS.</p>
+            <p style="font-size: 12px; margin-top: 10px;">The players have a Safehouse, but food is dwindling, and the winter monsoons are approaching. This 8-Act module introduces the <strong>Generate Logistics Hub</strong>—a massive, fortified retail liquidation center. The players must navigate raider factions, repair a complex electrical grid in pitch-black waters, and execute a high-stakes vehicular escape.</p>
+        </div>
+        
+        <h1 style="font-size: 20px; text-align: center; margin-top: 10px; border-bottom: none;">TABLE OF CONTENTS</h1>
+        <div style="margin: 10px 20px; column-count: 2; font-size: 11px; line-height: 1.8;">
+            <div><strong>ACT I:</strong> The Static Bleeds (PG 04)</div>
+            <div><strong>ACT II:</strong> Breach & Clear (PG 05)</div>
+            <div><strong>ACT III:</strong> The Crawlspace (PG 06)</div>
+            <div><strong>ACT IV:</strong> The Trading Floor (PG 07)</div>
+            <div><strong>ACT V:</strong> The Rust Dogs (PG 08)</div>
+            <div><strong>ACT VI:</strong> The PoE Dark Run (PG 09)</div>
+            <div><strong>ACT VII:</strong> Liquidating Asset (PG 10)</div>
+            <div><strong>ACT VIII:</strong> Highway Blockade (PG 11)</div>
+            <div><strong>TRACKERS:</strong> Combat (PG 12)</div>
+            <div><strong>TRACKERS:</strong> Scenarios (PG 13)</div>
+            <div><strong>FACTIONS:</strong> Dossiers (PG 14)</div>
+            <div><strong>THREATS:</strong> The Dead (PG 15)</div>
+            <div><strong>THREATS:</strong> Mutants I (PG 16)</div>
+            <div><strong>THREATS:</strong> Mutants II (PG 17)</div>
+            <div><strong>RULES:</strong> Environments (PG 18)</div>
+            <div><strong>RULES:</strong> Drop Tables (PG 19)</div>
+            <div><strong>HANDOUT:</strong> Hub Map (PG 20)</div>
+            <div><strong>HANDOUT:</strong> Highway Map (PG 21)</div>
+            <div><strong>HANDOUT:</strong> Cards (PG 22)</div>
+            <div><strong>GM NOTES:</strong> Field Log (PG 23)</div>
+        </div>
+    </div></div>
+
+    <!-- 3. DIVIDER 1 -->
+    <div class="page divider-page">
+        <p style="font-size: 14px; font-weight: bold; letter-spacing: 2px;">SECTION ONE // SCENARIO FILES</p>
+        <h1 style="border: none; font-size: 40px; margin-top: 10px; line-height: 1;">MODULE 01:<br>THE LIQUIDATION<br>PROTOCOL</h1>
+        <div style="width: 50px; height: 4px; background: white; margin-top: 20px;"></div>
+    </div>
+
+    <!-- 4. ACT I -->
+    <div class="page"><div class="content-layer">
+        <div class="logo-area">PAGE 04</div>
+        <h1 style="text-align: center; margin-top: 0px;">ACT I: THE STATIC BLEEDS</h1>
+        <div class="rules-text" style="column-count: 1;">
+            <p><strong>The Setup:</strong> The glow of their first successful mission has faded. The players face the crushing reality of the <em>Survival Protocol</em> upkeep loop. Winter approaches, and the environment turns hostile.</p>
+            
+            <h3>THE UPKEEP PHASE (AT THE SAFEHOUSE)</h3>
+            <p>Before the players plan their next move, hit them with logistics.</p>
+            <ul>
+                <li><strong>Ration Drain:</strong> Deduct 1 Food/Water for every player and NPC. If they hit 0, apply the Starving penalty (-1 to all rolls).</li>
+                <li><strong>Structural Decay:</strong> The Safehouse takes a 5% Integrity hit from the weather.</li>
+            </ul>
+
+            <div class="read-aloud">
+                "The safehouse walls groan against the driving rain. It’s been days since the pharmacy run, and your supplies are burning fast. As you sit around the flickering lantern, the shortwave radio crackles to life.<br>
+                <em>'This is... [static]... Generate Logistics Hub... Sector F-4... Pallets of sealed retail salvage... Our perimeter is failing. We need muscle. Will trade heavy. If anyone is listening...'</em><br>
+                The transmission cuts out, swallowed by the static of the storm."
+            </div>
+
+            <h3>THE TREK (SECTOR NAVIGATION)</h3>
+            <p>Sector F-4 is three hexes away. Enforce the <strong>Monsoon</strong> hazard.</p>
+            <ul>
+                <li><strong>Monsoon Mechanics:</strong> Downpours make visibility a nightmare. All Brains-based navigation rolls suffer <strong>Disadvantage</strong>.</li>
+                <li><strong>Wet Weapons:</strong> Every time a firearm is used in this weather, there is a 1-in-6 chance it jams, requiring a full Action to clear.</li>
+            </ul>
+
+            <div class="gm-note">
+                GM NOTE: THE RESOURCE DRAIN<br>
+                Do not let them fast-travel. Moving through flooded blocks costs Stamina. Deduct 1 Stamina bubble per hex traveled. Sprinting doubles the cost.
+            </div>
+
+            <div class="read-aloud">
+                "Wading through black, freezing water down a commercial avenue, abandoned cars jut out like steel islands. Up ahead, perched on a submerged sedan, is a twisted figure. A Screamer. It hasn't seen you yet, but it is scanning the water. If it shrieks, the noise will draw everything within a mile."
+            </div>
+
+            <h3>TACTICS & RESOLUTION</h3>
+            <p>The players must use silent melee tactics. Firearms generate noise, and the Screamer will instantly respond.</p>
+            <ul>
+                <li><strong>Stealth Approach:</strong> Players must roll Agility/Stealth (TN 9). Failure means they splash loudly.</li>
+                <li><strong>The Consequence:</strong> If the Screamer takes a turn, it uses an Action to shriek, <strong>instantly filling the Decibel Gauge by +3 Ticks</strong>.</li>
+            </ul>
+        </div>
+    </div></div>
+
+    <!-- 5. ACT II -->
+    <div class="page"><div class="content-layer">
+        <div class="logo-area">PAGE 05</div>
+        <h1 style="text-align: center; margin-top: 0px;">ACT II: BREACH & CLEAR</h1>
+        <div class="rules-text" style="column-count: 1;">
+            <p><strong>The Setup:</strong> The players arrive at the Generate Logistics Hub in Sector F-4. It is a brutalist fortress surrounded by rusted semi-trucks.</p>
+
+            <div class="read-aloud">
+                "Through the monsoon rain, the Generate Hub looms like a monolith. The loading docks are a lost cause—Walkers bump mindlessly against rusted bay doors, trapped in flooded lanes. The power is entirely dead. To get inside, you need an alternate route, and quickly."
+            </div>
+
+            <h3>THE ENTRY (TACTICAL CHOICES)</h3>
+            <p>Present them with the perimeter layout:</p>
+            <ul>
+                <li><strong>Maintenance Door:</strong> Rusted shut. Requires Strength (TN 9) with a tool. Failure, or smashing it open, succeeds but generates <strong>+2 Decibel Ticks</strong>.</li>
+                <li><strong>Roof Access:</strong> A slick pipe leading to a hatch. Requires Agility (TN 9). Failure means taking 1 flat damage from falling or dropping gear into the yard.</li>
+            </ul>
+
+            <div class="read-aloud">
+                "You breach the perimeter and step into crushing darkness. The air smells of wet cardboard and ozone. Towering, 40-foot steel racks form a massive labyrinth of pallets and shrink-wrapped crates. It is a maze. And it is completely silent."
+            </div>
+
+            <h3>ENVIRONMENT: ABSOLUTE BLACKOUT & CHOKE POINTS</h3>
+            <p>The hub introduces two major pressures:</p>
+            <ul>
+                <li><strong>Absolute Blackout:</strong> Without light, they suffer a <strong>-2 penalty to all rolls</strong>; ranged attacks past "Close" are impossible. Flashlights remove the penalty but generate <strong>+1 Decibel Tick every 10 in-game minutes</strong>.</li>
+                <li><strong>Choke Points:</strong> Narrow aisles restrict movement. Players cannot safely "Disengage". Moving away from an adjacent threat costs an Action <em>and</em> provokes a free strike.</li>
+            </ul>
+
+            <div class="gm-note">
+                GM NOTE: THE TENSION DROP<br>
+                Do not spring the trap immediately. Let them explore dead ends. Make them sweat the flashlight timer before the Stalker strikes.
+            </div>
+
+            <h3>THE AMBUSH: THE RAFTERS</h3>
+            <p>A <strong>Stalker</strong> tracks their flashlights from the rafters. It bypasses front-line fighters and drops onto the survivor with the lowest Stamina/Health. On a hit, it applies the <strong>"Pinned" condition</strong> (victim loses 1 Action per turn, cannot use 2H weapons, and cannot stand until an ally peels the monster off).</p>
+            <p><strong>The Noise Trap:</strong> Firing an unsuppressed weapon adds <strong>+3 Decibel Ticks per shot</strong>. They must weigh melee damage against drawing the horde inside.</p>
+        </div>
+    </div></div>
+
+    <!-- 6. ACT III (NEW) -->
+    <div class="page"><div class="content-layer">
+        <div class="logo-area">PAGE 06</div>
+        <h1 style="text-align: center; margin-top: 10px;">ACT III: THE CRAWLSPACE</h1>
+        <div class="rules-text" style="column-count: 1;">
+            <p><strong>The Setup:</strong> Defeating the Stalker, the players navigate toward the mezzanine offices, only to find the primary metal stairwell completely collapsed by structural damage.</p>
+
+            <div class="read-aloud">
+                "The main stairwell to the mezzanine is a twisted pile of steel and concrete. Above the debris, about eight feet up the wall, a heavy industrial HVAC grate has been kicked out from the inside. It is the only way up to the second floor, but it is a tight fit. You will have to crawl."
+            </div>
+
+            <h3>ENVIRONMENT: SEVERE CLAUSTROPHOBIA</h3>
+            <p>The HVAC system forces the players to move single-file through pitch-black, cramped conditions. Apply the following mechanical restrictions:</p>
+            <ul>
+                <li><strong>Two-Handed Restriction:</strong> Players cannot use Long Guns or Heavy Melee weapons in the vents. Only Sidearms and Light Melee are permitted.</li>
+                <li><strong>Movement Tax:</strong> Dragging heavy gear through the dust costs <strong>1 Stamina</strong> per movement action.</li>
+                <li><strong>Line of Sight:</strong> A player can only assist or attack targets directly in front of or behind them.</li>
+            </ul>
+
+            <h3>THE PUZZLE: THE DEAD END</h3>
+            <p>Halfway through the vent, the lead player hits a blockage. The duct is jammed with a rotting corpse that got stuck trying to flee.</p>
+            <ul>
+                <li><strong>The Threat:</strong> The corpse is not entirely dead. As the lead player gets close, the Walker lashes out. Because of the confined space, the player cannot dodge and is immediately Grappled.</li>
+                <li><strong>Resolution:</strong> The lead player must win an opposed Strength check (TN 9) to push the Walker back enough to use a sidearm or knife. If they fail, they take 1 flat damage and lose their second Action.</li>
+            </ul>
+
+            <div class="gm-note">
+                GM NOTE: THE BOTTLENECK<br>
+                If the lead player is struggling, the players behind them are helpless to attack the Walker. The second player in line can use an Action to roll Strength (TN 9) to pull their ally backward by the ankles, breaking the Grapple.
+            </div>
+
+            <div class="read-aloud">
+                "You kick the rotting blockage out through a secondary grate. You tumble out of the vent, covered in decades of dust, landing hard on the carpeted floor of the mezzanine level. Faint candlelight flickers from beneath a heavy security door down the hall."
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 7. ACT IV (Shifted) -->
+    <div class="page"><div class="content-layer">
+        <div class="logo-area">PAGE 07</div>
+        <h1 style="text-align: center; margin-top: 10px;">ACT IV: THE TRADING FLOOR</h1>
+        <div class="rules-text" style="column-count: 1;">
+            <p><strong>The Setup:</strong> The players arrive at the heavily fortified mezzanine. The heavy security door is locked, but the glow of candlelight and the low hum of nervous voices leak from the seams.</p>
+
+            <div class="read-aloud">
+                "The door swings open into corporate offices overlooking the warehouse. Windows are blacked out with garbage bags. Inside are six exhausted survivors. <br><br>
+                Stacked against the walls are dozens of pristine crates: MREs, medical suppressants, and ammunition. The man holding a shotgun lowers it. 'You heard the broadcast,' he rasps. 'I'm Vance. We have everything you could want... but we’re all going to die in here unless you can swim.'"
+            </div>
+
+            <h3>THE FACTION: THE SALVAGERS</h3>
+            <p>Vance and his crew are not hostile, but paranoid. The monsoon caused the river to back up, flooding the sub-basement and shorting the main generator.</p>
+            <p><strong>The Problem:</strong> Without power, automated blast doors on the loading docks cannot close. They need the players to go down into the flooded sub-basement and manually reboot the Power over Ethernet (PoE) security array.</p>
+
+            <h3>THE MECHANICS: THE BARTER SYSTEM</h3>
+            <p>Before agreeing to the mission, the party's "face" rolls <strong>2d6 + Reputation</strong>.</p>
+            <ul>
+                <li><strong>Failure (6 or less):</strong> Vance demands payment <em>upfront</em> as collateral—players surrender 2 Value worth of gear.</li>
+                <li><strong>Success (7 - 9):</strong> Standard exchange rates apply.</li>
+                <li><strong>Critical Success (10+):</strong> Vance halves the prices on all his goods, or offers a free <code>[MEDICAL]</code> tag upfront.</li>
+            </ul>
+
+            <div class="gm-note">
+                GM NOTE: THE SALVAGE MANIFEST<br>
+                Establish value: 1 Box 9mm = 2 Value. 1 [MEDICAL] Tag = 5 Value. Vance offers a Long Gun for 15 Value. Let players window-shop to motivate the basement run.
+            </div>
+
+            <p>Just as Vance is about to hand over the keys to the sub-basement fire door, the muffled sound of shattering glass echoes from the far end of the mezzanine.</p>
+        </div>
+    </div></div>
+
+    <!-- 8. ACT V (NEW) -->
+    <div class="page"><div class="content-layer">
+        <div class="logo-area">PAGE 08</div>
+        <h1 style="text-align: center; margin-top: 10px;">ACT V: THE RUST DOGS</h1>
+        <div class="rules-text" style="column-count: 1;">
+            <p><strong>The Setup:</strong> The players are not the only ones who heard Vance's broadcast. A rival raider faction has scaled the exterior fire escape and breached the mezzanine.</p>
+
+            <div class="read-aloud">
+                "Before Vance can hand you the keys, the heavy oak doors to the adjacent conference room are kicked open. Three figures step through, clad in piecemeal tire-tread armor, leveling assault rifles at Vance’s crew. Their leader, a scarred man named Silas, sneers. <br><br>
+                'Heard you were giving away free groceries, Vance,' Silas says. He notices you. 'This is a private negotiation. Drop your weapons and walk, or die with them.'"
+            </div>
+
+            <h3>THE FACTION: THE RUST DOGS</h3>
+            <p>The Rust Dogs are aggressive scavengers who prefer to let others do the hard work before stealing the prize. There are three raiders (Health 4, Sidearms/Long Guns).</p>
+
+            <h3>THE TACTICAL STANDOFF</h3>
+            <p>The players have a choice. This is a powder keg waiting for a spark.</p>
+            <ul>
+                <li><strong>Option A: Open Fire.</strong> If a player draws and shoots, they trigger combat. Because the Rust Dogs have their weapons leveled, roll Group Initiative normally. Vance's crew will take cover, leaving the players to handle the raiders. Firearm noise here adds standard Ticks to the Decibel Gauge.</li>
+                <li><strong>Option B: The Bluff.</strong> The players can try to defuse or intimidate the Rust Dogs. This requires a <strong>Reputation roll (TN 11)</strong>. If successful, Silas realizes they are outgunned and slowly backs out the fire escape. If failed, Silas shoots the speaker immediately, granting the Rust Dogs a surprise round.</li>
+                <li><strong>Option C: Surrender.</strong> If the players drop their guns, Silas takes 50% of their gear and leaves Vance's crew to die. The players fail the primary mission objective.</li>
+            </ul>
+
+            <div class="gm-note">
+                GM NOTE: THE CROSSFIRE<br>
+                If a firefight breaks out, use the office cubicles. Cubicles provide "Soft Cover" (Advantage on Agility saves to avoid damage), but are destroyed if hit by a Long Gun or shotgun blast.
+            </div>
+
+            <div class="read-aloud">
+                "With the raiders dealt with, Vance wipes blood from his face and hands you the heavy ring of master keys. 'The basement door is down the hall. Connect the cables. Do not fire your weapons down there unless you have to.'"
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 9. ACT VI (Shifted) -->
+    <div class="page"><div class="content-layer">
+        <div class="logo-area">PAGE 09</div>
+        <h1 style="text-align: center; margin-top: 10px;">ACT VI: THE POE DARK RUN</h1>
+        <div class="rules-text" style="column-count: 1;">
+            <p><strong>The Setup:</strong> The players descend into the sub-basement of the Generate Logistics Hub. The monsoon flooding is severe down here, and the atmosphere is oppressive.</p>
+
+            <div class="read-aloud">
+                "The water at the bottom of the stairs is waist-deep, thick with floating trash. The sub-basement is a cavernous concrete vault filled with rows of dead server racks. At the far end, a single red LED blinks on the switchboard. To restore the perimeter, you must wade through the floodwaters and manually patch three disconnected cables into the board."
+            </div>
+
+            <h3>THE ENVIRONMENT: THE FLOODED ZONE</h3>
+            <p>The sub-basement introduces a severe mobility tax:</p>
+            <ul>
+                <li><strong>The Flood Penalty:</strong> Moving through waist-deep water costs <strong>2 Stamina</strong>. Reaching 0 Stamina triggers the Condition Critical penalty (-1 to all rolls).</li>
+                <li><strong>Absolute Blackout:</strong> Flashlights or flares are mandatory. Dropping a light source in the water extinguishes it instantly.</li>
+            </ul>
+
+            <h3>THE PUZZLE: THE SWITCHBOARD PATCH</h3>
+            <p>A player adjacent to the switchboard can spend 1 Action to attempt a patch. Requires a <strong>Brains roll (TN 9)</strong>. Success secures one cable. Failure means the player gets shocked, dropping the cable and losing their second Action for the turn.</p>
+
+            <div class="read-aloud">
+                "As the first sequence boots up, the servers emit a deep hum. Suddenly, the drywall partition to your left explodes outward. Stepping through the rubble are two hulking, swollen figures. Gronks. The virus has mutated their muscle mass into hardened armor. They lock eyes on your flashlights and charge."
+            </div>
+
+            <h3>THE AMBUSH: THE JUGGERNAUTS</h3>
+            <p><strong>Two Gronks</strong> (Health 8 | Base Dmg 3). Gronks are immune to Light Melee weapons. </p>
+            <p><strong>The Decibel Trap:</strong> In this vault, <strong>an unsuppressed firearm adds +3 Decibel Ticks per shot</strong>. If the gauge pegs out, Walkers pour down the stairwell.</p>
+            <p>The players must divide their 2-Action economy. Who shoots? Who holds the light? Who wades to the switchboard? The goal is to finish the patch, not win a prolonged melee.</p>
+
+            <div class="read-aloud">
+                "The final cable snaps into place. A massive mechanical <em>THUD</em> echoes from the ceiling as primary generators kick in. The aisles are bathed in harsh fluorescent light. From upstairs, you hear the screeching of rusted metal as the automated steel blast doors slam shut. You did it. The hub is secure."
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 10. ACT VII (Shifted) -->
+    <div class="page"><div class="content-layer">
+        <div class="logo-area">PAGE 10</div>
+        <h1 style="text-align: center; margin-top: 10px;">ACT VII: LIQUIDATING THE ASSET</h1>
+        <div class="rules-text" style="column-count: 1;">
+            <p><strong>The Setup:</strong> With the power restored, the players return to the mezzanine, where the harsh fluorescent lighting reveals the true extent of the Salvagers' stockpile.</p>
+
+            <div class="read-aloud">
+                "You push back through the fire doors, soaked and exhausted. Vance is standing by the reinforced glass. He lets out a ragged exhale as the automated defenses lock into place below. 'You actually pulled it off,' he says, tossing the keys to the inventory cages onto the desk. 'Take what we agreed on. But... the noise from the basement drew a Migration. Hundreds of them are pressing against the perimeter fence. You can't walk out of here.'"
+            </div>
+
+            <h3>THE INVENTORY CRISIS</h3>
+            <p>Vance pays out the agreed-upon tags. The Overseer should intentionally overload the players. Force a <strong>Grid Check</strong>. They physically cannot carry all the salvaged loot on their backs. They need transportation.</p>
+
+            <div class="read-aloud">
+                "Vance hits a button on his console, and a heavy freight elevator groans open. 'Take it down to Bay 4. We’ve been modifying an old transit rig, but we don't have the fuel to run it. It’s yours. Consider it hazard pay.' <br><br>
+                You ride the elevator down. Sitting in the center of the dark garage is a heavily modified 2001 GMC Sonoma SLS. Welded steel plates cover the windows, and a brutal, rusted snowplow is bolted to the front grille. It’s your ticket home."
+            </div>
+
+            <h3>THE ESCAPE: THE RAM</h3>
+            <p>The loading bay door opens directly into the flooded, Walker-infested yard. The players must punch through the swarm and break the outer fence.</p>
+            <ul>
+                <li><strong>The Driver:</strong> Must make three consecutive <strong>Brains or Strength rolls (TN 9)</strong> to navigate the yard, crush the horde, and smash the gate. Success deals Ram Damage (4 Base). Failure loses <strong>10% Integrity</strong>, and the horde swarms the cab.</li>
+                <li><strong>The Passengers:</strong> Must use their 2-Action economy to fire out the window slats. If the truck is swarmed, Passengers <em>must</em> shoot Walkers off the hood, or the Driver takes a -2 penalty to their next driving roll.</li>
+            </ul>
+
+            <div class="gm-note">
+                GM NOTE: IGNORING NOISE<br>
+                The Decibel Gauge is irrelevant during this sequence. The roar of the V6 engine guarantees the sector knows they are there. Let the players fire their loudest, heaviest weapons with total impunity.
+            </div>
+
+            <div class="read-aloud">
+                "The rusted plow shears through the steel fence, sending sparks flying. You hit the main road, the heavy tires finding grip on the asphalt. You leave the hub behind, loaded with gear."
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 11. ACT VIII (NEW) -->
+    <div class="page"><div class="content-layer">
+        <div class="logo-area">PAGE 11</div>
+        <h1 style="text-align: center; margin-top: 10px;">ACT VIII: THE HIGHWAY BLOCKADE</h1>
+        <div class="rules-text" style="column-count: 1;">
+            <p><strong>The Setup:</strong> The players are roaring down the flooded highway in their newly acquired GMC Sonoma. The Safehouse is only two hexes away, but the monsoon has washed out the primary route.</p>
+
+            <div class="read-aloud">
+                "The windshield wipers are fighting a losing battle against the rain. Just as you cross the sector line into E-3, the headlights illuminate a massive pileup blocking the overpass. Dozens of rusted cars are wedged together, forming an impassable wall of steel. Behind you, through the rearview mirror, you see shapes pouring out of the tree line. The horde you rammed through at the Hub followed the noise of your engine. They are running."
+            </div>
+
+            <h3>THE OBSTACLE: CLEARING THE PILEUP</h3>
+            <p>The players cannot drive over the pileup; they must use the Sonoma's plow to shove the cars out of the way. This is a timed event.</p>
+            <ul>
+                <li><strong>The Plow Mechanic:</strong> The Driver must make <strong>three Strength (Driving) checks (TN 11)</strong> to force the abandoned cars apart and create a lane. Each check costs 1 Action.</li>
+                <li><strong>The Perimeter Defense:</strong> While the Driver is reversing and ramming the pileup, the Horde arrives at the back of the truck. Passengers must climb into the flatbed to defend the vehicle.</li>
+            </ul>
+
+            <h3>THE SWARM</h3>
+            <p>The Horde generates <strong>1d4 Walkers per round</strong> that attempt to climb into the flatbed. </p>
+            <ul>
+                <li>If a Walker gets into the bed, it will begin destroying the scavenged loot. Every turn a Walker spends uncontested in the trunk, the Overseer destroys 1 of the players' acquired Tags.</li>
+                <li>Passengers must prioritize killing the Walkers as they crest the tailgate.</li>
+            </ul>
+
+            <div class="gm-note">
+                GM NOTE: THE ENGINE STALL<br>
+                If the Driver rolls a Critical Failure (snake eyes) while ramming the pileup, the Sonoma's engine stalls out. It requires a full turn and a Brains roll (TN 9) to hotwire it back to life, leaving the truck stranded and vulnerable to the swarm.
+            </div>
+
+            <div class="read-aloud">
+                "With a final, sickening crunch of metal, the Sonoma pushes the last ruined sedan out of the way. A clear lane opens up on the overpass. You gun the engine, leaving the swarm clawing at the exhaust fumes. <br><br>
+                Ten minutes later, the silhouette of your Safehouse appears in the storm. You pull the truck into the perimeter and cut the engine. You survived. And you brought the future with you."
+            </div>
+
+            <p><strong>Module Conclusion:</strong> Players return to the Safehouse with their loot intact. They secure a permanent trade alliance with Vance and earn <strong>200 XP</strong> for surviving the blockade.</p>
+        </div>
+    </div></div>
+
+    <!-- 12. GM TRACKERS (COMBAT) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div><h1>OVERSEER ASSETS</h1><p style="margin-top: 5px; font-weight: bold;">ACTIVE COMBAT & THREAT BOARDS</p></div>
+            <div class="logo-area">PAGE 12</div>
+        </div>
+
+        <h2>THE DECIBEL GAUGE (NOISE / TENSION)</h2>
+        <div style="border: 4px solid var(--black); padding: 20px; display: flex; justify-content: space-around; background: #eee; margin-top: 5px; margin-bottom: 20px;">
+            <div class="box" style="width: 40px; height: 40px;"></div>
+            <div class="box" style="width: 40px; height: 40px;"></div>
+            <div class="box" style="width: 40px; height: 40px;"></div>
+            <div class="box" style="width: 40px; height: 40px; background: orange;"></div>
+            <div class="box" style="width: 40px; height: 40px; background: orangered;"></div>
+            <div class="box" style="width: 40px; height: 40px; background: darkred;"></div>
+        </div>
+
+        <h2>THREAT BOARDS: DOSSIER 01</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;">
+            <div style="border: 2px solid var(--black); padding: 10px; background: white;">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--black); padding-bottom:5px;"><strong>SPECIMEN:</strong> <span>THE SCREAMER (ACT I)</span></div>
+                <div style="margin-top: 5px;">HP: <div class="gauge" style="display:inline-flex; margin-left:10px;"><div class="bubble"></div><div class="bubble"></div></div></div>
+                <p style="font-size: 9px; margin-top: 5px;"><strong>TACTIC:</strong> Runs. Action: Shriek (+3 Decibel Ticks instantly).</p>
+            </div>
+            <div style="border: 2px solid var(--black); padding: 10px; background: white;">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--black); padding-bottom:5px;"><strong>SPECIMEN:</strong> <span>THE STALKER (ACT II)</span></div>
+                <div style="margin-top: 5px;">HP: <div class="gauge" style="display:inline-flex; margin-left:10px;"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div></div>
+                <p style="font-size: 9px; margin-top: 5px;"><strong>TACTIC:</strong> Drops from ceiling. Applies Pinned Condition.</p>
+            </div>
+            <div style="border: 2px solid var(--black); padding: 10px; background: white;">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--black); padding-bottom:5px;"><strong>SPECIMEN:</strong> <span>THE GRONK 01 (ACT VI)</span></div>
+                <div style="margin-top: 5px;">HP: <div class="gauge" style="display:inline-flex; margin-left:10px;"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div></div>
+                <p style="font-size: 9px; margin-top: 5px;"><strong>TACTIC:</strong> Immune to Light Melee. Attacks highest threat.</p>
+            </div>
+            <div style="border: 2px solid var(--black); padding: 10px; background: white;">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--black); padding-bottom:5px;"><strong>SPECIMEN:</strong> <span>THE GRONK 02 (ACT VI)</span></div>
+                <div style="margin-top: 5px;">HP: <div class="gauge" style="display:inline-flex; margin-left:10px;"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div></div>
+                <p style="font-size: 9px; margin-top: 5px;"><strong>TACTIC:</strong> Immune to Light Melee. Attacks highest threat.</p>
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 13. GM TRACKERS (SCENARIO) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div><h1>OVERSEER ASSETS</h1><p style="margin-top: 5px; font-weight: bold;">SCENARIO PROGRESSION TRACKERS</p></div>
+            <div class="logo-area">PAGE 13</div>
+        </div>
+
+        <h2>ACT VI: POE DARK RUN SEQUENCE</h2>
+        <div style="border: 2px dashed var(--black); padding: 15px; margin-top: 5px; margin-bottom: 20px;">
+            <p style="font-size: 11px; margin-bottom: 10px;">Player must be adjacent to switchboard. Action: Roll Brains (TN 9) to secure a cable. Fail = Stunned (lose 2nd action).</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted #ccc; padding-bottom: 5px; margin-bottom: 5px;">
+                <strong>CABLE 01 PATCHED</strong> <div class="box"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted #ccc; padding-bottom: 5px; margin-bottom: 5px;">
+                <strong>CABLE 02 PATCHED</strong> <div class="box"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted #ccc; padding-bottom: 5px;">
+                <strong>CABLE 03 PATCHED (SUCCESS)</strong> <div class="box"></div>
+            </div>
+        </div>
+
+        <h2>ACT VII: THE SONOMA ESCAPE</h2>
+        <div style="border: 2px dashed var(--black); padding: 15px; margin-top: 5px; margin-bottom: 20px;">
+            <p style="font-size: 11px; margin-bottom: 10px;"><strong>VEHICLE INTEGRITY TRACKER</strong> (Starts at 100%. -10% per failed Driving Check).</p>
+            <div class="integrity-track">
+                <div class="int-box">10</div><div class="int-box">20</div><div class="int-box">30</div><div class="int-box">40</div>
+                <div class="int-box int-safe">50</div><div class="int-box int-safe">60</div><div class="int-box int-safe">70</div>
+                <div class="int-box int-safe">80</div><div class="int-box int-safe">90</div><div class="int-box int-safe">100</div>
+            </div>
+            
+            <p style="font-size: 11px; margin-top: 15px; margin-bottom: 10px;">Driver must roll Strength/Brains (TN 9) to crush through the horde. Passengers shoot to prevent -2 Driver penalty.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted #ccc; padding-bottom: 5px; margin-bottom: 5px;">
+                <strong>ZONE 1: CLEARED BAY DOORS</strong> <div class="box"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted #ccc; padding-bottom: 5px; margin-bottom: 5px;">
+                <strong>ZONE 2: CROSSED FLOODED YARD</strong> <div class="box"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted #ccc; padding-bottom: 5px;">
+                <strong>ZONE 3: RAMMED OUTER GATE</strong> <div class="box"></div>
+            </div>
+        </div>
+
+        <h2>ACT VIII: HIGHWAY BLOCKADE</h2>
+        <div style="border: 2px dashed var(--black); padding: 15px; margin-top: 5px;">
+            <p style="font-size: 11px; margin-bottom: 10px;">Driver must roll Strength (TN 11) to plow cars. 1d4 Walkers spawn at tailgate per round.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted #ccc; padding-bottom: 5px; margin-bottom: 5px;">
+                <strong>PLOW CHECK 1 PASSED</strong> <div class="box"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted #ccc; padding-bottom: 5px; margin-bottom: 5px;">
+                <strong>PLOW CHECK 2 PASSED</strong> <div class="box"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted #ccc; padding-bottom: 5px;">
+                <strong>PLOW CHECK 3 PASSED (CLEAR)</strong> <div class="box"></div>
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 14. FACTION DOSSIER (NEW) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div><h1>FACTION DOSSIERS</h1><p style="margin-top: 5px; font-weight: bold;">HUMAN THREATS & ALLIES</p></div>
+            <div class="logo-area">PAGE 14</div>
+        </div>
+        
+        <div class="rules-text" style="column-count: 1;">
+            <h3>FACTION 01: THE SALVAGERS</h3>
+            <p><strong>Leader:</strong> Vance (Ex-Logistics Manager)</p>
+            <p><strong>Base of Operations:</strong> Generate Hub (Sector F-4)</p>
+            <p><strong>Disposition:</strong> Paranoid, Defensive, Barter-Heavy.</p>
+            <p><strong>Lore:</strong> Vance and his crew were locked inside the hub during the outbreak. They have survived purely on the sealed warehouse inventory. They are excellent traders but terrible fighters, lacking the grit to clear out the heavily infested areas of their own building.</p>
+            <p><strong>Alliance Perks:</strong> If the players complete the PoE Dark Run and save the Hub, the Salvagers become a permanent allied outpost. They offer a permanent 20% discount on all Barter trades and will buy surplus `[HARDWARE]` tags at double value.</p>
+            
+            <hr style="border: 1px dashed #ccc; margin: 15px 0;">
+
+            <h3>FACTION 02: THE RUST DOGS</h3>
+            <p><strong>Leader:</strong> Silas (Former Mechanic/Convict)</p>
+            <p><strong>Base of Operations:</strong> Nomadic (Highway Overpasses)</p>
+            <p><strong>Disposition:</strong> Aggressive, Ambush-Focused, Parasitic.</p>
+            <p><strong>Lore:</strong> The Rust Dogs survive by letting other factions do the heavy lifting, then swooping in to steal the prize. They clad themselves in tire treads, road signs, and scrap metal, making them heavily armored against light melee weapons. They track broadcast signals to locate vulnerable enclaves.</p>
+            <p><strong>Combat Tactics:</strong> Rust Dogs rarely fight fair. They use the element of surprise and demand surrender first. If a firefight breaks out, they rely on <strong>Suppressive Fire</strong>: spending 2 Actions to force a player into cover, denying that player their next action phase unless they pass a Brains (Resolve) check.</p>
+        </div>
+    </div></div>
+
+    <!-- 15. THREAT INDEX 1 (NEW) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div><h1>THREAT INDEX: THE DEAD</h1><p style="margin-top: 5px; font-weight: bold;">STANDARD & ENVIRONMENTAL WALKERS</p></div>
+            <div class="logo-area">PAGE 15</div>
+        </div>
+
+        <div class="rules-text" style="column-count: 1;">
+            <h3>THE WALKER (STANDARD)</h3>
+            <p><strong>Health:</strong> 2 | <strong>Armor:</strong> 0 | <strong>Speed:</strong> 1 Action</p>
+            <p><strong>Behavior:</strong> Mindless pursuit. Attacks the closest source of noise or meat. Highly susceptible to being kited or bottlenecked.</p>
+            <p><strong>Tactical Trait [The Swarm]:</strong> A single Walker is a nuisance. If three or more Walkers engage a single survivor, they gain the "Overwhelm" trait. The survivor is automatically Grappled and must spend 1 Action and pass a Strength check (TN 9) to break free before they can attack or move.</p>
+
+            <hr style="border: 1px dashed #ccc; margin: 15px 0;">
+
+            <h3>THE DROWNED (WATER HAZARD)</h3>
+            <p><strong>Health:</strong> 3 | <strong>Armor:</strong> 0 | <strong>Speed:</strong> 2 Actions (In Water)</p>
+            <p><strong>Behavior:</strong> Found in flooded basements, sewers, and monsoon-soaked streets. The Drowned lie dormant beneath the surface of the water, looking like floating debris until a survivor gets close.</p>
+            <p><strong>Tactical Trait [Submerged Ambush]:</strong> Survivors navigating flooded areas suffer Disadvantage on Brains (Perception) checks to spot The Drowned. If a Drowned attacks from beneath the water, it deals 1 flat damage and forces the survivor to drop whatever they are holding in their hands into the floodwater (requiring an Action to retrieve).</p>
+
+            <hr style="border: 1px dashed #ccc; margin: 15px 0;">
+
+            <h3>THE RUNNER (FRESH INFECTED)</h3>
+            <p><strong>Health:</strong> 3 | <strong>Armor:</strong> 0 | <strong>Speed:</strong> 3 Actions</p>
+            <p><strong>Behavior:</strong> Victims who died within the last 48 hours. Rigor mortis has not set in. They are hyper-aggressive, maintaining their pre-collapse motor functions.</p>
+            <p><strong>Tactical Trait [Relentless]:</strong> Runners ignore standard movement rules. They can sprint across an entire combat zone (2 Movement actions) AND attack in the same turn. Escaping a Runner requires a player to spend 1 Stamina bubble in addition to the Movement action.</p>
+        </div>
+    </div></div>
+
+    <!-- 16. THREAT INDEX 2 (NEW) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div><h1>THREAT INDEX: MUTANTS I</h1><p style="margin-top: 5px; font-weight: bold;">SPECIALIZED INFECTION VARIANTS</p></div>
+            <div class="logo-area">PAGE 16</div>
+        </div>
+
+        <div class="rules-text" style="column-count: 1;">
+            <p>These variants have undergone severe viral mutation, granting them abilities that counter standard survivor tactics.</p>
+
+            <h3>THE SCREAMER (ALARM SYSTEM)</h3>
+            <p><strong>Health:</strong> 2 | <strong>Armor:</strong> 0 | <strong>Speed:</strong> 3 Actions</p>
+            <p><strong>Anatomy:</strong> Emaciated, skeletal figures with distended, unhinged jaws. Often found perched on high vantage points.</p>
+            <p><strong>Tactical Trait [The Siren]:</strong> The Screamer actively flees direct close-quarter combat. It uses its actions to maintain distance while keeping line of sight. Instead of attacking, it emits a shrill shriek that <strong>instantly fills the Decibel Gauge by +3 ticks</strong>. If not killed silently in round one, it guarantees a Horde Ambush.</p>
+
+            <hr style="border: 1px dashed #ccc; margin: 15px 0;">
+
+            <h3>THE STALKER (AMBUSHER)</h3>
+            <p><strong>Health:</strong> 4 | <strong>Armor:</strong> 1 | <strong>Speed:</strong> 2 Actions</p>
+            <p><strong>Anatomy:</strong> Elongated limbs tipped with hardened, calcified claws. They avoid light and crawl along ceilings, rafters, and ventilation shafts.</p>
+            <p><strong>Tactical Trait [Pinned]:</strong> Stalkers bypass front-line fighters, targeting the weakest party member (lowest Stamina/Health). On a successful hit, it applies the "Pinned" condition. The victim is tackled, loses 1 Action per turn, and cannot use two-handed weapons. They cannot stand up until an adjacent ally uses a Melee strike to peel the monster off.</p>
+
+            <hr style="border: 1px dashed #ccc; margin: 15px 0;">
+
+            <h3>THE SPITTER (ARTILLERY)</h3>
+            <p><strong>Health:</strong> 2 | <strong>Armor:</strong> 0 | <strong>Speed:</strong> 1 Action</p>
+            <p><strong>Anatomy:</strong> Swollen, glowing pustules cover the throat and chest. Often found in toxic spill zones or medical waste dumps.</p>
+            <p><strong>Tactical Trait [Corrosive Bile]:</strong> Attacks at range. Instead of dealing normal damage, a successful Spitter attack forces the player to make a grim choice: Check an <strong>Infection Box</strong> on their sheet, OR permanently destroy one <strong>Durability Bubble</strong> on their currently equipped weapon/armor as the acid melts it.</p>
+        </div>
+    </div></div>
+
+    <!-- 17. THREAT INDEX 3 (NEW) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div><h1>THREAT INDEX: MUTANTS II</h1><p style="margin-top: 5px; font-weight: bold;">SIEGE CLASS VARIANTS</p></div>
+            <div class="logo-area">PAGE 17</div>
+        </div>
+
+        <div class="rules-text" style="column-count: 1;">
+            <p>Siege Class mutants are boss-level threats designed to destroy Safehouse Integrity and force players to burn heavy ammunition and explosives.</p>
+
+            <h3>THE GRONK (JUGGERNAUT)</h3>
+            <p><strong>Health:</strong> 8 | <strong>Armor:</strong> 2 | <strong>Speed:</strong> 2 Actions</p>
+            <p><strong>Anatomy:</strong> Former riot police or heavy laborers swollen to grotesque proportions by the virus. Muscle mass is calcified into natural armor.</p>
+            <p><strong>Tactical Trait [Thick Skull]:</strong> Gronks are completely immune to Light Melee weapons and unarmed strikes. </p>
+            <p><strong>Tactical Trait [Breacher]:</strong> If a Gronk attacks a barricade, vehicle, or Safehouse wall, it deals massive structural damage. A single strike destroys 10% Safehouse Integrity or Vehicle Integrity.</p>
+
+            <hr style="border: 1px dashed #ccc; margin: 15px 0;">
+
+            <h3>THE ALPHA (HORDE LEADER)</h3>
+            <p><strong>Health:</strong> 10 | <strong>Armor:</strong> 1 | <strong>Speed:</strong> 2 Actions</p>
+            <p><strong>Anatomy:</strong> Slightly taller than a normal human, but possessing eerie, predatory intelligence. They do not groan or shamble; they coordinate.</p>
+            <p><strong>Tactical Trait [Hive Mind]:</strong> The Alpha does not attack directly unless cornered. As long as the Alpha is alive and on the board, <strong>all Walkers gain +1 Armor and +1 Speed Action</strong>. </p>
+            <p><strong>Tactical Trait [Call the Swarm]:</strong> As an Action, the Alpha can immediately spawn 1d4 Walkers onto the edge of the combat zone, regardless of the Decibel Gauge status. Killing the Alpha causes the surrounding Walkers to lose their buffs and revert to standard, mindless behavior.</p>
+
+            <div class="gm-note">
+                OVERSEER DIRECTIVE: BOSS ENCOUNTERS<br>
+                Never spawn a Gronk or Alpha in an open field without cover. Force the players to use the environment (explosive barrels, choke points, collapsing roofs) to whittle down these massive health pools.
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 18. ENVIRONMENTAL HAZARDS (NEW) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div><h1>ENVIRONMENTAL HAZARDS</h1><p style="margin-top: 5px; font-weight: bold;">WEATHER & TERRAIN MODIFIERS</p></div>
+            <div class="logo-area">PAGE 18</div>
+        </div>
+
+        <div class="rules-text" style="column-count: 1;">
+            <p>The climate actively attacks Condition bars. When survivors venture beyond the Safehouse, the Overseer must establish the weather conditions.</p>
+
+            <h3>WINTER & HYPOTHERMIA</h3>
+            <p>The freezing cold degrades stamina and limits healing.</p>
+            <ul>
+                <li><strong>The Cold Tax:</strong> Any movement action taken outside costs <strong>2 Stamina</strong> instead of 1. </li>
+                <li><strong>Hypothermia:</strong> If a player reaches 0 Stamina during a Winter deployment, they immediately suffer 1 flat Health damage from frostbite.</li>
+                <li><strong>Safehouse Heating:</strong> Safehouses require 1 `[Fuel]` Tag (or chopped wood) burned daily. If the Safehouse is unheated, resting during the Downtime Phase restores 0 Health.</li>
+            </ul>
+
+            <hr style="border: 1px dashed #ccc; margin: 15px 0;">
+
+            <h3>SUMMER & DEHYDRATION</h3>
+            <p>The blistering heat ruins food supplies and exhausts survivors.</p>
+            <ul>
+                <li><strong>Water Tax:</strong> Engaging in active combat or sprinting costs 1 Food/Water bubble in addition to the daily upkeep drain.</li>
+                <li><strong>Spoilage:</strong> If `[FOOD]` tags are not converted into preserved meals at a Workbench within 3 in-game days, they spoil and are destroyed.</li>
+            </ul>
+
+            <hr style="border: 1px dashed #ccc; margin: 15px 0;">
+
+            <h3>MONSOONS & FLOODING</h3>
+            <p>Torrential rains conceal threats and ruin machinery.</p>
+            <ul>
+                <li><strong>Poor Visibility:</strong> All Brains-based navigation, tracking, and perception rolls suffer <strong>Disadvantage</strong>.</li>
+                <li><strong>Wet Weapons:</strong> Firearms have a 1-in-6 chance to jam when fired, requiring a full Action to clear the chamber.</li>
+                <li><strong>Deep Water:</strong> Moving through flooded sectors costs 2 Stamina. Dropping a light source in the water extinguishes it instantly.</li>
+            </ul>
+        </div>
+    </div></div>
+
+    <!-- 19. DROP TABLES (NEW) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div><h1>HUB SCAVENGING TABLES</h1><p style="margin-top: 5px; font-weight: bold;">LIQUIDATION CENTER SPECIFIC LOOT</p></div>
+            <div class="logo-area">PAGE 19</div>
+        </div>
+        
+        <p style="font-size: 10px; text-align: center; margin-bottom: 10px;">ROLL 2D6 WHEN RESOLVING A FOUND ITEM TAG IN THE GENERATE HUB.</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <table>
+                <tr><th colspan="2">[MEDICAL] TAG RESULTS</th></tr>
+                <tr><td>2-4</td><td>Industrial Bleach (Clears 1 Box)</td></tr>
+                <tr><td>5-8</td><td>Warehouse First Aid (Restores 2 HP)</td></tr>
+                <tr><td>9-11</td><td>Paramedic Bag (Restores all HP)</td></tr>
+                <tr><td>12</td><td>Defibrillator (Auto-revive from Coma)</td></tr>
+            </table>
+            <table>
+                <tr><th colspan="2">[FOOD] TAG RESULTS</th></tr>
+                <tr><td>2-4</td><td>Stale Vending Snacks (Restores 1)</td></tr>
+                <tr><td>5-8</td><td>Pallet of Canned Beans (Restores 2)</td></tr>
+                <tr><td>9-11</td><td>Military MRE Crate (Restores 4)</td></tr>
+                <tr><td>12</td><td>Water Purifier (Infinite Clean Water)</td></tr>
+            </table>
+            <table>
+                <tr><th colspan="2">[HARDWARE] TAG RESULTS</th></tr>
+                <tr><td>2-4</td><td>Pallet Wood & Nails (1 Craft Use)</td></tr>
+                <tr><td>5-8</td><td>Heavy Steel Pipes (Repairs 10% Base)</td></tr>
+                <tr><td>9-11</td><td>Power Tools (Advantage on Crafting)</td></tr>
+                <tr><td>12</td><td>Industrial Generator (Powers Base)</td></tr>
+            </table>
+            <table>
+                <tr><th colspan="2">[WEAPONS & AMMO] TAGS</th></tr>
+                <tr><td>2-4</td><td>Security Baton (Melee Dmg 2)</td></tr>
+                <tr><td>5-8</td><td>Box of 9mm (Fills Sidearm Track)</td></tr>
+                <tr><td>9-11</td><td>Pump Shotgun (Insta-fills Decibel)</td></tr>
+                <tr><td>12</td><td>Crate of C4 (Massive AoE Damage)</td></tr>
+            </table>
+        </div>
+        <div class="gm-note" style="margin-top: auto;">
+            OVERSEER DIRECTIVE<br>
+            The Generate Hub is a high-yield zone. If players clear the sub-basement, grant them a +2 modifier to all loot rolls made within the facility.
+        </div>
+    </div></div>
+
+    <!-- 20. HANDOUTS 1 (Map & Manifest) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div><h1>OVERSEER ASSETS</h1><p style="margin-top: 5px; font-weight: bold;">HUB SCHEMATIC & TRADE LEDGER</p></div>
+            <div class="logo-area">PAGE 20</div>
+        </div>
+        
+        <h3 style="margin-top: 10px;">MAP HANDOUT: THE GENERATE LOGISTICS HUB</h3>
+        <div class="map-box" style="height: 3.5in; display: grid; grid-template-columns: 1fr 2fr; gap: 10px; border-color: #33ff00; border-width: 2px;">
+            <div style="border: 2px dashed #33ff00; padding: 10px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                <div>ZONE A:<br>LOADING DOCKS<br><span style="font-size: 8px;">(COMPROMISED)</span></div>
+                <div style="margin-top: auto; border: 2px solid #ff3333; padding: 5px; color: #ff3333;">ZONE D:<br>SUB-BASEMENT<br><span style="font-size: 8px;">(FLOODED / POE ACCESS)</span></div>
+            </div>
+            <div style="display: grid; grid-template-rows: 2fr 1fr; gap: 10px;">
+                <div style="border: 2px solid #33ff00; padding: 10px; display: flex; justify-content: center; align-items: center; background: repeating-linear-gradient(45deg, #111, #111 10px, #1a1a1a 10px, #1a1a1a 20px);">
+                    <span style="background: #111; padding: 5px;">ZONE B: PALLET LABYRINTH</span>
+                </div>
+                <div style="border: 2px solid #33ff00; padding: 10px; display: flex; justify-content: center; align-items: center;">
+                    ZONE C: MEZZANINE (FACTION HQ)
+                </div>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 20px;">PROP HANDOUT: SALVAGE MANIFEST</h3>
+        <div style="border: 1px solid #111; background: #fdf6e3; padding: 20px; font-family: 'Courier New', Courier, monospace; color: #111; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);">
+            <div style="text-align: center; border-bottom: 2px dashed #111; padding-bottom: 10px; margin-bottom: 10px;">
+                <strong>GENERATE LOGISTICS HUB</strong><br>
+                <em>AUTHORIZED BARTER RATES</em><br>
+                <small>NO CREDIT. NO IOUS.</small>
+            </div>
+            <table style="border: none;">
+                <tr style="background: transparent; color: #111;"><th style="border: none; border-bottom: 1px solid #111;">ITEM REQUIRED (YOU PAY)</th><th style="border: none; border-bottom: 1px solid #111;">EXCHANGE (YOU GET)</th></tr>
+                <tr><td style="border: none;">1 CAR BATTERY</td><td style="border: none;">3 MILITARY MREs</td></tr>
+                <tr><td style="border: none;">1 BOX 9MM AMMO (30 RDS)</td><td style="border: none;">2 [MEDICAL] TAGS</td></tr>
+                <tr><td style="border: none;">1 [HARDWARE] TAG</td><td style="border: none;">10 VALUE CR</td></tr>
+                <tr><td style="border: none;">1 [MEDICAL] TAG</td><td style="border: none;">15 VALUE CR</td></tr>
+                <tr><td style="border: none;"><strong>15 VALUE CR</strong></td><td style="border: none;"><strong>PRISTINE LONG GUN</strong></td></tr>
+                <tr><td style="border: none;"><strong>10 VALUE CR</strong></td><td style="border: none;"><strong>FULL TRAUMA KIT</strong></td></tr>
+            </table>
+            <div style="text-align: center; margin-top: 10px; font-size: 8px;">*PRICES SUBJECT TO OVERSEER REPUTATION MODIFIERS*</div>
+        </div>
+    </div></div>
+
+    <!-- 21. HANDOUTS (Highway Map) (NEW) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div><h1>OVERSEER ASSETS</h1><p style="margin-top: 5px; font-weight: bold;">TACTICAL HIGHWAY BLOCKADE</p></div>
+            <div class="logo-area">PAGE 21</div>
+        </div>
+        <div class="gm-note" style="text-align: center;">HAND THIS VISUAL AID TO PLAYERS FOR THE ACT VIII CLIMAX.</div>
+        
+        <h3 style="margin-top: 10px;">SECTOR E-3 OVERPASS</h3>
+        <div class="map-box" style="height: 6in; display: flex; flex-direction: column; align-items: center; justify-content: space-between; border-color: #555; background: #222;">
+            
+            <div style="width: 100%; border-bottom: 2px dashed #ffcc00; text-align: center; padding: 10px; color: #ffcc00;">
+                ZONE 3: CLEAR HIGHWAY (ESCAPE)
+            </div>
+            
+            <div style="width: 80%; height: 100px; border: 2px solid #777; background: #333; display: flex; align-items: center; justify-content: center; text-align: center; color: #aaa;">
+                ZONE 2: THE PILEUP<br>
+                <span style="font-size: 8px;">(REQUIRES 3 SUCCESSFUL PLOW CHECKS)</span>
+            </div>
+
+            <div style="width: 100%; border-top: 2px dashed #ff3333; text-align: center; padding: 10px; color: #ff3333;">
+                ZONE 1: THE SWARM<br>
+                <span style="font-size: 8px;">(1D4 WALKERS SPAWN PER ROUND)</span>
+            </div>
+            
+        </div>
+    </div></div>
+
+    <!-- 22. HANDOUTS 2 (Landscape Cards) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block">
+            <div><h1>OVERSEER ASSETS</h1><p style="margin-top: 5px; font-weight: bold;">VEHICLE & THREAT CARDS</p></div>
+            <div class="logo-area">PAGE 22</div>
+        </div>
+        
+        <div class="recipe-wrapper">
+            <!-- VEHICLE CARD (LANDSCAPE) -->
+            <div class="card">
+                <div class="card-inner">
+                    <div class="header">
+                        <span>SYS. SURVIVAL PROTOCOL</span>
+                        <span>ASSET // VEH-01</span>
+                    </div>
+                    <div class="title-area">
+                        <h2>GMC Sonoma SLS</h2>
+                        <div class="subtitle">Heavily Armored Transport</div>
+                    </div>
+                    <div class="content">
+                        <div class="schematic-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="90%" height="90%">
+                                <defs>
+                                    <linearGradient id="truckGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#52525b"/>
+                                        <stop offset="100%" stop-color="#27272a"/>
+                                    </linearGradient>
+                                </defs>
+                                <g transform="translate(128, 140) rotate(-15) translate(-128, -128)">
+                                    <rect x="40" y="110" width="160" height="40" rx="4" fill="url(#truckGrad)" stroke="#000" stroke-width="3"/>
+                                    <path d="M 80 110 L 100 60 L 160 60 L 170 110 Z" fill="#3f3f46" stroke="#000" stroke-width="3"/>
+                                    <rect x="105" y="70" width="45" height="30" fill="#1e293b" stroke="#000" stroke-width="2"/>
+                                    <line x1="115" y1="70" x2="115" y2="100" stroke="#a1a1aa" stroke-width="2"/>
+                                    <line x1="125" y1="70" x2="125" y2="100" stroke="#a1a1aa" stroke-width="2"/>
+                                    <line x1="135" y1="70" x2="135" y2="100" stroke="#a1a1aa" stroke-width="2"/>
+                                    <circle cx="70" cy="150" r="18" fill="#18181b" stroke="#71717a" stroke-width="4"/>
+                                    <circle cx="170" cy="150" r="18" fill="#18181b" stroke="#71717a" stroke-width="4"/>
+                                    <!-- Plow -->
+                                    <path d="M 195 100 L 220 140 L 195 160 L 190 110 Z" fill="#78350f" stroke="#000" stroke-width="3"/>
+                                    <line x1="200" y1="120" x2="210" y2="135" stroke="#451a03" stroke-width="2"/>
+                                </g>
+                            </svg>
+                            <div class="schematic-label">FIG 1. TRANSPORT</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="ingredient-header"><span>SPECIFICATION</span><span>RATING</span></div>
+                            <div class="stat-row"><span class="tag-name">INTEGRITY</span><span class="stat-val">100%</span></div>
+                            <div class="stat-row"><span class="tag-name">FUEL BUBBLES</span><span class="stat-val">8</span></div>
+                            <div class="stat-row"><span class="tag-name">TRUNK GRID</span><span class="stat-val">30 SLOTS</span></div>
+                            <div class="description">
+                                <strong>RAM DAMAGE:</strong> 4 Base.<br><br>
+                                <strong>RESULT:</strong> A beast of a machine. Protects passengers from light small arms fire. V6 Engine is incredibly loud (Decibel Gauge ignored).
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <span>&copy; Two Part Trading</span>
+                        <span>ASSET. REV 1.0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- THREAT CARD (LANDSCAPE) -->
+            <div class="card" style="background-color: #4a0404;">
+                <div class="card-inner" style="background: rgba(74, 4, 4, 0.9);">
+                    <div class="header">
+                        <span>SYS. SURVIVAL PROTOCOL</span>
+                        <span>THREAT // MUT-02</span>
+                    </div>
+                    <div class="title-area">
+                        <h2>The Stalker</h2>
+                        <div class="subtitle">Ceiling/Shadow Ambusher</div>
+                    </div>
+                    <div class="content">
+                        <div class="schematic-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="90%" height="90%">
+                                <g transform="translate(0, 10)">
+                                    <path d="M 128 40 C 90 40 60 80 80 140 C 90 170 110 180 128 180 C 146 180 166 170 176 140 C 196 80 166 40 128 40 Z" fill="#111" stroke="#ff3333" stroke-width="2"/>
+                                    <!-- Claws -->
+                                    <path d="M 60 100 C 40 120 40 160 70 180" fill="none" stroke="#fff" stroke-width="3"/>
+                                    <path d="M 196 100 C 216 120 216 160 186 180" fill="none" stroke="#fff" stroke-width="3"/>
+                                    <!-- Eyes -->
+                                    <circle cx="110" cy="100" r="4" fill="#ff3333"/>
+                                    <circle cx="146" cy="100" r="4" fill="#ff3333"/>
+                                </g>
+                            </svg>
+                            <div class="schematic-label" style="color: #ff3333;">TACTICAL PROFILE</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="ingredient-header"><span>ATTRIBUTE</span><span>STAT</span></div>
+                            <div class="stat-row"><span class="tag-name">HEALTH</span><span class="stat-val">4</span></div>
+                            <div class="stat-row"><span class="tag-name">ARMOR</span><span class="stat-val">1</span></div>
+                            <div class="stat-row"><span class="tag-name">SPEED</span><span class="stat-val">2 ACTIONS</span></div>
+                            <div class="description">
+                                <strong>TARGET:</strong> Lowest Stamina/Health.<br><br>
+                                <strong>PINNED CONDITION:</strong> On hit, victim is tackled. Loses 1 Action per turn. Cannot use 2H weapons. Cannot stand until an adjacent ally uses a Melee strike to peel it off.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <span>&copy; Two Part Trading</span>
+                        <span>THREAT. REV 1.0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div></div>
+
+    <!-- 23. GM NOTES (NEW) -->
+    <div class="page"><div class="content-layer">
+        <div class="header-block"><div><h1>FIELD NOTES</h1><p style="margin-top: 5px; font-weight: bold;">OVERSEER SESSION LOG</p></div><div class="logo-area">PAGE 23</div></div>
+        <div class="lined-bg"></div>
+    </div></div>
+
+    <!-- 24. BACK COVER -->
+    <div class="page cover-page">
+        <h1 style="border: none; font-size: 30px; line-height: 1.2; width: 80%;">"THE FREEZING RAIN WASHES AWAY THE BLOOD, BUT IT CANNOT DROWN THE NOISE."</h1>
+        <div style="width: 100px; height: 4px; background: white; margin: 30px auto;"></div>
+                 
+        <p style="font-size: 14px; width: 70%; line-height: 1.6; text-align: left; margin-bottom: 20px;">
+            <strong>DOSSIER 01</strong> plunges your survivors into the harsh reality of the upkeep loop. The tutorial is over, the honeymoon phase of the Safehouse is dead, and the winter monsoons have arrived. 
+        </p>
+        <p style="font-size: 14px; width: 70%; line-height: 1.6; text-align: left; margin-bottom: 40px;">
+            Inside <strong>The Liquidation Protocol</strong>, your players will navigate brutal faction barter, explore the pitch-black labyrinth of the Generate Logistics Hub, restore a flooded power grid, and execute a desperate vehicular escape.
+        </p>
+
+        <p style="font-size: 12px; font-weight: bold; background: white; color: var(--black); padding: 5px 20px; display: inline-block; margin-bottom: 30px;">PLAYERS: 2-5 | EST. PLAYTIME: 12-18 HOURS</p>
+        
+        <img src="../logo.png" alt="Two Part Trading" style="filter: invert(1); max-width: 150px; margin-bottom: 10px;">
+        <p style="font-size: 10px; color: #aaa;">DOCUMENT CLASSIFICATION: OVERSEER_B</p>
+    </div>
+
+</body>
+</html>
